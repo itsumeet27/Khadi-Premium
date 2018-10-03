@@ -3,7 +3,6 @@
 	include 'includes/header.php';
 
 	if(isset($_GET['add'])){
-
 		$parentQuery = $db->query("SELECT * FROM categories WHERE parent = 0 ORDER BY category");
 		?>
 		<div class="container">
@@ -67,62 +66,11 @@
 					<td><input type="submit" name="submit_product" value="Add Product" class="btn btn-success form-control"></td>
 				</tr>				
 			</table>
-			<!--<div class="form-group col-lg-3 col-md-4 col-sm-6 col-xs-12">
-				<label for="title">Title*: </label>
-				<input type="text" class="form-control" name="title" id="title" value="<?=((isset($_POST['title']))?sanitize($_POST['title']):'');?>">
-			</div>
-			<div class="form-group col-lg-3 col-md-4 col-sm-6 col-xs-12">
-				<label for="parent">Parent Category*: </label>
-				<select class="form-control" id="parent" name="parent">
-					<option value=""<?=((isset($_POST['parent']) && $_POST['parent'] == '')?' selected':'');?>></option>
-					<?php while($parent = mysqli_fetch_assoc($parentQuery)):?>
-						<option value="<?=$parent['id'];?>"<?=((isset($_POST['parent']) && $_POST['parent'] == $parent['id'])?' select':'');?>><?=$parent['category'];?></option>
-					<?endwhile;?>
-				</select>
-			</div>
-			<div class="form-group col-lg-3 col-md-4 col-sm-6 col-xs-12">
-				<label for="child">Child Category*: </label>
-				<select id="child" name="child" class="form-control"></select>
-			</div>
-			<div class="form-group col-lg-3 col-md-4 col-sm-6 col-xs-12">
-				<label for="sku">SKU Code*:</label>
-				<input type="text" name="sku" id="sku" class="form-control" value="<?=((isset($_POST['sku']))?sanitize($_POST['sku']):'');?>">
-			</div>
-			<div class="form-group col-lg-3 col-md-4 col-sm-6 col-xs-12">
-				<label for="price">Price*:</label>
-				<input type="text" name="price" id="price" class="form-control" value="<?=((isset($_POST['price']))?sanitize($_POST['price']):'');?>">
-			</div>
-			<div class="form-group col-lg-3 col-md-4 col-sm-6 col-xs-12">
-				<label for="list_price">List Price*:</label>
-				<input type="text" name="list_price" id="list_price" class="form-control" value="<?=((isset($_POST['list_price']))?sanitize($_POST['list_price']):'');?>">
-			</div>
-			<div class="form-group col-lg-3 col-md-4 col-sm-6 col-xs-12">
-				<label for="weight">Weight*:</label>
-				<input type="text" name="weight" id="weight" class="form-control" value="<?=((isset($_POST['weight']))?sanitize($_POST['weight']):'');?>">
-			</div>
-			<div class="form-group col-lg-3 col-md-4 col-sm-6 col-xs-12">
-				<label for="photo">Photo*:</label>
-				<input type="file" name="photo" class="form-control" id="photo">
-			</div>
-			<div class="form-group col-lg-3 col-md-4 col-sm-6 col-xs-12">
-				<label for="short_desc">Short Description*:</label>
-				<textarea id="short_desc" name="short_desc" class="form-control" rows="3"><?=((isset($_POST['short_desc']))?sanitize($_POST['short_desc']):'');?></textarea>
-			</div>
-			<div class="form-group col-lg-3 col-md-4 col-sm-6 col-xs-12">
-				<label for="long_desc">Long Description*:</label>
-				<textarea id="long_desc" name="long_desc" class="form-control" rows="6"><?=((isset($_POST['long_desc']))?sanitize($_POST['long_desc']):'');?></textarea>
-			</div>
-			<div class="form-group col-lg-3 col-md-4 col-sm-6 col-xs-12">
-				<label for="tagline">Tagline*:</label>
-				<textarea id="tagline" name="tagline" class="form-control" rows="1"><?=((isset($_POST['tagline']))?sanitize($_POST['tagline']):'');?></textarea>
-			</div>
-			<div class="form-group col-lg-3 col-md-4 col-sm-6 col-xs-12">
-				<input type="submit" name="submit_product" value="Add Product" class="btn btn-success form-control">
-			</div>
-			<div class="clearfix"></div>-->
 		</form>
 	</div>
-	<?php }else{
+	<?php } 
+
+	else{
 		$sql = "SELECT * FROM products WHERE deleted = 0";
 		$presults = $db->query($sql);
 		if(isset($_GET['featured'])){
