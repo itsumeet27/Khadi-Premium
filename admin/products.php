@@ -1,10 +1,22 @@
 <?php
 	require_once $_SERVER['DOCUMENT_ROOT'].'/khadi/core/init.php';	
 	include 'includes/header.php';
-	if(isset($_GET['add'])){
+	if(isset($_GET['add']) || isset($_GET['edit'])){
 		$parentQuery = $db->query("SELECT * FROM categories WHERE parent = 0 ORDER BY category");
+		$title = ((isset($_POST['title']) && $_POST['title'] != '')?sanitize($_POST['title']):'');
+		$parent = ((isset($_POST['parent']) && !empty($_POST['parent']))?sanitize($_POST['parent']):'');
+		$category = ((isset($_POST['child'])) && !empty($_POST['child'])?sanitize($_POST['child']):'');
+		if(isset($_GET['edit'])){
+			$edit_id = (int)$_GET['edit'];
+			$productResults = $db->query("SELECT * FROM products WHERE id = '$edit_id'");
+			$product = mysqli_fetch_assoc($productResults);
+			$category = ((isset($_POST['child']) && $_POST['child'] != '')?sanitize($_POST['child']):$product['categories']);
+			$title = ((isset($_POST['title']) && $_POST['title'] != '')?sanitize($_POST['title']):$product['title']);
+			$parentQ = $db->query("SELECT * FROM categories WHERE id = 'category'");
+			$parentResult = mysqli_fetch_assoc($parentQ);
+			$parent = ((isset($_POST['parent']) && $_POST['parent'] != '')?sanitize($_POST['parent']):$parentResult['parent']);
+		}
 		if($_POST){
-			$title = sanitize($_POST['title']);
 			$categories = sanitize($_POST['child']);
 			$dbpath = '';
 			$price = sanitize($_POST['price']);
@@ -66,20 +78,20 @@
 
 		?>
 		<div class="container">
-		<h2 class="text-center">Add a new Product</h2>
-		<form action="products.php?add=1" method="post" enctype="multipart/form-data">
+		<h2 class="text-center"><?=((isset($_GET['edit']))?'Edit':'Add');?> Product</h2>
+		<form action="products.php?<?=((isset($_GET['edit']))?'edit='.$edit_id:'add=1');?>" method="post" enctype="multipart/form-data">
 			<table class="table table-responsive table-striped">
 				<tr>
 					<th>Title*</th>
-					<td><input type="text" class="form-control" name="title" id="title" value="<?=((isset($_POST['title']))?sanitize($_POST['title']):'');?>"></td>
+					<td><input type="text" class="form-control" name="title" id="title" value="<?=$title;?>"></td>
 				</tr>
 				<tr>
 					<th>Parent Category*</th>
 					<td>
 						<select class="form-control" id="parent" name="parent">
-						<option value=""<?=((isset($_POST['parent']) && $_POST['parent'] == '')?' selected':'');?>></option>
-						<?php while($parent = mysqli_fetch_assoc($parentQuery)):?>
-							<option value="<?=$parent['id'];?>"<?=((isset($_POST['parent']) && $_POST['parent'] == $parent['id'])?' select':'');?>><?=$parent['category'];?></option>
+						<option value=""<?=(($parent == '')?' selected':'');?>></option>
+						<?php while($p = mysqli_fetch_assoc($parentQuery)):?>
+							<option value="<?=$p['id'];?>"<?=(($parent == $p['id'])?' selected':'');?>><?=$p['category'];?></option>
 						<?php endwhile;?>
 						</select>
 					</td>
@@ -127,7 +139,9 @@
 					<td><textarea id="stock" name="stock" class="form-control" rows="1"><?=((isset($_POST['stock']))?sanitize($_POST['stock']):'');?></textarea></td>
 				</tr>
 				<tr>
-					<td><input type="submit" name="add" value="Add Product" class="btn btn-success form-control"></td>
+					<td><input type="submit" name="add" value="<?=((isset($_GET['edit']))?'Edit':'Add');?> Product" class="btn btn-success"></td>
+					<td><input type="reset" name="reset" value="Reset Product" class="btn btn-success"></td>
+					<td><a href="products.php" class="btn btn-info form-control">Cancel</a></td>
 				</tr>				
 			</table>
 		</form>
