@@ -1,32 +1,57 @@
 <?php
 	require_once $_SERVER['DOCUMENT_ROOT'].'/khadi/core/init.php';	
 	include 'includes/header.php';
+
+	//Delete Product
+
+	if(isset($_GET['delete'])){
+		$id = sanitize($_GET['delete']);
+		$db->query("UPDATE products SET deleted = 1 WHERE id = '$id'");
+		header('Location: products.php');
+	}
+
+	$dbpath = '';
 	if(isset($_GET['add']) || isset($_GET['edit'])){
 		$parentQuery = $db->query("SELECT * FROM categories WHERE parent = 0 ORDER BY category");
 		$title = ((isset($_POST['title']) && $_POST['title'] != '')?sanitize($_POST['title']):'');
+		$sku = ((isset($_POST['sku']) && $_POST['sku'] != '')?sanitize($_POST['sku']):'');
 		$parent = ((isset($_POST['parent']) && !empty($_POST['parent']))?sanitize($_POST['parent']):'');
 		$category = ((isset($_POST['child'])) && !empty($_POST['child'])?sanitize($_POST['child']):'');
+		$price = ((isset($_POST['price']) && $_POST['price'] != '')?sanitize($_POST['price']):'');
+		$list_price = ((isset($_POST['list_price']) && $_POST['list_price'] != '')?sanitize($_POST['list_price']):'');
+		$weight = ((isset($_POST['weight']) && $_POST['weight'] != '')?sanitize($_POST['weight']):'');
+		$short_desc = ((isset($_POST['short_desc']) && $_POST['short_desc'] != '')?sanitize($_POST['short_desc']):'');
+		$long_desc = ((isset($_POST['long_desc']) && $_POST['long_desc'] != '')?sanitize($_POST['long_desc']):'');
+		$tagline = ((isset($_POST['tagline']) && $_POST['tagline'] != '')?sanitize($_POST['tagline']):'');
+		$stock = ((isset($_POST['stock']) && $_POST['stock'] != '')?sanitize($_POST['stock']):'');
+		$saved_image = '';
 		if(isset($_GET['edit'])){
 			$edit_id = (int)$_GET['edit'];
 			$productResults = $db->query("SELECT * FROM products WHERE id = '$edit_id'");
 			$product = mysqli_fetch_assoc($productResults);
+			if(isset($_GET['delete_image'])){
+				$image_url = $_SERVER['DOCUMENT_ROOT'].$product['image'];
+				unlink($image_url);
+				$db->query("UPDATE products SET image = '' WHERE id = '$edit_id'");
+				header('Location: products.php?edit='.$edit_id);
+			}
 			$category = ((isset($_POST['child']) && $_POST['child'] != '')?sanitize($_POST['child']):$product['categories']);
 			$title = ((isset($_POST['title']) && $_POST['title'] != '')?sanitize($_POST['title']):$product['title']);
-			$parentQ = $db->query("SELECT * FROM categories WHERE id = 'category'");
+			$sku = ((isset($_POST['sku']) && $_POST['sku'] != '')?sanitize($_POST['sku']):$product['sku']);
+			$parentQ = $db->query("SELECT * FROM categories WHERE id = '$category'");
 			$parentResult = mysqli_fetch_assoc($parentQ);
 			$parent = ((isset($_POST['parent']) && $_POST['parent'] != '')?sanitize($_POST['parent']):$parentResult['parent']);
+			$price = ((isset($_POST['price']) && $_POST['price'] != '')?sanitize($_POST['price']):$product['price']);
+			$list_price = ((isset($_POST['list_price']) && $_POST['list_price'] != '')?sanitize($_POST['list_price']):$product['list_price']);
+			$weight = ((isset($_POST['weight']) && $_POST['weight'] != '')?sanitize($_POST['weight']):$product['weight']);
+			$short_desc = ((isset($_POST['short_desc']) && $_POST['short_desc'] != '')?sanitize($_POST['short_desc']):$product['short_desc']);
+			$long_desc = ((isset($_POST['long_desc']) && $_POST['long_desc'] != '')?sanitize($_POST['long_desc']):$product['long_desc']);
+			$tagline = ((isset($_POST['tagline']) && $_POST['tagline'] != '')?sanitize($_POST['tagline']):$product['tagline']);
+			$stock = ((isset($_POST['stock']) && $_POST['stock'] != '')?sanitize($_POST['stock']):$product['stock']);
+			$saved_image = (($product['image'] != '')?$product['image']:'');
+			$dbpath = $saved_image;
 		}
 		if($_POST){
-			$categories = sanitize($_POST['child']);
-			$dbpath = '';
-			$price = sanitize($_POST['price']);
-			$list_price = sanitize($_POST['list_price']);
-			$sku = sanitize($_POST['sku']);
-			$weight = sanitize($_POST['weight']);
-			$short_desc = sanitize($_POST['short_desc']);
-			$long_desc = sanitize($_POST['long_desc']);
-			$tagline = sanitize($_POST['tagline']);
-			$stock = sanitize($_POST['stock']);
 			$errors = array();
 			$required = array('title', 'price', 'parent', 'child', 'short_desc', 'long_desc', 'sku', 'weight', 'tagline');
 			foreach ($required as $field) {
@@ -35,7 +60,6 @@
 					break;
 				}
 			}
-
 			if(!empty($_FILES)){
 				$photo = $_FILES['photo'];
 				$name = $photo['name'];
@@ -64,18 +88,23 @@
 					$errors[] = 'File extension does not match the file';
 				}
 			}
-
 			if(!empty($errors)){
 				echo display_errors($errors);
 			}else{
 				//Upload file and insert into database
-				move_uploaded_file($tmpLoc, $uploadPath);
-				$insertSql = "INSERT INTO products (`title`,`sku`,`price`,`list_price`,`categories`,`image`,`tagline`,`short_desc`,`long_desc`,`weight`,`stock`) VALUES ('$title','$sku','$price','$list_price','$categories','$dbpath','$tagline','$short_desc','$long_desc','$weight','$stock')";
+				if(!empty($_FILES)){
+					move_uploaded_file($tmpLoc, $uploadPath);
+				}
+				
+				$insertSql = "INSERT INTO products (`title`,`sku`,`price`,`list_price`,`categories`,`image`,`tagline`,`short_desc`,`long_desc`,`weight`,`stock`) VALUES ('$title','$sku','$price','$list_price','$category','$dbpath','$tagline','$short_desc','$long_desc','$weight','$stock')";
+					if(isset($_GET['edit'])){
+						$insertSql = "UPDATE products SET title = '$title', sku = '$sku', price = '$price', list_price = '$list_price', categories = '$category', image = '$dbpath', tagline = '$tagline', short_desc = '$short_desc', long_desc = '$long_desc', weight = '$weight', stock = '$stock' WHERE id = '$edit_id'";
+					}
+
 				$db->query($insertSql);
+				
 			}
 		}
-
-
 		?>
 		<div class="container">
 		<h2 class="text-center"><?=((isset($_GET['edit']))?'Edit':'Add');?> Product</h2>
@@ -102,41 +131,51 @@
 				</tr>
 				<tr>
 					<th>SKU Code*</th>
-					<td><input type="text" name="sku" id="sku" class="form-control" value="<?=((isset($_POST['sku']))?sanitize($_POST['sku']):'');?>"></td>
+					<td><input type="text" name="sku" id="sku" class="form-control" value="<?=$sku;?>"></td>
 				</tr>
 				<tr>
 					<th>Price*</th>
-					<td><input type="text" name="price" id="price" class="form-control" value="<?=((isset($_POST['price']))?sanitize($_POST['price']):'');?>"></td>
+					<td><input type="text" name="price" id="price" class="form-control" value="<?=$price;?>"></td>
 				</tr>
 				<tr>
 					<th>List Price*</th>
 					<td>
-						<input type="text" name="list_price" id="list_price" class="form-control" value="<?=((isset($_POST['list_price']))?sanitize($_POST['list_price']):'');?>">
+						<input type="text" name="list_price" id="list_price" class="form-control" value="<?=$list_price;?>">
 					</td>
 				</tr>
 				<tr>
 					<th>Weight*</th>
-					<td><input type="text" name="weight" id="weight" class="form-control" value="<?=((isset($_POST['weight']))?sanitize($_POST['weight']):'');?>"></td>
+					<td><input type="text" name="weight" id="weight" class="form-control" value="<?=$weight;?>"></td>
 				</tr>
 				<tr>
-					<th>Photo*</th>
-					<td><input type="file" name="photo" class="form-control" id="photo"></td>
+					<?php if($saved_image != ''): ?>
+					<td class="saved-image">
+						<img src="<?=$saved_image;?>" alt="saved image" />
+					</td>
+						<td class="del-image">
+							<a href="products.php?delete_image=1&edit=<?=$edit_id;?>" class=" btn btn-danger text-danger">Delete Image</a>
+						</td>
+					</div>
+					<?php else: ?>
+						<th>Photo*</th>
+						<td><input type="file" name="photo" class="form-control" id="photo"></td>
+					<?php endif; ?>
 				</tr>
 				<tr>
 					<th>Short Description*</th>
-					<td><textarea id="short_desc" name="short_desc" class="form-control" rows="3"><?=((isset($_POST['short_desc']))?sanitize($_POST['short_desc']):'');?></textarea></td>
+					<td><textarea id="short_desc" name="short_desc" class="form-control" rows="3"><?=$short_desc;?></textarea></td>
 				</tr>
 				<tr>
 					<th>Long Description*</th>
-					<td><textarea id="long_desc" name="long_desc" class="form-control" rows="6"><?=((isset($_POST['long_desc']))?sanitize($_POST['long_desc']):'');?></textarea></td>
+					<td><textarea id="long_desc" name="long_desc" class="form-control" rows="6"><?=$long_desc;?></textarea></td>
 				</tr>
 				<tr>
 					<th>Tagline*</th>
-					<td><textarea id="tagline" name="tagline" class="form-control" rows="1"><?=((isset($_POST['tagline']))?sanitize($_POST['tagline']):'');?></textarea></td>
+					<td><textarea id="tagline" name="tagline" class="form-control" rows="1"><?=$tagline;?></textarea></td>
 				</tr>	
 				<tr>
 					<th>Stock*</th>
-					<td><textarea id="stock" name="stock" class="form-control" rows="1"><?=((isset($_POST['stock']))?sanitize($_POST['stock']):'');?></textarea></td>
+					<td><textarea id="stock" name="stock" class="form-control" rows="1"><?=$stock;?></textarea></td>
 				</tr>
 				<tr>
 					<td><input type="submit" name="add" value="<?=((isset($_GET['edit']))?'Edit':'Add');?> Product" class="btn btn-success"></td>
@@ -204,3 +243,9 @@
 </div>
 
 <?php } include 'includes/footer.php'; ?>
+
+<script type="text/javascript">
+	jQuery('document').ready(function(){
+		get_child_options('<?=$category;?>');
+	});
+</script>

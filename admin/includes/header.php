@@ -175,6 +175,18 @@
       text-align: justify;
     }
 
+    .saved-image{
+      width: 200px;
+      height: 200px;
+    }
+
+    .del-image{
+      margin: 1em;
+    }
+
+    .saved-image img{
+      width: 100%;
+    }
   </style>
 </head>
 <body>

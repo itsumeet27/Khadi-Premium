@@ -1,6 +1,7 @@
 <?php
 	require_once $_SERVER['DOCUMENT_ROOT'].'/khadi/core/init.php';
 	$parentID = (int)$_POST['parentID'];
+	$selected = sanitize($_POST['selected']);
 	$childQuery = $db->query("SELECT * FROM categories WHERE parent = '$parentID' ORDER BY category");
 	ob_start();
 ?>
@@ -8,7 +9,7 @@
 		
 	</option>
 	<?php while($child = mysqli_fetch_assoc($childQuery)): ?>
-		<option value="<?=$child['id'];?>">
+		<option value="<?=$child['id'];?>"<?=(($selected == $child['id'])?' selected':'');?>>
 			<?=$child['category'];?>
 		</option>
 	<?php endwhile;?>
