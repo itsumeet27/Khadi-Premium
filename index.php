@@ -94,7 +94,7 @@
 	  		<?php while($product = mysqli_fetch_assoc($featured)) : ?>
 	  		<div class="col-lg-3 col-md-6 col-sm-12 col-xs-12">
 	  			<center>
-					<a href=# class="prod">
+
 						<div class="featured">
 							<div class="product-img">
 								<img src='<?= $product['image']; ?>' class="img-responsive">
@@ -111,7 +111,7 @@
 								<button type="button" class="btn btn-sm btn-success" onclick="detailsmodal(<?= $product['id']; ?>)">Shop Now</button>
 							</div>
 						</div>
-					</a>
+					
 				</center>
 			</div>
 			<?php endwhile;?>
