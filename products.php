@@ -49,9 +49,7 @@
 
 	<div class="container">
 
-		<!-- Skin Care -->
 		<div class="row">
-			<!-- Products of 15 gms-->
 			<?php while($product = mysqli_fetch_assoc($products)): ?>
 			<center>
 				<div class="col-lg-4 col-md-6 col-sm-12 col-xs-12">

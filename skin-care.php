@@ -1,4 +1,9 @@
-<?php include('includes/header.php');?>
+<?php include('includes/header.php'); ?>
+
+<?php 
+	$sql = "SELECT * FROM products WHERE cat_name = 'skin-care' AND featured = 0";
+	$products = $db->query($sql);
+?>
 
 	<div id="myCarousel" class="carousel slide" data-ride="carousel">
 	    <!-- Indicators -->
@@ -36,294 +41,46 @@
 
 	<!-- Skin Care -->
 		<div class="row">
+			<?php while($product = mysqli_fetch_assoc($products)): ?>
 			<center>
-				<!-- Products of 15 gms-->
 				<div class="col-lg-4 col-md-6 col-sm-12 col-xs-12">
-					<a href=# class="prod">
-						<div class="products">
-							<div class="product-img">
-								<img src="images/products/Anti-Acne-Sage-Cream.jpg" class="img-responsive">
+					<div class="products">
+						<div class="product-img">
+							<img src="<?= $product['image']; ?>" class="img-responsive">
+						</div>
+						<div class="product-desc">
+							<div class="prod-head">
+								<h4><?= $product['title']; ?></h4>
 							</div>
-							<div class="product-desc">
-								<div class="prod-head">
-									<h4>Anti Acne Sage Cream</h4>
-								</div>
-								<div class="prod-desc">
-									<p>15 gms <br> &#8377; 505</p>
-								</div>
-							</div>
-							<div class="add-to-cart">
-								<a href="#" class="regime-shop">Shop Now</a>
+							<div class="prod-desc">
+								<p><?= $product['weight']; ?> <br> &#8377; <?= $product['price']; ?></p>
 							</div>
 						</div>
-					</a>
-				</div>
-				<div class="col-lg-4 col-md-6 col-sm-12 col-xs-12">
-					<a href=# class="prod">
-						<div class="products">
-							<div class="product-img">
-								<img src="images/products/Anti-Aging-Argan-Cream.jpg" class="img-responsive">
-							</div>
-							<div class="product-desc">
-								<div class="prod-head">
-									<h4>Anti Aging Argan Cream</h4>
-								</div>
-								<div class="prod-desc">
-									<p>15 gms <br> &#8377; 505</p>
-								</div>
-							</div>
-							<div class="add-to-cart">
-								<a href="#" class="regime-shop">Shop Now</a>
-							</div>
+						<div class="add-to-cart">
+							<button type="button" class="btn btn-sm btn-success" onclick="detailsmodal(<?= $product['id']; ?>)">Shop Now</button>
 						</div>
-					</a>
-				</div>
-				<div class="col-lg-4 col-md-6 col-sm-12 col-xs-12">
-					<a href=# class="prod">
-						<div class="products">
-							<div class="product-img">
-								<img src="images/products/Argan-Lip-Balm.jpg" class="img-responsive">
-							</div>
-							<div class="product-desc">
-								<div class="prod-head">
-									<h4>Argan Lip Balm</h4>
-								</div>
-								<div class="prod-desc">
-									<p>15 gms <br> &#8377; 465</p>
-								</div>
-							</div>
-							<div class="add-to-cart">
-								<a href="#" class="regime-shop">Shop Now</a>
-							</div>
-						</div>
-					</a>
-				</div>
-				<div class="col-lg-4 col-md-6 col-sm-12 col-xs-12">
-					<a href=# class="prod">
-						<div class="products">
-							<div class="product-img">
-								<img src="images/products/Meadowfoam-Lip-Srcub.jpg" class="img-responsive">
-							</div>
-							<div class="product-desc">
-								<div class="prod-head">
-									<h4>Meadowfoam Lip Scrub</h4>
-								</div>
-								<div class="prod-desc">
-									<p>15 gms <br> &#8377; 465</p>
-								</div>
-							</div>
-							<div class="add-to-cart">
-								<a href="#" class="regime-shop">Shop Now</a>
-							</div>
-						</div>
-					</a>
-				</div>
-
-				<!-- Products of 50 gms-->
-				<div class="col-lg-4 col-md-6 col-sm-12 col-xs-12">
-					<a href=# class="prod">
-						<div class="products">
-							<div class="product-img">
-								<img src="images/products/Rejuvenating-Chamomile-Night-Cream.jpg" class="img-responsive">
-							</div>
-							<div class="product-desc">
-								<div class="prod-head">
-									<h4>Rejuvenating Chamomile Night Cream</h4>
-								</div>
-								<div class="prod-desc">
-									<p>50 gms <br> &#8377; 755</p>
-								</div>
-							</div>
-							<div class="add-to-cart">
-								<a href="#" class="regime-shop">Shop Now</a>
-							</div>
-						</div>
-					</a>
-				</div>
-				<div class="col-lg-4 col-md-6 col-sm-12 col-xs-12">
-					<a href=# class="prod">
-						<div class="products">
-							<div class="product-img">
-								<img src="images/products/Ylang-Ylang-Day-Cream.jpg" class="img-responsive">
-							</div>
-							<div class="product-desc">
-								<div class="prod-head">
-									<h4>Ylang Ylang Day Cream</h4>
-								</div>
-								<div class="prod-desc">
-									<p>50 gms <br> &#8377; 575</p>
-								</div>
-							</div>
-							<div class="add-to-cart">
-								<a href="#" class="regime-shop">Shop Now</a>
-							</div>
-						</div>
-					</a>
-				</div>&nbsp;
-				<div class="col-lg-4 col-md-6 col-sm-12 col-xs-12">
-					<a href=# class="prod">
-						<div class="products">
-							<div class="product-img">
-								<img src="images/products/Hydrating-Fenugreek-Gel.jpg" class="img-responsive">
-							</div>
-							<div class="product-desc">
-								<div class="prod-head">
-									<h4>Hydrating Fenugreek Gel</h4>
-								</div>
-								<div class="prod-desc">
-									<p>50 gms <br> &#8377; 525</p>
-								</div>
-							</div>
-							<div class="add-to-cart">
-								<a href="#" class="regime-shop">Shop Now</a>
-							</div>
-						</div>
-					</a>
-				</div>
-				<div class="col-lg-4 col-md-6 col-sm-12 col-xs-12">
-					<a href=# class="prod">
-						<div class="products">
-							<div class="product-img">
-								<img src="images/products/Exfoliating-Sage-Face-Scrub.jpg" class="img-responsive">
-							</div>
-							<div class="product-desc">
-								<div class="prod-head">
-									<h4>Exfoliating Sage Face Scrub</h4>
-								</div>
-								<div class="prod-desc">
-									<p>50 gms <br> &#8377; 735</p>
-								</div>
-							</div>
-							<div class="add-to-cart">
-								<a href="#" class="regime-shop">Shop Now</a>
-							</div>
-						</div>
-					</a>
-				</div>
-				<div class="col-lg-4 col-md-6 col-sm-12 col-xs-12">
-					<a href=# class="prod">
-						<div class="products">
-							<div class="product-img">
-								<img src="images/products/Anti-Acne-Patchouli-Face-Pack.jpg" class="img-responsive">
-							</div>
-							<div class="product-desc">
-								<div class="prod-head">
-									<h4>Anti Acne Patchouli Face Pack</h4>
-								</div>
-								<div class="prod-desc">
-									<p>50 gms <br> &#8377; 505</p>
-								</div>
-							</div>
-							<div class="add-to-cart">
-								<a href="#" class="regime-shop">Shop Now</a>
-							</div>
-						</div>
-					</a>
-				</div>
-				<div class="col-lg-4 col-md-6 col-sm-12 col-xs-12">
-					<a href=# class="prod">
-						<div class="products">
-							<div class="product-img">
-								<img src="images/products/Therapeutic-Aloe-Vera-Gel.jpg" class="img-responsive">
-							</div>
-							<div class="product-desc">
-								<div class="prod-head">
-									<h4>Therapeutic Aloe Vera Gel</h4>
-								</div>
-								<div class="prod-desc">
-									<p>50 gms <br> &#8377; 525</p>
-								</div>
-							</div>
-							<div class="add-to-cart">
-								<a href="#" class="regime-shop">Shop Now</a>
-							</div>
-						</div>
-					</a>
-				</div>
-
-				<!-- Products of 60 ml -->
-				<div class="col-lg-4 col-md-6 col-sm-12 col-xs-12">
-					<a href=# class="prod">
-						<div class="products">
-							<div class="product-img">
-								<img src="images/products/Anti-Pollution-Lime-Face-Mist.jpg" class="img-responsive">
-							</div>
-							<div class="product-desc">
-								<div class="prod-head">
-									<h4>Anti Pollution Lime Face Mist</h4>
-								</div>
-								<div class="prod-desc">
-									<p>60 ml <br> &#8377; 505</p>
-								</div>
-							</div>
-							<div class="add-to-cart">
-								<a href="#" class="regime-shop">Shop Now</a>
-							</div>
-						</div>
-					</a>
-				</div>
-				<div class="col-lg-4 col-md-6 col-sm-12 col-xs-12">
-					<a href=# class="prod">
-						<div class="products">
-							<div class="product-img">
-								<img src="images/products/Anti-Bacterial-Neem-Face-Wash.jpg" class="img-responsive">
-							</div>
-							<div class="product-desc">
-								<div class="prod-head">
-									<h4>Anti Bacterial Neem Face Wash</h4>
-								</div>
-								<div class="prod-desc">
-									<p>60 ml <br> &#8377; 625</p>
-								</div>
-							</div>
-							<div class="add-to-cart">
-								<a href="#" class="regime-shop">Shop Now</a>
-							</div>
-						</div>
-					</a>
-				</div>
-				<div class="col-lg-4 col-md-6 col-sm-12 col-xs-12">
-					<a href=# class="prod">
-						<div class="products">
-							<div class="product-img">
-								<img src="images/products/Regenerating-Patchouli-Face-Wash.jpg" class="img-responsive">
-							</div>
-							<div class="product-desc">
-								<div class="prod-head">
-									<h4>Regenerating Patchouli Face Wash</h4>
-								</div>
-								<div class="prod-desc">
-									<p>60 ml <br> &#8377; 625</p>
-								</div>
-							</div>
-							<div class="add-to-cart">
-								<a href="#" class="regime-shop">Shop Now</a>
-							</div>
-						</div>
-					</a>
-				</div>
-				<div class="col-lg-4 col-md-6 col-sm-12 col-xs-12">
-					<a href=# class="prod">
-						<div class="products">
-							<div class="product-img">
-								<img src="images/products/Refreshing-Neroli-Face-Mist.jpg" class="img-responsive">
-							</div>
-							<div class="product-desc">
-								<div class="prod-head">
-									<h4>Refreshing Neroli Face Mist</h4>
-								</div>
-								<div class="prod-desc">
-									<p>60 ml <br> &#8377; 505</p>
-								</div>
-							</div>
-							<div class="add-to-cart">
-								<a href="#" class="regime-shop">Shop Now</a>
-							</div>
-						</div>
-					</a>
+					</div>				
 				</div>
 			</center>
+			<?php endwhile;?>
 		</div>
 	</div>
+	<script type="text/javascript">
+		function detailsmodal(id){
+			var data = {"id" : id};
+			jQuery.ajax({
+				url : '/khadi/includes/modal.php',
+				method : "post",
+				data : data,
+				success: function(data){
+					jQuery('body').append(data);
+					jQuery('#details-modal').modal('toggle');
+				},
+				error: function(){
+					alert("Something went wrong!");
+				}
+	 		})
+		}
+	</script>
 
 	

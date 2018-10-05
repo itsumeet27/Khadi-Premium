@@ -94,24 +94,22 @@
 	  		<?php while($product = mysqli_fetch_assoc($featured)) : ?>
 	  		<div class="col-lg-3 col-md-6 col-sm-12 col-xs-12">
 	  			<center>
-
-						<div class="featured">
-							<div class="product-img">
-								<img src='<?= $product['image']; ?>' class="img-responsive">
+					<div class="featured">
+						<div class="product-img">
+							<img src='<?= $product['image']; ?>' class="img-responsive">
+						</div>
+						<div class="product-desc">
+							<div class="prod-head">
+								<h4><?= $product['title']; ?></h4>
 							</div>
-							<div class="product-desc">
-								<div class="prod-head">
-									<h4><?= $product['title']; ?></h4>
-								</div>
-								<div class="prod-desc">
-									<p>15 gms <br> &#8377; <?= $product['price']; ?></p>
-								</div>
-							</div>
-							<div class="add-to-cart">
-								<button type="button" class="btn btn-sm btn-success" onclick="detailsmodal(<?= $product['id']; ?>)">Shop Now</button>
+							<div class="prod-desc">
+								<p>15 gms <br> &#8377; <?= $product['price']; ?></p>
 							</div>
 						</div>
-					
+						<div class="add-to-cart">
+							<button type="button" class="btn btn-sm btn-success" onclick="detailsmodal(<?= $product['id']; ?>)">Shop Now</button>
+						</div>
+					</div>
 				</center>
 			</div>
 			<?php endwhile;?>

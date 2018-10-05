@@ -1,5 +1,10 @@
 <?php include('includes/header.php');?>
 
+<?php 
+	$sql = "SELECT * FROM products WHERE cat_name = 'hair-care' AND featured = 0";
+	$products = $db->query($sql);
+?>
+
 	<div id="myCarousel" class="carousel slide" data-ride="carousel">
 	    <!-- Indicators -->
 	    <ol class="carousel-indicators">
@@ -36,67 +41,45 @@
 		
 		<!-- Hair Care -->
 		<div class="row">
+			<div class="row">
+			<?php while($product = mysqli_fetch_assoc($products)): ?>
 			<center>
 				<div class="col-lg-4 col-md-6 col-sm-12 col-xs-12">
-					<a href=# class="prod">
-						<div class="products">
-							<div class="product-img">
-								<img src="images/products/Deep-Nourishing-Argan-Conditioner.jpg" class="img-responsive">
+					<div class="products">
+						<div class="product-img">
+							<img src="<?= $product['image']; ?>" class="img-responsive">
+						</div>
+						<div class="product-desc">
+							<div class="prod-head">
+								<h4><?= $product['title']; ?></h4>
 							</div>
-							<div class="product-desc">
-								<div class="prod-head">
-									<h4>Deep Nourishing Argan Conditioner</h4>
-								</div>
-								<div class="prod-desc">
-									<p>100 ml <br> &#8377; 565</p>
-								</div>
-							</div>
-							<div class="add-to-cart">
-								<a href="#" class="regime-shop">Shop Now</a>
+							<div class="prod-desc">
+								<p><?= $product['weight']; ?> <br> &#8377; <?= $product['price']; ?></p>
 							</div>
 						</div>
-					</a>
-				</div>
-				<div class="col-lg-4 col-md-6 col-sm-12 col-xs-12">
-					<a href=# class="prod">
-						<div class="products">
-							<div class="product-img">
-								<img src="images/products/Deep-Nourishing-Argan-Shampoo.jpg" class="img-responsive">
-							</div>
-							<div class="product-desc">
-								<div class="prod-head">
-									<h4>Deep Nourishing Argan Shampoo</h4>
-								</div>
-								<div class="prod-desc">
-									<p>200 ml <br> &#8377; 965</p>
-								</div>
-							</div>
-							<div class="add-to-cart">
-								<a href="#" class="regime-shop">Shop Now</a>
-							</div>
+						<div class="add-to-cart">
+							<button type="button" class="btn btn-sm btn-success" onclick="detailsmodal(<?= $product['id']; ?>)">Shop Now</button>
 						</div>
-					</a>
-				</div>
-				<div class="col-lg-4 col-md-6 col-sm-12 col-xs-12">
-					<a href=# class="prod">
-						<div class="products">
-							<div class="product-img">
-								<img src="images/products/Hairfall-Control-Neroli-Shampoo.jpg" class="img-responsive">
-							</div>
-							<div class="product-desc">
-								<div class="prod-head">
-									<h4>Hairfall Control Neroli Shampoo</h4>
-								</div>
-								<div class="prod-desc">
-									<p>200 ml <br> &#8377; 965</p>
-								</div>
-							</div>
-							<div class="add-to-cart">
-								<a href="#" class="regime-shop">Shop Now</a>
-							</div>
-						</div>
-					</a>
+					</div>				
 				</div>
 			</center>
+			<?php endwhile;?>
 		</div>
 	</div>
+	<script type="text/javascript">
+		function detailsmodal(id){
+			var data = {"id" : id};
+			jQuery.ajax({
+				url : '/khadi/includes/modal.php',
+				method : "post",
+				data : data,
+				success: function(data){
+					jQuery('body').append(data);
+					jQuery('#details-modal').modal('toggle');
+				},
+				error: function(){
+					alert("Something went wrong!");
+				}
+	 		})
+		}
+	</script>
