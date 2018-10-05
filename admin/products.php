@@ -1,15 +1,12 @@
 <?php
 	require_once $_SERVER['DOCUMENT_ROOT'].'/khadi/core/init.php';	
 	include 'includes/header.php';
-
 	//Delete Product
-
 	if(isset($_GET['delete'])){
 		$id = sanitize($_GET['delete']);
 		$db->query("UPDATE products SET deleted = 1 WHERE id = '$id'");
 		header('Location: products.php');
 	}
-
 	$dbpath = '';
 	if(isset($_GET['add']) || isset($_GET['edit'])){
 		$parentQuery = $db->query("SELECT * FROM categories WHERE parent = 0 ORDER BY category");
@@ -24,6 +21,7 @@
 		$long_desc = ((isset($_POST['long_desc']) && $_POST['long_desc'] != '')?sanitize($_POST['long_desc']):'');
 		$tagline = ((isset($_POST['tagline']) && $_POST['tagline'] != '')?sanitize($_POST['tagline']):'');
 		$stock = ((isset($_POST['stock']) && $_POST['stock'] != '')?sanitize($_POST['stock']):'');
+		$cat_name = ((isset($_POST['cat_name']) && $_POST['cat_name'] != '')?sanitize($_POST['cat_name']):'');
 		$saved_image = '';
 		if(isset($_GET['edit'])){
 			$edit_id = (int)$_GET['edit'];
@@ -50,10 +48,11 @@
 			$stock = ((isset($_POST['stock']) && $_POST['stock'] != '')?sanitize($_POST['stock']):$product['stock']);
 			$saved_image = (($product['image'] != '')?$product['image']:'');
 			$dbpath = $saved_image;
+			$cat_name = ((isset($_POST['cat_name']) && $_POST['cat_name'] != '')?sanitize($_POST['cat_name']):$product['cat_name']);
 		}
 		if($_POST){
 			$errors = array();
-			$required = array('title', 'price', 'parent', 'child', 'short_desc', 'long_desc', 'sku', 'weight', 'tagline');
+			$required = array('title', 'price', 'parent', 'child', 'short_desc', 'long_desc', 'sku', 'weight', 'tagline','stock','cat_name');
 			foreach ($required as $field) {
 				if($_POST[$field] == ''){
 					$errors[] = 'All fields with * are required';
@@ -96,11 +95,10 @@
 					move_uploaded_file($tmpLoc, $uploadPath);
 				}
 				
-				$insertSql = "INSERT INTO products (`title`,`sku`,`price`,`list_price`,`categories`,`image`,`tagline`,`short_desc`,`long_desc`,`weight`,`stock`) VALUES ('$title','$sku','$price','$list_price','$category','$dbpath','$tagline','$short_desc','$long_desc','$weight','$stock')";
+				$insertSql = "INSERT INTO products (`title`,`sku`,`price`,`list_price`,`categories`,`image`,`tagline`,`short_desc`,`long_desc`,`weight`,`stock`, `cat_name`) VALUES ('$title','$sku','$price','$list_price','$category','$dbpath','$tagline','$short_desc','$long_desc','$weight','$stock', '$cat_name')";
 					if(isset($_GET['edit'])){
-						$insertSql = "UPDATE products SET title = '$title', sku = '$sku', price = '$price', list_price = '$list_price', categories = '$category', image = '$dbpath', tagline = '$tagline', short_desc = '$short_desc', long_desc = '$long_desc', weight = '$weight', stock = '$stock' WHERE id = '$edit_id'";
+						$insertSql = "UPDATE products SET title = '$title', sku = '$sku', price = '$price', list_price = '$list_price', categories = '$category', image = '$dbpath', tagline = '$tagline', short_desc = '$short_desc', long_desc = '$long_desc', weight = '$weight', stock = '$stock', cat_name = '$cat_name' WHERE id = '$edit_id'";
 					}
-
 				$db->query($insertSql);
 				
 			}
@@ -176,6 +174,10 @@
 				<tr>
 					<th>Stock*</th>
 					<td><textarea id="stock" name="stock" class="form-control" rows="1"><?=$stock;?></textarea></td>
+				</tr>
+				<tr>
+					<th>Category Name*</th>
+					<td><input type="text" id="cat_name" name="cat_name" class="form-control" value="<?=$cat_name;?>" placeholder="Eg: skin-care, hair-care, body-care, bath-and-beauty"></td>
 				</tr>
 				<tr>
 					<td><input type="submit" name="add" value="<?=((isset($_GET['edit']))?'Edit':'Add');?> Product" class="btn btn-success"></td>
