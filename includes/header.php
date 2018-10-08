@@ -141,7 +141,8 @@
   	.navbar-inverse .navbar-nav > li > a{
   		color: #805a26;
   		font-family: Trajan Pro;
-      font-size: 1.15em;
+      font-size: 0.9em;
+      text-transform: uppercase;
   	}
 
   	.navbar-inverse .navbar-nav > li > a:hover{
@@ -217,7 +218,7 @@
                       <a href="#" class="dropdown-toggle" data-toggle="dropdown"><?php echo $parent['category'];?><span class="caret"></span></a>
                       <ul class="dropdown-menu" role="menu">
                         <?php while($child = mysqli_fetch_assoc($cquery)) : ?>
-                          <li><a href="#"><?php echo $child['category']; ?></a></li>
+                          <li><a href="category.php?cat=<?=$child['id'];?>"><?php echo $child['category']; ?></a></li>
                         <?php endwhile; ?>
                       </ul>
                     </li>

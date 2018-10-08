@@ -24,6 +24,7 @@
 							<div class="modal-body">
 								<div class="container-fluid">
 									<div class="row">
+										<span id="modal_errors" class="bg-danger"></span>
 										<div class="col-md-4">
 											<div class="">
 												<img src="<?= $product['image']; ?>" alt="<?= $product['title']; ?>" class="details img-responsive">
@@ -34,7 +35,9 @@
 		  									<label><?= $product['tagline']; ?></label>
 		  									<p><?= $product['short_desc']; ?></p>
 		  									<p>&#8377; <?= $product['price']; ?></p>
-		  									<form action="add_cart.php" method="post">
+		  									<form action="add_cart.php" method="post" id="add_product_form">
+		  										<input type="hidden" name="product_id" value="<?=$id;?>">
+		  										<input type="hidden" name="available" id="available" value="10">
 		  										<div class="form-group">
 		  											<div class="col-md-4 col-sm-6 col-xs-12">
 		  												<label for="Weight">Weight: </label>
@@ -44,7 +47,7 @@
 		  										<div class="form-group">
 		  											<div class="col-md-4 col-sm-6 col-xs-12">
 		  												<label for="quantity">Quantity: </label>
-		  												<input type="text" name="quantity" class="form-control" id="quantity">
+		  												<input type="number" id="quantity" name="quantity" class="form-control" id="quantity">
 
 		  											</div>
 		  										</div>
@@ -56,7 +59,7 @@
 		  									</form>
 		  									<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 		  										<p align="justify">
-		  											<?= $product['long_desc']; ?>
+		  											<?= nl2br($product['long_desc']); ?>
 		  										</p>
 		  									</div>
 		  									<br>
@@ -70,12 +73,17 @@
 							<br>
 							<div class="modal-footer">
 								<button class="btn btn-default" onclick="closeModal()">Close</button>
-								<button class="btn btn-warning" type="submit">Add to Cart &nbsp;<span class="glyphicon glyphicon-shopping-cart"></span></button>
+								<button class="btn btn-warning" onclick="add_to_cart();">Add to Cart &nbsp;<span class="glyphicon glyphicon-shopping-cart"></span></button>
 							</div>
 						</div>
 					</div>
 				</div>
 	<script type="text/javascript">
+
+		jQuery('#quantity').change(function(){
+			var available = jQuery('#quantity').data('');
+		});
+
 		function closeModal(){
 			jQuery('#details-modal').modal('hide');
 			setTimeOut(function(){
@@ -83,9 +91,27 @@
 				jQuery('.modal-backdrop').remove();
 			},500);
 		}
+
 		$('#details-modal').on('hidden.bs.modal', function(){ 
         $('#details-modal').remove();
-  }) ;﻿
+  		});﻿
+
+		function add_to_cart(){
+			jQuery('#modal-errors').html("");
+			var quantity = jQuery('#quantity').val();
+			var available = jQuery('#available').val();
+			var error = '';
+			var data = jQuery('#add_product_form').serialize();
+			if(quantity == '' || quantity == 0){
+				error += '<p class="text-danger text-center">You must choose a quantity</p>';
+				jQuery('#modal_errors').html(error);
+				return;
+			}else if(quantity > available){
+				error += '<p class="text-danger text-center">Sorry, there are only '+available+' avaialable.</p>';
+				jQuery('#modal_errors').html(error);
+				return;
+			}
+		}
 	</script>
 
 <?php echo ob_get_clean(); ?>
