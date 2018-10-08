@@ -1,6 +1,9 @@
 <?php
 	require_once $_SERVER['DOCUMENT_ROOT'].'/khadi/core/init.php';	
-	include 'includes/header.php';
+	if(!is_logged_in()){
+		login_error_redirect();
+	}
+	include 'includes/head.php';
 	//Delete Product
 	if(isset($_GET['delete'])){
 		$id = sanitize($_GET['delete']);

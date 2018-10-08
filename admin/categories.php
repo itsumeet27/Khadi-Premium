@@ -1,7 +1,10 @@
 <?php 
 
 	require_once '../core/init.php';
-	include 'includes/header.php';
+	if(!is_logged_in()){
+		login_error_redirect();
+	}
+	include 'includes/head.php';
 
 	$sql = "SELECT * FROM categories WHERE parent = 0";
 	$result = $db->query($sql);

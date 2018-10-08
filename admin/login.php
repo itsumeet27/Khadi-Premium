@@ -1,7 +1,7 @@
 <?php
 
 	require_once $_SERVER['DOCUMENT_ROOT'].'/khadi/core/init.php';
-	include 'includes/header.php';
+	include 'includes/head.php';
 	
 	$email = ((isset($_POST['email']))?sanitize($_POST['email']):'');
 	$password = ((isset($_POST['password']))?sanitize($_POST['password']):'');
