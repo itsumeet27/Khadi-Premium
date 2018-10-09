@@ -37,7 +37,7 @@
 		  									<p>&#8377; <?= $product['price']; ?></p>
 		  									<form action="add_cart.php" method="post" id="add_product_form">
 		  										<input type="hidden" name="product_id" value="<?=$id;?>">
-		  										<input type="hidden" name="available" id="available" value="10">
+		  										<input type="hidden" name="available" id="available" value=10>
 		  										<div class="form-group">
 		  											<div class="col-md-4 col-sm-6 col-xs-12">
 		  												<label for="Weight">Weight: </label>
@@ -47,7 +47,7 @@
 		  										<div class="form-group">
 		  											<div class="col-md-4 col-sm-6 col-xs-12">
 		  												<label for="quantity">Quantity: </label>
-		  												<input type="number" id="quantity" name="quantity" class="form-control" id="quantity">
+		  												<input type="number" name="quantity" class="form-control" id="quantity" min=0>
 
 		  											</div>
 		  										</div>
@@ -106,10 +106,22 @@
 				error += '<p class="text-danger text-center">You must choose a quantity</p>';
 				jQuery('#modal_errors').html(error);
 				return;
-			}else if(quantity > available){
+			}else if(quantity > 10){
 				error += '<p class="text-danger text-center">Sorry, there are only '+available+' avaialable.</p>';
 				jQuery('#modal_errors').html(error);
 				return;
+			}else{
+				jQuery.ajax({
+					url : '/khadi/admin/parsers/add_cart.php',
+					method : 'post',
+					data : data,
+					success : function(){
+						location.reload();
+					},
+					error : function(){
+						alert('Something went wrong');
+					}
+				});
 			}
 		}
 	</script>
