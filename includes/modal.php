@@ -72,7 +72,7 @@
 							</div>
 							<br>
 							<div class="modal-footer">
-								<button class="btn btn-default" onclick="closeModal()">Close</button>
+								<button class="btn btn-primary" onclick="closeModal()">Close</button>
 								<button class="btn btn-warning" onclick="add_to_cart();">Add to Cart &nbsp;<span class="glyphicon glyphicon-shopping-cart"></span></button>
 							</div>
 						</div>
