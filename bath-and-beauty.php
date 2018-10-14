@@ -1,7 +1,7 @@
 <?php include('includes/header.php');?>
 
 <?php 
-	$sql = "SELECT * FROM products WHERE cat_name = 'bath-and-beauty' AND featured = 0";
+	$sql = "SELECT * FROM products WHERE cat_name = 'bath-and-beauty' AND featured = 0 AND deleted = 0";
 	$products = $db->query($sql);
 ?>
 
