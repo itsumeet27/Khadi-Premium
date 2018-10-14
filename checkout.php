@@ -68,6 +68,38 @@ if(empty($posted['hash']) && sizeof($posted) > 0) {
 }
 ?>
 
+<?php
+  
+  if(isset($_POST['send_otp'])){
+    require('verification/credential.php');
+    require('verification/textlocal.class.php');
+
+    $textlocal = new Textlocal(false, false, API_KEY);
+
+    $numbers = array(MOBILE);
+    $sender = 'TXTLCL';
+    $otp = mt_rand(100000,999999);
+    $message = 'Hello'. $_POST['firstname']. "This is to your OTP: " . $otp;
+
+    try {
+        $result = $textlocal->sendSms($numbers, $message, $sender);
+        echo "OTP Sent Successfully";
+        setcookie('otp', $otp);
+    } catch (Exception $e) {
+        die('Error: ' . $e->getMessage());
+    }
+  }
+
+  if(isset($_POST['verify_otp'])){
+    $otp = $_POST['otp'];
+    if($_COOKIE['otp'] == $otp){
+      echo "Congratulations, Your mobile is verified"; 
+    }else{
+      echo "Enter coorect OTP";
+    }
+  }
+?>
+
 <html>
   <head>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
@@ -158,7 +190,12 @@ if(empty($posted['hash']) && sizeof($posted) > 0) {
           </tr>
           <tr>
             <td>Phone: <span class="text-danger">*</span></td>
-            <td><input type="phone" max="10" min="10" name="phone" value="<?php echo (empty($posted['phone'])) ? '' : $posted['phone']; ?>" /></td>
+            <td>
+              <input type="phone" max="10" min="10" name="phone" value="<?php echo (empty($posted['phone'])) ? '' : $posted['phone']; ?>" />
+              <button type="submit" class="btn btn-info" name="send_otp">Send OTP</button>
+              <input type="number" name="otp" max=6 min=6>
+              <button type="submit" class="btn btn-info" name="verify_otp">Verify OTP</button>
+            </td>
           </tr>
           <tr>
             <td>Product Info: <span class="text-danger">*</span></td>
