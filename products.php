@@ -5,7 +5,7 @@
 ?>
 
 <?php 
-	$sql = "SELECT * FROM products WHERE featured = 0";
+	$sql = "SELECT * FROM products WHERE featured = 0 AND deleted = 0";
 	$products = $db->query($sql);
 ?>
 
@@ -15,22 +15,18 @@
 	      <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
 	      <li data-target="#myCarousel" data-slide-to="1"></li>
 	      <li data-target="#myCarousel" data-slide-to="2"></li>
-	      <li data-target="#myCarousel" data-slide-to="3"></li>
 	    </ol>
 
 	    <!-- Wrapper for slides -->
 	    <div class="carousel-inner">
 	      	<div class="item active">
-	        	<img src="images/_MG_8998.jpg" alt="Skin Care" style="width:100%;">
+	        	<img src="images/ban1.jpg" alt="Los Angeles" style="width:100%;">
 	      	</div>
 			<div class="item">
-	        	<img src="images/_MG_9019.jpg" alt="Skin Care" style="width:100%;">
+	        	<img src="images/ban2.jpg" alt="Chicago" style="width:100%;">
 	      	</div>
 			<div class="item">
-	        	<img src="images/_MG_9025 2.jpg" alt="Skin Care" style="width:100%;">
-	      	</div>
-	      	<div class="item">
-	        	<img src="images/IMG_1737.jpg" alt="Skin Care" style="width:100%;">
+	        	<img src="images/ban3.jpg" alt="Chicago" style="width:100%;">
 	      	</div>
 	    </div>
 
