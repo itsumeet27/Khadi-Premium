@@ -11,6 +11,12 @@
 ?>
 
 <?php ob_start(); ?>
+<html>
+<head>
+	<link  href="http://cdnjs.cloudflare.com/ajax/libs/fotorama/4.6.4/fotorama.css" rel="stylesheet"> <!-- 3 KB -->
+  	<script src="http://cdnjs.cloudflare.com/ajax/libs/fotorama/4.6.4/fotorama.js"></script> <!-- 16 KB -->
+</head>
+<body>
 
 				<div class="modal fade details-1" id="details-modal" tabindex="-1" role="dialog" aria-labelledby="details-1" aria-hidden="true" data-backdrop="static" data-keyboard="false">
 					<div class="modal-dialog modal-lg">
@@ -25,10 +31,12 @@
 								<div class="container-fluid">
 									<div class="row">
 										<span id="modal_errors" class="bg-danger"></span>
-										<div class="col-md-4">
-											<div class="">
-												<img src="<?= $product['image']; ?>" alt="<?= $product['title']; ?>" class="details img-responsive">
-											</div>
+										<div class="col-md-4 fotorama">
+											<?php $photos = explode(',',$product['image']);
+												foreach($photos as $photo):
+											?>
+												<img src="<?=$photo; ?>" alt="<?= $product['title']; ?>" class="details img-responsive">
+											<?php endforeach; ?>
 										</div>
 										<div class="col-md-8">
 		  									<h5>ITEM CODE: <?= $product['sku']; ?></h5>
@@ -72,12 +80,14 @@
 							</div>
 							<br>
 							<div class="modal-footer">
-								<button class="btn btn-primary" onclick="closeModal()">Close</button>
+								<button class="btn btn-default" onclick="closeModal()">Close</button>
 								<button class="btn btn-warning" onclick="add_to_cart();">Add to Cart &nbsp;<span class="glyphicon glyphicon-shopping-cart"></span></button>
 							</div>
 						</div>
 					</div>
 				</div>
+			</body>
+			</html>
 	<script type="text/javascript">
 
 		jQuery('#quantity').change(function(){

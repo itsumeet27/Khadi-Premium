@@ -8,9 +8,7 @@ $key=$_POST["key"];
 $productinfo=$_POST["productinfo"];
 $email=$_POST["email"];
 $salt="U5A5zpZYXd";
-
 // Salt should be same Post Request 
-
 If (isset($_POST["additionalCharges"])) {
        $additionalCharges=$_POST["additionalCharges"];
         $retHashSeq = $additionalCharges.'|'.$salt.'|'.$status.'|||||||||||'.$email.'|'.$firstname.'|'.$productinfo.'|'.$amount.'|'.$txnid.'|'.$key;

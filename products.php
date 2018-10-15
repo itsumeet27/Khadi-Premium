@@ -5,7 +5,7 @@
 ?>
 
 <?php 
-	$sql = "SELECT * FROM products WHERE featured = 0 AND deleted = 0";
+	$sql = "SELECT * FROM products WHERE featured = 0 AND deleted=0";
 	$products = $db->query($sql);
 ?>
 
@@ -15,18 +15,22 @@
 	      <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
 	      <li data-target="#myCarousel" data-slide-to="1"></li>
 	      <li data-target="#myCarousel" data-slide-to="2"></li>
+	      <li data-target="#myCarousel" data-slide-to="3"></li>
 	    </ol>
 
 	    <!-- Wrapper for slides -->
 	    <div class="carousel-inner">
 	      	<div class="item active">
-	        	<img src="images/ban1.jpg" alt="Los Angeles" style="width:100%;">
+	        	<img src="images/_MG_8998.jpg" alt="Skin Care" style="width:100%;">
 	      	</div>
 			<div class="item">
-	        	<img src="images/ban2.jpg" alt="Chicago" style="width:100%;">
+	        	<img src="images/_MG_9019.jpg" alt="Skin Care" style="width:100%;">
 	      	</div>
 			<div class="item">
-	        	<img src="images/ban3.jpg" alt="Chicago" style="width:100%;">
+	        	<img src="images/_MG_9025 2.jpg" alt="Skin Care" style="width:100%;">
+	      	</div>
+	      	<div class="item">
+	        	<img src="images/IMG_1737.jpg" alt="Skin Care" style="width:100%;">
 	      	</div>
 	    </div>
 
@@ -43,15 +47,19 @@
 
 	<!--Products Display-->
 
-	<div class="container">
-
-		<div class="row">
-			<?php while($product = mysqli_fetch_assoc($products)): ?>
-			<center>
-				<div class="col-lg-4 col-md-6 col-sm-12 col-xs-12">
+	<div class="container-fluid">
+		<div class="col-md-2">
+			<h4>Left Sidebar</h4>
+		</div>
+		
+		<div class="col-md-7">
+			<div class="row">
+				<?php while($product = mysqli_fetch_assoc($products)): ?>
+				<div class="col-md-4 text-center">
 					<div class="products">
 						<div class="product-img">
-							<img src="<?= $product['image']; ?>" class="img-responsive">
+							<?php $photos = explode(',',$product['image']); ?>
+							<img src="<?= $photos[0]; ?>" class="img-responsive" alt="<?= $product['title']; ?>">
 						</div>
 						<div class="product-desc">
 							<div class="prod-head">
@@ -64,11 +72,14 @@
 						<div class="add-to-cart">
 							<button type="button" class="btn btn-sm btn-success" onclick="detailsmodal(<?= $product['id']; ?>)">Shop Now</button>
 						</div>
-					</div>				
+					</div>
 				</div>
-			</center>
-			<?php endwhile;?>
-		</div>
+				<?php endwhile;?>
+			</div>
+		</div>				
+		<div class="col-md-3">
+			<?php include 'includes/rightbar.php';?>
+		</div>			
 	</div>
 	<script type="text/javascript">
 		function detailsmodal(id){

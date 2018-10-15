@@ -73,14 +73,11 @@ if(empty($posted['hash']) && sizeof($posted) > 0) {
   if(isset($_POST['send_otp'])){
     require('verification/credential.php');
     require('verification/textlocal.class.php');
-
     $textlocal = new Textlocal(false, false, API_KEY);
-
     $numbers = array(MOBILE);
     $sender = 'TXTLCL';
     $otp = mt_rand(100000,999999);
     $message = 'Hello'. $_POST['firstname']. "This is to your OTP: " . $otp;
-
     try {
         $result = $textlocal->sendSms($numbers, $message, $sender);
         echo "OTP Sent Successfully";
@@ -89,7 +86,6 @@ if(empty($posted['hash']) && sizeof($posted) > 0) {
         die('Error: ' . $e->getMessage());
     }
   }
-
   if(isset($_POST['verify_otp'])){
     $otp = $_POST['otp'];
     if($_COOKIE['otp'] == $otp){
@@ -105,11 +101,9 @@ if(empty($posted['hash']) && sizeof($posted) > 0) {
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <link href="https://fonts.googleapis.com/css?family=Berkshire+Swash|Montserrat" rel="stylesheet">
   <style type="text/css">
-
     html, body{
       overflow-x: hidden;
     }
-
     .btn-success, .btn-primary, .btn-warning{
       color:#fff;
       background-color: #805a26;
@@ -118,7 +112,6 @@ if(empty($posted['hash']) && sizeof($posted) > 0) {
       padding: 0.65em 1.5em;
       font-size: 1em;
     }
-
     .btn-success:hover, .btn-primary:hover, .btn-warning:hover{
       color: #805a26;
       background-color: #fff;     
@@ -192,9 +185,6 @@ if(empty($posted['hash']) && sizeof($posted) > 0) {
             <td>Phone: <span class="text-danger">*</span></td>
             <td>
               <input type="phone" max="10" min="10" name="phone" value="<?php echo (empty($posted['phone'])) ? '' : $posted['phone']; ?>" />
-              <button type="submit" class="btn btn-info" name="send_otp">Send OTP</button>
-              <input type="number" name="otp" max=6 min=6>
-              <button type="submit" class="btn btn-info" name="verify_otp">Verify OTP</button>
             </td>
           </tr>
           <tr>
@@ -215,7 +205,7 @@ if(empty($posted['hash']) && sizeof($posted) > 0) {
           </tr>
         </table>
         <div>
-          <h5 class="text-info" style="line-height: 1.6em"><b>Important Note: </b>Do not edit or change the amount and the product description for successful payment processing</h5>
+          <h5 class="text-info" style="line-height: 1.6em"><b>Important Note: </b>Do not edit or change the amount and the product description for successful payment processing. Please select products in cart and then proceed for successful checkout</h5>
         </div>
       </div>
       <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">  

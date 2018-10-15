@@ -57,7 +57,8 @@
 				<div class="col-lg-4 col-md-6 col-sm-12 col-xs-12">
 					<div class="products">
 						<div class="product-img">
-							<img src="<?= $product['image']; ?>" class="img-responsive">
+							<?php $photos = explode(',',$product['image']); ?>
+							<img src="<?= $photos[0]; ?>" class="img-responsive" alt="<?= $product['title']; ?>">
 						</div>
 						<div class="product-desc">
 							<div class="prod-head">

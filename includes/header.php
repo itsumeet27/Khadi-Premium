@@ -13,20 +13,6 @@
   		overflow-x: hidden;
   	}
 
-    .btn-success, .btn-primary, .btn-warning{
-      color:#fff;
-      background-color: #805a26;
-      border-radius: 2px;
-      border: 1px solid #805a26;
-      padding: 1em 1.75em;
-    }
-
-    .btn-success:hover, .btn-primary:hover, .btn-warning:hover{
-      color: #805a26;
-      background-color: #fff;     
-      transition-duration: 0.4s;
-      text-decoration: none;
-    }
 
   	body{
   		font-family: 'Montserrat', sans-serif;

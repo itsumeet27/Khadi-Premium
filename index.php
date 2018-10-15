@@ -96,7 +96,8 @@
 	  			<center>
 					<div class="featured">
 						<div class="product-img">
-							<img src='<?= $product['image']; ?>' class="img-responsive">
+							<?php $photos = explode(',',$product['image']); ?>
+							<img src='<?= $photos[0]; ?>' class="img-responsive" alt="<?= $product['title']; ?>">
 						</div>
 						<div class="product-desc">
 							<div class="prod-head">
