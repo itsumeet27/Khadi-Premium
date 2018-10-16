@@ -205,26 +205,13 @@
 				    </div>
 				    <div class="collapse navbar-collapse" id="myNavbar">
 					    <ul class="nav navbar-nav">
-					        <li><a href="#">About</a></li>
-                  <?php while($parent = mysqli_fetch_assoc($pquery)): ?>
-                    <?php
-
-                      $parent_id = $parent['id'];
-                      $sql2 = "SELECT * FROM categories WHERE parent = '$parent_id'";
-                      $cquery = $db -> query($sql2);
-
-                    ?>
-                    <li class="dropdown">
-                      <a href="#" class="dropdown-toggle" data-toggle="dropdown"><?php echo $parent['category'];?><span class="caret"></span></a>
-                      <ul class="dropdown-menu" role="menu">
-                        <?php while($child = mysqli_fetch_assoc($cquery)) : ?>
-                          <li><a href="category.php?cat=<?=$child['id'];?>"><?php echo $child['category']; ?></a></li>
-                        <?php endwhile; ?>
-                      </ul>
-                    </li>
-                  <?php endwhile; ?>
-					        <li><a href="#">Blog</a></li>
-					        <li><a href="#">Contact</a></li>
+					        <li><a href="about.php">About</a></li>
+                  <li><a href="skin-care.php">Skin Care</a></li>
+                  <li><a href="hair-care.php">Hair Care</a></li>
+                  <li><a href="body-care.php">Body Care</a></li>
+                  <li><a href="bath-and-beauty.php">Bath and Beauty</a></li>
+					        <li><a href="blog.php">Blog</a></li>
+					        <li><a href="contact.php">Contact</a></li>
                   <li><a href="cart.php"><span class="glyphicon glyphicon-shopping-cart"></span> My Cart</a></li>
 					    </ul>
 				    </div>

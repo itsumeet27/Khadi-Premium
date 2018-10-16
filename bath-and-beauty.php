@@ -1,9 +1,30 @@
-<?php include('includes/header.php');?>
-
 <?php 
-	$sql = "SELECT * FROM products WHERE cat_name = 'bath-and-beauty' AND featured = 0 AND deleted = 0";
-	$products = $db->query($sql);
+	include('core/init.php');
+	include('includes/functions.php');
+	include('includes/header.php'); 
 ?>
+
+<style type="text/css">
+	@media (min-width: 991px) {
+
+	  .sidebar-nav .navbar .navbar-collapse {
+	    padding: 0;
+	    max-height: none;
+	  }
+	  .sidebar-nav .navbar ul {
+	    float: none;
+	    display: block;
+	  }
+	  .sidebar-nav .navbar li {
+	    float: none;
+	    display: block;
+	  }
+	  .sidebar-nav .navbar li a {
+	    padding-top: 12px;
+	    padding-bottom: 12px;
+	  }
+	}
+</style>
 
 	<div id="myCarousel" class="carousel slide" data-ride="carousel">
 	    <!-- Indicators -->
@@ -37,34 +58,42 @@
 	    </a>
 	</div>
 
-	<div class="container">
-		
-		<!-- Bath and Beauty -->
-		<div class="row">
-			
-			<?php while($product = mysqli_fetch_assoc($products)): ?>
-			<center>
-				<div class="col-lg-4 col-md-6 col-sm-12 col-xs-12">
-					<div class="products">
-						<div class="product-img">
-							<img src="<?= $product['image']; ?>" class="img-responsive">
-						</div>
-						<div class="product-desc">
-							<div class="prod-head">
-								<h4><?= $product['title']; ?></h4>
-							</div>
-							<div class="prod-desc">
-								<p><?= $product['weight']; ?> <br> &#8377; <?= $product['price']; ?></p>
-							</div>
-						</div>
-						<div class="add-to-cart">
-							<button type="button" class="btn btn-sm btn-success" onclick="detailsmodal(<?= $product['id']; ?>)">Shop Now</button>
-						</div>
-					</div>				
+	<div class="container-fluid">
+		<div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
+			<h3 class="text-center">Categories</h3>
+			<div class="sidebar-nav">
+				<div class="navbar navbar-default" role="navigation">
+					<div class="navbar-header">
+					  <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".sidebar-navbar-collapse">
+					    <span class="sr-only">Toggle navigation</span>
+					    <span class="icon-bar"></span>
+					    <span class="icon-bar"></span>
+					    <span class="icon-bar"></span>
+					  </button>
+					  <span class="visible-xs navbar-brand">Sidebar menu</span>
+					</div>
+					<div class="navbar-collapse collapse sidebar-navbar-collapse">
+					  <ul class="nav navbar-nav">
+						<li style="padding: 0.5em;"><a href="bath-and-beauty.php">All Products</a></li>
+						<?php getBath_BeautyCare(); ?>
+					  </ul>
+					</div><!--/.nav-collapse -->
 				</div>
-			</center>
-			<?php endwhile;?>
+		    </div>
+			<ul style="list-style: none;">
+				
+			</ul>
 		</div>
+		
+		<div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+			<div class="row">
+				<?php getBath_BeautyPro(); ?>
+				<?php getCatBath_BeautyPro(); ?>
+			</div>
+		</div>				
+		<div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
+			<?php include 'includes/rightbar.php';?>
+		</div>			
 	</div>
 	<script type="text/javascript">
 		function detailsmodal(id){
@@ -83,3 +112,5 @@
 	 		})
 		}
 	</script>
+
+	

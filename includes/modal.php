@@ -31,14 +31,14 @@
 								<div class="container-fluid">
 									<div class="row">
 										<span id="modal_errors" class="bg-danger"></span>
-										<div class="col-md-4 fotorama">
+										<div class="col-md-6 fotorama">
 											<?php $photos = explode(',',$product['image']);
 												foreach($photos as $photo):
 											?>
 												<img src="<?=$photo; ?>" alt="<?= $product['title']; ?>" class="details img-responsive">
 											<?php endforeach; ?>
 										</div>
-										<div class="col-md-8">
+										<div class="col-md-6">
 		  									<h5>ITEM CODE: <?= $product['sku']; ?></h5>
 		  									<label><?= $product['tagline']; ?></label>
 		  									<p><?= $product['short_desc']; ?></p>
@@ -47,34 +47,34 @@
 		  										<input type="hidden" name="product_id" value="<?=$id;?>">
 		  										<input type="hidden" name="available" id="available" value=10>
 		  										<div class="form-group">
-		  											<div class="col-md-4 col-sm-6 col-xs-12">
+		  											<div class="col-md-12 col-sm-12 col-xs-12">
 		  												<label for="Weight">Weight: </label>
 		  												<?= $product['weight']; ?>
 		  											</div>
 		  										</div>
 		  										<div class="form-group">
-		  											<div class="col-md-4 col-sm-6 col-xs-12">
+		  											<div class="col-md-12 col-sm-12 col-xs-12">
 		  												<label for="quantity">Quantity: </label>
 		  												<input type="number" name="quantity" class="form-control" id="quantity" min=0>
 
 		  											</div>
 		  										</div>
 		  										<div class="stock">
-		  											<div class="col-md-4 col-sm-6 col-xs-12">
+		  											<div class="col-md-12 col-sm-12 col-xs-12">
 			  											<p>Product Availability: <?= $product['stock']; ?></p>
 			  										</div>
 			  									</div>	  											
 		  									</form>
-		  									<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-		  										<p align="justify">
-		  											<?= nl2br($product['long_desc']); ?>
-		  										</p>
-		  									</div>
-		  									<br>
-		  									<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-												<a href="#" class="regime-shop">Write a Review</a>
-											</div>
+		  									
 		  								</div>
+		  								<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+	  										<p align="justify">
+	  											<?= nl2br($product['long_desc']); ?>
+	  										</p>
+	  									</div>
+	  									<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+											<a href="#" class="regime-shop">Write a Review</a>
+										</div>
 									</div>
 								</div>
 							</div>

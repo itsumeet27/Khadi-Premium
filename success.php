@@ -20,9 +20,7 @@ $state=sanitize($_POST["state"]);
 $country=sanitize($_POST["country"]);
 $zipcode=sanitize($_POST["zipcode"]);
 $salt="U5A5zpZYXd";
-
 // Salt should be same Post Request 
-
 If (isset($_POST["additionalCharges"])) {
        $additionalCharges=$_POST["additionalCharges"];
         $retHashSeq = $additionalCharges.'|'.$salt.'|'.$status.'|||||||||||'.$email.'|'.$firstname.'|'.$productinfo.'|'.$amount.'|'.$txnid.'|'.$key;

@@ -48,14 +48,14 @@
 	<!--Products Display-->
 
 	<div class="container-fluid">
-		<div class="col-md-2">
+		<div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
 			<h4>Left Sidebar</h4>
 		</div>
 		
-		<div class="col-md-7">
+		<div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
 			<div class="row">
 				<?php while($product = mysqli_fetch_assoc($products)): ?>
-				<div class="col-md-4 text-center">
+				<div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 text-center">
 					<div class="products">
 						<div class="product-img">
 							<?php $photos = explode(',',$product['image']); ?>
@@ -77,7 +77,7 @@
 				<?php endwhile;?>
 			</div>
 		</div>				
-		<div class="col-md-3">
+		<div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
 			<?php include 'includes/rightbar.php';?>
 		</div>			
 	</div>
