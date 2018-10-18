@@ -58,29 +58,29 @@
 	  	<div class="row">
 	  		<div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
 	  			<center>	
-	  				<a href=#><img src="images/6169.jpg" class="img-responsive"></a>
-	  				<a href=#><h4 class="beauty-regime">
+	  				<a href="beauty-regime.php?cat=21"><img src="images/6169.jpg" class="img-responsive"></a>
+	  				<a href="beauty-regime.php?cat=21"><h4 class="beauty-regime">
 	  					Natural Protection From Sun And Pollution Regime By Khadi Premium
 	  				</h4></a>
-	  				<a href="#" class="regime-shop">Shop Now</a>
+	  				<a href="beauty-regime.php?cat=21" class="regime-shop">Shop Now</a>
 	  			</center>
 	  		</div>
 	  		<div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
 	  			<center>	
-	  				<a href=#><img src="images/2054.jpg" class="img-responsive"></a>
-	  				<a href=#><h4 class="beauty-regime">
+	  				<a href="beauty-regime.php?cat=22"><img src="images/2054.jpg" class="img-responsive"></a>
+	  				<a href="beauty-regime.php?cat=22"><h4 class="beauty-regime">
 	  					Natural Advanced Night Repair Regime By Khadi Premium
 	  				</h4></a>
-	  				<a href="#" class="regime-shop">Shop Now</a>
+	  				<a href="beauty-regime.php?cat=22" class="regime-shop">Shop Now</a>
 	  			</center>
 	  		</div>
 	  		<div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
 	  			<center>	
-	  				<a href=#><img src="images/5511.jpg" class="img-responsive"></a>
-	  				<a href=#><h4 class="beauty-regime">
+	  				<a href="beauty-regime.php?cat=23"><img src="images/5511.jpg" class="img-responsive"></a>
+	  				<a href="beauty-regime.php?cat=23"><h4 class="beauty-regime">
 	  					Natural Nourishment For Hair And Body Regime By Khadi Premium
 	  				</h4></a>
-	  				<a href="#" class="regime-shop">Shop Now</a>
+	  				<a href="beauty-regime.php?cat=23" class="regime-shop">Shop Now</a>
 	  			</center>
 	  		</div>
 	  	</div>

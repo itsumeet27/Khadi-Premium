@@ -1,13 +1,30 @@
 <?php 
-
-	include('includes/header.php');
-
+	include('core/init.php');
+	include('includes/functions.php');
+	include('includes/header.php'); 
 ?>
 
-<?php 
-	$sql = "SELECT * FROM products WHERE featured = 0 AND deleted=0 AND beauty_regime = 0";
-	$products = $db->query($sql);
-?>
+<style type="text/css">
+	@media (min-width: 991px) {
+
+	  .sidebar-nav .navbar .navbar-collapse {
+	    padding: 0;
+	    max-height: none;
+	  }
+	  .sidebar-nav .navbar ul {
+	    float: none;
+	    display: block;
+	  }
+	  .sidebar-nav .navbar li {
+	    float: none;
+	    display: block;
+	  }
+	  .sidebar-nav .navbar li a {
+	    padding-top: 12px;
+	    padding-bottom: 12px;
+	  }
+	}
+</style>
 
 	<div id="myCarousel" class="carousel slide" data-ride="carousel">
 	    <!-- Indicators -->
@@ -41,32 +58,37 @@
 	    </a>
 	</div>
 
-	<!--Products Display-->
-
-	<div class="container-fluid">		
-		<div class="col-lg-9 col-md-9 col-sm-12 col-xs-12">
-			<div class="row">
-				<?php while($product = mysqli_fetch_assoc($products)): ?>
-				<div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 text-center">
-					<div class="products">
-						<div class="product-img">
-							<?php $photos = explode(',',$product['image']); ?>
-							<img src="<?= $photos[0]; ?>" class="img-responsive" alt="<?= $product['title']; ?>">
-						</div>
-						<div class="product-desc">
-							<div class="prod-head">
-								<h4><?= $product['title']; ?></h4>
-							</div>
-							<div class="prod-desc">
-								<p><?= $product['weight']; ?> <br> &#8377; <?= $product['price']; ?></p>
-							</div>
-						</div>
-						<div class="add-to-cart">
-							<button type="button" class="btn btn-sm btn-success" onclick="detailsmodal(<?= $product['id']; ?>)">Shop Now</button>
-						</div>
+	<div class="container-fluid">
+		<div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
+			<h3 class="text-center">Categories</h3>
+			<div class="sidebar-nav">
+				<div class="navbar navbar-default" role="navigation">
+					<div class="navbar-header">
+					  <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".sidebar-navbar-collapse">
+					    <span class="sr-only">Toggle navigation</span>
+					    <span class="icon-bar"></span>
+					    <span class="icon-bar"></span>
+					    <span class="icon-bar"></span>
+					  </button>
+					  <span class="visible-xs navbar-brand">Sidebar menu</span>
 					</div>
+					<div class="navbar-collapse collapse sidebar-navbar-collapse">
+					  <ul class="nav navbar-nav">
+						<li style="padding: 0.5em;"><a href="beauty-regime.php">All Products</a></li>
+						<?php getBeautyCare(); ?>
+					  </ul>
+					</div><!--/.nav-collapse -->
 				</div>
-				<?php endwhile;?>
+		    </div>
+			<ul style="list-style: none;">
+				
+			</ul>
+		</div>
+		
+		<div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+			<div class="row">
+				<?php getBeautyPro(); ?>
+				<?php getCatBeautyPro(); ?>
 			</div>
 		</div>				
 		<div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
@@ -91,3 +113,4 @@
 		}
 	</script>
 
+	
