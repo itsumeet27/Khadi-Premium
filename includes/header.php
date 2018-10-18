@@ -151,6 +151,10 @@
   		transition-duration: 0.4s;
   	}
 
+    .products{
+      height: 420px;
+    }
+
     .products, .blog{
       box-shadow: 0px 2px 5px 0px rgba(0,0,0,0.4);
       padding: 2.5em;
@@ -175,6 +179,12 @@
     .blog-desc{
       text-align: justify;
 
+    }
+
+    @media only screen and (max-width: 991px){
+      .products{
+        height: auto;
+      }
     }
   </style>
 </head>

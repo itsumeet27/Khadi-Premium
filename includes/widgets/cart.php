@@ -1,7 +1,7 @@
 <h3 class="text-center">Shopping Cart</h3>
 <div>
 	<?php if(empty($cart_id)): ?>
-		<label>Your shopping cart is empty!</label>
+		<h5 class="text-center">Your shopping cart is empty!</h5>
 	<?php else :
 		$cartQ = $db->query("SELECT * FROM cart WHERE id = '{$cart_id}'");
 		$results = mysqli_fetch_assoc($cartQ);
