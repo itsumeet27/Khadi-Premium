@@ -155,7 +155,7 @@
 				<tr>
 					<th>List Price*</th>
 					<td>
-						<input type="text" name="list_price" id="list_price" class="form-control" value="<?=$list_price;?>">
+						<input type="text" name="list_price" id="list_price" class="form-control" value="0">
 					</td>
 				</tr>
 				<tr>
@@ -193,11 +193,11 @@
 				</tr>
 				<tr>
 					<th>Tagline*</th>
-					<td><textarea id="tagline" name="tagline" class="form-control" rows="1"><?=$tagline;?></textarea></td>
+					<td><textarea id="tagline" name="tagline" class="form-control" rows="1">Handcrafted with Love. Supply is Limited</textarea></td>
 				</tr>	
 				<tr>
 					<th>Stock*</th>
-					<td><textarea id="stock" name="stock" class="form-control" rows="1"><?=$stock;?></textarea></td>
+					<td><textarea id="stock" name="stock" class="form-control" rows="1">Available</textarea></td>
 				</tr>
 				<tr>
 					<th>Category Name*</th>
@@ -221,6 +221,13 @@
 			$featuresql = "UPDATE products SET featured = '$featured' WHERE id = '$id'";
 			$db->query($featuresql);
 		}
+
+		if(isset($_GET['beauty_regime'])){
+			$id = (int)$_GET['id'];
+			$beauty_regime = (int)$_GET['beauty_regime'];
+			$beauty_regime_sql = "UPDATE products SET beauty_regime = '$beauty_regime' WHERE id = '$id'";
+			$db->query($beauty_regime_sql);
+		}
 ?>
 <div class="container-fluid">
 	<h2 class="text-center">Products</h2>
@@ -233,16 +240,17 @@
 			<th>Price</th>
 			<th>Category</th>
 			<th>Featured</th>
+			<th>Beauty Regime</th>
 			<th>Sold</th>
 		</thead>
 		<tbody>
 			<?php while($product = mysqli_fetch_assoc($presults)):
 				$childId = $product['categories'];
-				$catSql = "SELECT * FROM categories WHERE id = '$childId'";
+				$catSql = "SELECT * FROM categories WHERE id = '$childId' ORDER BY parent ASC";
 				$result = $db->query($catSql);
 				$child = mysqli_fetch_assoc($result);
 				$parentId = $child['parent'];
-				$pSql = "SELECT * FROM categories WHERE id = '$parentId'";
+				$pSql = "SELECT * FROM categories WHERE id = '$parentId' ORDER BY parent ASC";
 				$presult = $db->query($pSql);
 				$parent = mysqli_fetch_assoc($presult);
 				$category = $parent['category'].' - '.$child['category'];
@@ -260,6 +268,12 @@
 							<span class="glyphicon glyphicon-<?=(($product['featured'] == 1)?'minus':'plus');?>"></span>
 						</a>
 						&nbsp;<?=(($product['featured'] == 1)?'Featured Product':'Not Featured');?>
+					</td>
+					<td>
+						<a href="products.php?beauty_regime=<?=(($product['beauty_regime'] == 0)?'1':'0');?>&id=<?=$product['id'];?>" class="btn btn-xs btn-default">
+							<span class="glyphicon glyphicon-<?=(($product['beauty_regime'] == 1)?'minus':'plus');?>"></span>
+						</a>
+						&nbsp;<?=(($product['beauty_regime'] == 1)?'Included':'Excluded');?>
 					</td>
 					<td>0</td>
 				</tr>
