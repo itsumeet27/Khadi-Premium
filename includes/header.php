@@ -59,6 +59,9 @@
       transition-duration: 0.4s;
       text-decoration: none;
     }
+    .img-responsive{
+      width: 100%; 
+    }
     .regime-shop{
       color:#fff;
       background-color: #805a26;
