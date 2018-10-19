@@ -28,6 +28,8 @@ SET time_zone = "+00:00";
 -- Table structure for table `cart`
 --
 
+CREATE DATABASE khadipremium;
+
 CREATE TABLE `cart` (
   `id` int(11) NOT NULL,
   `items` text NOT NULL,
