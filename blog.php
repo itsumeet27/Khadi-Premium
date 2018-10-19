@@ -1,5 +1,10 @@
 <?php include('includes/header.php');?>
 
+<?php 
+	$sql = "SELECT * FROM blog WHERE featured = 0 AND deleted=0";
+	$blogs = $db->query($sql);
+?>
+
 <div id="myCarousel" class="carousel slide" data-ride="carousel">
 	    <!-- Indicators -->
 	    <ol class="carousel-indicators">
@@ -34,71 +39,25 @@
 
 	<div class="container">
 		<div class="row">
+			<?php while($blog = mysqli_fetch_assoc($blogs)): ?>
 			<div class="col-lg-4 col-md-6 col-sm-12 col-xs-12">
 				<div class="blog">
 					<div class="blog-img">
-						<a href=#><img src="images/ban1.jpg" class="img-responsive"></a>
+						<?php $photos = explode(',',$blog['image']); ?>
+						<a href="#"><img src="<?= $photos[0]; ?>" class="img-responsive" alt="<?= $blog['title']; ?>"></a>
 					</div>
 					<div class="blog-title">
-						<a href=#><h4>My blog</h4></a>
+						<a href=#><h4 class="text-center"><?=$blog['title']; ?></h4></a>
 					</div>
 					<div class="blog-desc">
-						<label>Author Name</label>
-						<p>
-							Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-							tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-							quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-							consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-							cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-							proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+						<h5 class="text-center"><b><?=$blog['author']; ?> | <?= $blog['date']; ?></b></h5>
+						<p>				
+						<?=$blog['short_desc']; ?>			
 							<a href="#">Read More</a>
 						</p>
 					</div>
 				</div>
 			</div>
-			<div class="col-lg-4 col-md-6 col-sm-12 col-xs-12">
-				<div class="blog">
-					<div class="blog-img">
-						<a href=#><img src="images/ban1.jpg" class="img-responsive"></a>
-					</div>
-					<div class="blog-title">
-						<a href=#><h4>My blog</h4></a>
-					</div>
-					<div class="blog-desc">
-						<label>Author Name</label>
-						<p>
-							Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-							tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-							quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-							consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-							cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-							proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-							<a href="#">Read More</a>
-						</p>
-					</div>
-				</div>
-			</div>
-			<div class="col-lg-4 col-md-6 col-sm-12 col-xs-12">
-				<div class="blog">
-					<div class="blog-img">
-						<a href=#><img src="images/ban1.jpg" class="img-responsive"></a>
-					</div>
-					<div class="blog-title">
-						<a href=#><h4>My blog</h4></a>
-					</div>
-					<div class="blog-desc">
-						<label>Author Name</label>
-						<p>
-							Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-							tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-							quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-							consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-							cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-							proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-							<a href="#">Read More</a>
-						</p>
-					</div>
-				</div>
-			</div>
+		<?php endwhile;?>
 		</div>
 	</div>
