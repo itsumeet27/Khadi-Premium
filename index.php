@@ -1,11 +1,8 @@
 <?php 
-
 	include('includes/header.php');
 	require_once 'core/init.php';
-
 	$sql = "SELECT * FROM products WHERE featured = 1";
 	$featured = $db->query($sql);
-
 ?>
 
 	<div id="myCarousel" class="carousel slide" data-ride="carousel">
@@ -112,10 +109,11 @@
 						</div>
 					</div>
 				</center>
-			</div>
+			</div>			
 			<?php endwhile;?>
+		</div>
 	  	<!--Knowledge-->
-
+	  	
 	  	<div class="knowledge">
 	  		<h2>Knowledge</h2>
 	  	</div>
@@ -172,6 +170,7 @@
 	  	</div>
 
 	  	<!--Testimonials-->
+	<div class="row">
 	  	<div class="testimonials">
 	  		<h2>Testimonials</h2>
 	  	</div>
@@ -188,7 +187,7 @@
 		      	<div class="item active">
 		        	<h3 class="testimonials-head">Venu Joshi</h3>
 		        	<p class="testimonials-text">
-		        		I have used a their face product solutions, namely the face wash, scrub and mask. What I really like about their products is that they are made of natural ingredients. They are really mild on the skin, which makes it super soft and supple post usage and makes me feel good. Been using them regularly and have seen positive results on my skin. Blemishes have faded with the help of the mask I am using. I am in love with their products and totally recommend using Khadi Premium
+		        		I have used a their face product solutions, namely the face wash, scrub and mask. What I really like about their products is that they are made of natural ingredients. They are really mild on the skin, which makes it super soft and supple post usage and makes me feel good. Been using them regularly and have seen positive results on my skin. Blemishes have faded with the help of the mask I am using. I am in love with their products and totally recommend using Khadi Premium.
 		        	</p>
 		      	</div>
 				<div class="item">
@@ -200,7 +199,7 @@
 				<div class="item">
 		        	<h3 class="testimonials-head">Megha Arora</h3>
 		        	<p class="testimonials-text">
-		        		The environment friendly Khadi Premium product range is a traditional breath of fresh air in a highly competitive cosmetic market. A unique combination of natural exotic ingredients and essential oils, this is just the kind of products I was looking for to enhance my wellness regimen. I love their chocolate face mask, which makes my skin radiate with energy and gives me a fresh look. After using the mask and before stepping out I make sure to us their face mist as well for an even better result. Also the combo of using the Hair Oil containing Tangerine, Vitamin E and Olive Oil along with the Coffee Shampoo gives my hair a nutritious boost without having to worry about any side effects. In this age of going green I strongly recommend their range of gentle yet effective products!
+		        		The environment friendly Khadi Premium product range is a traditional breath of fresh air in a highly competitive cosmetic market. A unique combination of natural exotic ingredients and essential oils, this is just the kind of products I was looking for to enhance my wellness regimen. I love their chocolate face mask, which makes my skin radiate with energy and gives me a fresh look. After using the mask and before stepping out I make sure to us their face mist as well for an even better result. 
 		        	</p>
 		      	</div>
 		    </div>
@@ -216,5 +215,6 @@
 		    </a>
 		</div>
 	</div>
+</div>
 
 <?php include('includes/footer.php');?>

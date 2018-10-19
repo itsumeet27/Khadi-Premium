@@ -1,7 +1,5 @@
 <?php 
-
 	include('includes/header.php');
-
 ?>
 
 <?php 
@@ -90,4 +88,3 @@
 	 		})
 		}
 	</script>
-

@@ -6,7 +6,6 @@
 
 <style type="text/css">
 	@media (min-width: 991px) {
-
 	  .sidebar-nav .navbar .navbar-collapse {
 	    padding: 0;
 	    max-height: none;
@@ -112,5 +111,3 @@
 	 		})
 		}
 	</script>
-
-	

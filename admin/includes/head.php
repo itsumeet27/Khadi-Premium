@@ -179,6 +179,7 @@
               <ul class="nav navbar-nav">
                   <li><a href="categories.php">Categories</a></li>
                   <li><a href="products.php">Products</a></li>
+                  <li><a href="blog.php">Blog</a></li>
               </ul>
             </div>
         </nav>

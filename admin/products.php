@@ -221,7 +221,6 @@
 			$featuresql = "UPDATE products SET featured = '$featured' WHERE id = '$id'";
 			$db->query($featuresql);
 		}
-
 		if(isset($_GET['beauty_regime'])){
 			$id = (int)$_GET['id'];
 			$beauty_regime = (int)$_GET['beauty_regime'];

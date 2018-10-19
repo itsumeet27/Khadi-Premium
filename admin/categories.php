@@ -69,7 +69,7 @@
 			</script>
 	<?php	}else{
 			//Update Database
-			$updatesql = "INSERT INTO categories (category, parent) VALUES ('$category', '$parent')";
+			$updatesql = "INSERT INTO categories (category,	parent) VALUES ('$category', '$parent')";
 			if(isset($_GET['edit'])){
 				$updatesql = "UPDATE categories SET category = '$category', parent = '$post_parent' WHERE id = '$edit_id'";
 			}

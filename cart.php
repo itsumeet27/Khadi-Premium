@@ -42,10 +42,10 @@
 								<td><?=$product['title']; ?></td>
 								<td><?=money($product['price']);?></td>
 								<td>
-									<button class="btn btn-xs btn-default" onclick="update_cart('removeone','<?=$product['id'];?>');">-</button>
+									<button class="btn-xs btn-default" onclick="update_cart('removeone','<?=$product['id'];?>');">-</button>
 									<?=$item['quantity'];?>
 									<?php if($item['quantity'] < 10): ?>
-										<button class="btn btn-xs btn-default" onclick="update_cart('addone','<?=$product['id'];?>');">+</button>
+										<button class="btn-xs btn-default" onclick="update_cart('addone','<?=$product['id'];?>');">+</button>
 									<?php else: ?>
 										<span class="text-danger">Max</span>
 									<?php endif; ?>
@@ -91,5 +91,8 @@
 					<a href="checkout.php" class="btn btn-primary"><span class="glyphicon glyphicon-shopping-cart">&nbsp;</span>Checkout</a>
 				</div>
 			<?php endif; ?>
+		</div>
+	</div>
+</div>
 
 <?php include 'includes/footer.php'; ?>
