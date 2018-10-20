@@ -46,6 +46,7 @@
       line-height: 1.5em;
       padding: 1em;
     }
+
     .btn-success, .btn-warning, .btn-primary, .btn{
       color:#fff;
       background-color: #805a26;
@@ -53,15 +54,14 @@
       border: 1px solid #805a26;
       padding: 1em 1.5em;
     }
+
     .btn-success:hover, .btn-warning:hover, .btn-primary:hover, .btn:hover{
       color: #805a26;
       background-color: #fff;     
       transition-duration: 0.4s;
       text-decoration: none;
     }
-    .img-responsive{
-      width: 100%; 
-    }
+
     .regime-shop{
       color:#fff;
       background-color: #805a26;
@@ -83,7 +83,7 @@
     }
     .know-desc{
       text-align: justify;
-      padding: 0.5em;
+      padding: 1.5em;
     }
     .know-more{
       text-align: center;
@@ -140,7 +140,13 @@
       background-color: #805a26;
       transition-duration: 0.4s;
     }
-    .products, .blog{
+    .blog{
+      box-shadow: 0px 2px 5px 0px rgba(0,0,0,0.4);
+      padding: 1.5em;
+      border-radius: 5px;
+    }
+
+    .products{
       box-shadow: 0px 2px 5px 0px rgba(0,0,0,0.4);
       padding: 0.5em;
       border-radius: 5px;
@@ -166,14 +172,17 @@
     .foot-widget ul li{
       padding: 0.5em;
     }
+
     .foot-widget ul h4{
       font-family: Trajan Pro;
     }
+
     .foot-widget ul li a{
       font-family: Trajan Pro;
       color: #805a26;
       text-decoration: none;
     }
+
     .footer-rights{
       background: #805a26; 
       color: #fff;
