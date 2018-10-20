@@ -1,7 +1,7 @@
 <?php include('includes/header.php');?>
 
 <?php 
-	$sql = "SELECT * FROM blog WHERE featured = 0 AND deleted=0";
+	$sql = "SELECT * FROM blog WHERE deleted=0";
 	$blogs = $db->query($sql);
 ?>
 
@@ -44,16 +44,16 @@
 				<div class="blog">
 					<div class="blog-img">
 						<?php $photos = explode(',',$blog['image']); ?>
-						<a href="#"><img src="<?= $photos[0]; ?>" class="img-responsive" alt="<?= $blog['title']; ?>"></a>
+						<a href="posts.php?<?=$blog['id'];?>"><img src="<?= $photos[0]; ?>" class="img-responsive" alt="<?= $blog['title']; ?>"></a>
 					</div>
 					<div class="blog-title">
-						<a href=#><h4 class="text-center"><?=$blog['title']; ?></h4></a>
+						<a href="posts.php?<?=$blog['id'];?>"><h4 class="text-center"><?=$blog['title']; ?></h4></a>
 					</div>
 					<div class="blog-desc">
 						<h5 class="text-center"><b><?=$blog['author']; ?> | <?= $blog['date']; ?></b></h5>
 						<p>				
-						<?=$blog['short_desc']; ?>			
-							<a href="#">Read More</a>
+						<?=nl2br($blog['short_desc']); ?>			
+							<a href="posts.php?<?=$blog['id'];?>">Read More</a>
 						</p>
 					</div>
 				</div>

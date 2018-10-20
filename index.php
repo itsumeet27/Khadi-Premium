@@ -5,6 +5,11 @@
 	$featured = $db->query($sql);
 ?>
 
+<?php 
+	$sql = "SELECT * FROM blog WHERE featured = 1 AND deleted=0";
+	$blogs = $db->query($sql);
+?>
+
 	<div id="myCarousel" class="carousel slide" data-ride="carousel">
 	    <!-- Indicators -->
 	    <ol class="carousel-indicators">
@@ -144,45 +149,43 @@
 	  			</center>
 	  		</div>
 	  		<div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-	  			<center>
+	  			<?php while($blog = mysqli_fetch_assoc($blogs)): ?>		  			
 	  				<h3 class="know-title">Blog</h3><hr class="know">	
-		  			<div class="row">
-		  				<div class="col-md-4">
-		  					<img class="img-responsive" src="images/ylang-ylang.png">
+	  				<div class="blog">
+		  				<div class="">
+		  					<?php $photos = explode(',',$blog['image']); ?>
+		  					<a href="posts.php?<?=$blog['id'];?>"><img class="img-responsive" src="<?= $photos[0]; ?>"></a>
 		  				</div>
-		  				<div class="col-md-8">
-		  					<h4 class="know-head">Ylang Ylang or Aloe Vera?</h4>
-		  					<p class="know-desc">
-			  					Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-			  					tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-			  					quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-			  					consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-			  					cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-			  					proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-			  				</p>
-			  				<div class="know-more">
-			  					<a href="#">Read more</a>
+			  			<div class="row">			  				
+			  				<div class="">
+			  					<a href="posts.php?<?=$blog['id'];?>"><h4 class="text-center"><?=$blog['title']; ?></h4></a>
+			  					<p class="know-desc">
+				  					<?=nl2br($blog['short_desc']); ?>
+				  				</p>
+				  				<div class="know-more">
+				  					<a href="posts.php?<?=$blog['id'];?>">Read more</a>
+				  				</div>
 			  				</div>
-		  				</div>
-		  			</div>
-	  			</center>
+			  			</div>	
+			  		</div>	  			
+		  		<?php endwhile;?>
 	  		</div>
 	  	</div>
 
 	  	<!--Testimonials-->
-	<div class="row">
+	<!-- <div class="row">
 	  	<div class="testimonials">
 	  		<h2>Testimonials</h2>
 	  	</div>
 	  	<div id="myCarousel" class="carousel slide" data-ride="carousel">
-	    <!-- Indicators -->
+	    Indicators 
 		    <ol class="carousel-indicators">
 		      <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
 		      <li data-target="#myCarousel" data-slide-to="1"></li>
 		      <li data-target="#myCarousel" data-slide-to="2"></li>
 		    </ol>
 
-		    <!-- Wrapper for slides -->
+		    Wrapper for slides 
 		    <div class="carousel-inner">
 		      	<div class="item active">
 		        	<h3 class="testimonials-head">Venu Joshi</h3>
@@ -204,7 +207,7 @@
 		      	</div>
 		    </div>
 
-		    <!-- Left and right controls -->
+		    Left and right controls 
 		    <a class="left carousel-control" href="#myCarousel" data-slide="prev">
 		      	<span class="glyphicon glyphicon-chevron-left"></span>
 		      	<span class="sr-only">Previous</span>
@@ -214,7 +217,7 @@
 		      	<span class="sr-only">Next</span>
 		    </a>
 		</div>
-	</div>
+	</div> -->
 </div>
 
 <?php include('includes/footer.php');?>
