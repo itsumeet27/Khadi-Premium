@@ -166,7 +166,7 @@
 <div class="container-fluid">
 	<h2 class="text-center">Blog</h2>
 	<a href="blog.php?add=1" class="btn btn-success" id="add-product-btn">Add Blog</a>
-	<div class="clearfix"></div>
+	<div class="clearfix"></div><br>
 	<table class="table table-responsive table-striped table-bordered">
 		<thead>
 			<th></th>
@@ -205,4 +205,3 @@
 </div>
 
 <?php } include 'includes/footer.php'; ?>
-
