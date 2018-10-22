@@ -184,9 +184,12 @@
     }
 
     .footer-rights{
-      background: #805a26; 
+      background: #a4814c; 
       color: #fff;
       padding: 0.75em;
+    }
+    footer{
+      background: #e7eae3;
     }
   </style>
 </head>
@@ -219,7 +222,7 @@
                   <li><a href="hair-care.php">Hair Care</a></li>
                   <li><a href="body-care.php">Body Care</a></li>
                   <li><a href="bath-and-beauty.php">Bath and Beauty</a></li>
-                  <li><a href="blog.php">Blog</a></li>
+                  <!-- <li><a href="blog.php">Blog</a></li> -->
                   <li><a href="contact.php">Contact</a></li>
                   <li><a href="cart.php"><span class="glyphicon glyphicon-shopping-cart"></span> My Cart</a></li>
               </ul>
