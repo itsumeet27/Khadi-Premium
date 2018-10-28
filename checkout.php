@@ -189,7 +189,7 @@ if(empty($posted['hash']) && sizeof($posted) > 0) {
           </tr>
           <tr>
             <td>Product Info: <span class="text-danger">*</span></td>
-            <td colspan="3"><textarea name="productinfo" rows="8" cols="40"><?php foreach($items as $item){ $product_id = $item['id']; $productQ = $db->query("SELECT * FROM products WHERE id = '{$product_id}'"); $product = mysqli_fetch_assoc($productQ); ?><?php $i++; $item_count += $item['quantity']; $sub_total += ($product['price'] * $item['quantity']); $grand_total = $sub_total; ?><?=$product['title'];?> (x<?=$item['quantity'];?>) - <?=money($product['price']) ;?><?php } ?></textarea></td>
+            <td colspan="3"><textarea name="productinfo" rows="8" cols="40"><?php foreach($items as $item){ $product_id = $item['id']; $productQ = $db->query("SELECT * FROM products WHERE id = '{$product_id}'"); $product = mysqli_fetch_assoc($productQ); ?><?php $i++; $item_count += $item['quantity']; $sub_total += ($product['price'] * $item['quantity']); $grand_total = $sub_total; ?><?=$product['title'];?> (x<?=$item['quantity'];?>) <?php } ?></textarea></td>
           </tr>
           <tr>
             <td style="display: none;">Success URI: </td>
@@ -241,7 +241,7 @@ if(empty($posted['hash']) && sizeof($posted) > 0) {
           </tr>
           <tr>
             <td>Zipcode: </td>
-            <td><input type="number" min=6 max=6 name="zipcode" value="<?php echo (empty($posted['zipcode'])) ? '' : $posted['zipcode']; ?>" /></td>
+            <td><input type="text" name="zipcode" value="<?php echo (empty($posted['zipcode'])) ? '' : $posted['zipcode']; ?>" /></td>
           </tr>
           <tr>
             <td style="display: none;">UDF1: </td>
