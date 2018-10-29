@@ -38,6 +38,66 @@
 			<?php endwhile;?>
 		</tbody>
 	</table>
+	<div class="row">
+		<!-- Sales by month -->
+		<?php
+			$thisYear = date("Y");
+			$lastYear = $thisYear-1;
+			$thisYearQ = $db->query("SELECT total, txn_date FROM transactions WHERE YEAR(txn_date) = '{$thisYear}'");
+			$lastYearQ = $db->query("SELECT total, txn_date FROM transactions WHERE YEAR(txn_date) = '{$lastYear}'");
+			$current = array();
+			$last = array();
+			$currentTotal = 0;
+			$lastTotal = 0;
+			while ($x = mysqli_fetch_assoc($thisYearQ)) {
+				$month = date("m", strtotime($x['txn_date']));
+				if(!array_key_exists($month, $current)){
+					$current[(int)$month] = $x['total'];
+				}
+				else{
+					$current[(int)$month] += $x['total'];
+				}
+				$currentTotal += $x['total'];
+			}
+
+			while ($y = mysqli_fetch_assoc($lastYearQ)) {
+				$month = date("m", strtotime($y['txn_date']));
+				if(!array_key_exists($month, $last)){
+					$last[(int)$month] = $y['total'];
+				}
+				else{
+					$last[(int)$month] += $y['total'];
+				}
+				$lastTotal += $y['total'];
+			}
+		?>
+		<div class="col-md-12">
+			<h3 class="text-center">Sales by Month</h3>
+			<table class="table table-condensed table-striped table-bordered">
+				<thead>
+					<th></th>
+					<th><?=$lastYear;?></th>
+					<th><?=$thisYear;?></th>
+				</thead>
+				<tbody>
+					<?php for($i=1;$i<=12;$i++): 
+						$dt = DateTime::createFromFormat('!m',$i);
+					?>
+						<tr<?=(date("m") == $i)?' class="info"':'';?>>
+							<td><?=$dt->format("F");?></td>
+							<td><?=(array_key_exists($i, $last))?money($last[$i]):money(0);?></td>
+							<td><?=(array_key_exists($i, $current))?money($current[$i]):money(0);?></td>
+						</tr>
+					<?php endfor; ?>
+					<tr>
+						<td>Total</td>
+						<td><?=money($lastTotal);?></td>
+						<td><?=money($currentTotal);?></td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
 </div>
 
 <?php
