@@ -64,7 +64,7 @@
 			}
 			foreach($products as $product){
 				$this->Cell(40,10,$product['sku'],1,0,'C');
-				$this->Cell(100,10,$product['title'],1,0,'C');
+				$this->Cell(100,10,$txn['productinfo'],1,0,'C');
 				$this->Cell(50,10,ceil(($product['price']*100)/118),1,0,'C');
 				$this->Cell(30,10,intval(0.18*(($product['price']*100)/118)),1,0,'C');
 				$this->Cell(50,10,$product['price'],1,0,'C');
