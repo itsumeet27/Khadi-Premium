@@ -53,7 +53,7 @@
 						<h5 class="text-center"><b><?=$blog['author']; ?> | <?= $blog['date']; ?></b></h5>
 						<p>				
 						<?=nl2br($blog['short_desc']); ?>			
-							<a href="posts.php?<?=$blog['id'];?>">Read More</a>
+							<a href="posts.php?blog_id=<?=$blog['id'];?>">Read More</a>
 						</p>
 					</div>
 				</div>
