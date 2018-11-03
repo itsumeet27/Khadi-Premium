@@ -37,7 +37,7 @@
 		<div class='col-lg-9 col-md-9 col-sm-12 col-xs-12' style='border-right: 2px solid #ccc;'>
 			<h1 class="text-center"><?php echo $title;?></h1>
 			<img class="img-responsive" src="<?php echo $image;?>" alt="<?php echo $title;?>">
-			<h5 class="text-center"><?php echo $author; ?> | <?php echo $date; ?></h5>
+			<h4 class="text-center"><?php echo $author; ?> | <?php echo $date; ?></h4>
 			<p style="text-align: justify;">
 				<?php echo nl2br($long_desc);?>
 			</p>

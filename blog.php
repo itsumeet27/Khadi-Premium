@@ -44,10 +44,10 @@
 				<div class="blog">
 					<div class="blog-img">
 						<?php $photos = explode(',',$blog['image']); ?>
-						<a href="posts.php?<?=$blog['id'];?>"><img src="<?= $photos[0]; ?>" class="img-responsive" alt="<?= $blog['title']; ?>"></a>
+						<a href="posts.php?blog_id=<?=$blog['id'];?>"><img src="<?= $photos[0]; ?>" class="img-responsive" alt="<?= $blog['title']; ?>"></a>
 					</div>
 					<div class="blog-title">
-						<a href="posts.php?<?=$blog['id'];?>"><h4 class="text-center"><?=$blog['title']; ?></h4></a>
+						<a href="posts.php?blog_id=<?=$blog['id'];?>"><h4 class="text-center"><?=$blog['title']; ?></h4></a>
 					</div>
 					<div class="blog-desc">
 						<h5 class="text-center"><b><?=$blog['author']; ?> | <?= $blog['date']; ?></b></h5>
