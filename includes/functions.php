@@ -10,7 +10,7 @@
 		while ($row_blog = mysqli_fetch_array($run_blog)) {
 			$blog_id = $row_blog['id'];
 			$blog_title = $row_blog['title'];
-			echo "<li style='padding: 0.5em;'><a href='posts.php?$blog_id'>$blog_title</a></li>";
+			echo "<li style='padding: 0.5em;'><a href='posts.php?blog_id=$blog_id'>$blog_title</a></li>";
 			
 		}
 	}
