@@ -92,11 +92,21 @@
 					 	move_uploaded_file($tmpLoc[$i],$uploadPath[$i]);
 					}	
 				}
-			
+
+				function createSlug($slug){
+					$lettersNumberSpacesHypens = '/[^\-\s\pN\pL]+/u';
+					$spacesDuplicateHypens =  '/[\-\s]+/';
+					$slug = preg_replace($lettersNumberSpacesHypens, '', mb_strtolower($slug, 'UTF-8'));
+					$slug = preg_replace($spacesDuplicateHypens, '-', $slug);
+					$slug = trim($slug, '-');
+
+					return $slug;
+				}
+				$slug = createSlug($title);
 				
-				$insertSql = "INSERT INTO blog (`title`,`author`,`image`,`short_desc`,`long_desc`) VALUES ('$title','$author','$dbpath','$short_desc','$long_desc')";
+				$insertSql = "INSERT INTO blog (`title`,`author`,`image`,`short_desc`,`long_desc`,`slug`) VALUES ('$title','$author','$dbpath','$short_desc','$long_desc', '$slug')";
 					if(isset($_GET['edit'])){
-						$insertSql = "UPDATE blog SET title = '$title', author = '$author', image = '$dbpath', short_desc = '$short_desc', long_desc = '$long_desc' WHERE id = '$edit_id'";
+						$insertSql = "UPDATE blog SET title = '$title', author = '$author', image = '$dbpath', short_desc = '$short_desc', long_desc = '$long_desc', slug = '$slug' WHERE id = '$edit_id'";
 					}
 				$db->query($insertSql);
 				
