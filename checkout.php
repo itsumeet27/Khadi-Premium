@@ -1,4 +1,5 @@
 <?php
+  include 'includes/header.php';
   require_once 'core/init.php';
   if($cart_id != ''){
     $cartQ = $db->query("SELECT * FROM cart WHERE id = '{$cart_id}'");
@@ -96,31 +97,6 @@ if(empty($posted['hash']) && sizeof($posted) > 0) {
   }
 ?>
 
-<html>
-  <head>
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-  <link href="https://fonts.googleapis.com/css?family=Berkshire+Swash|Montserrat" rel="stylesheet">
-  <style type="text/css">
-    html, body{
-      overflow-x: hidden;
-    }
-    .btn-success, .btn-primary, .btn-warning{
-      color:#fff;
-      background-color: #805a26;
-      border-radius: 2px;
-      border: 1px solid #805a26;
-      padding: 0.65em 1.5em;
-      font-size: 1em;
-    }
-    .btn-success:hover, .btn-primary:hover, .btn-warning:hover{
-      color: #805a26;
-      background-color: #fff;     
-      transition-duration: 0.4s;
-      text-decoration: none;
-    }
-  </style>
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
   <script>
     var hash = '<?php echo $hash ?>';
     function submitPayuForm() {
@@ -131,150 +107,141 @@ if(empty($posted['hash']) && sizeof($posted) > 0) {
       payuForm.submit();
     }
   </script>
-  </head>
   <body onload="submitPayuForm()">
-    <div class="row">
-      <div class="col-lg-12 col-md-12">
-        <a href="index.php"><img src="images/download.png" class="img-responsive"></a>
-      </div>
-    </div>
-  <div class="container-fluid">
-    <h2 class="text-center">Checkout Form</h2>
-        <?php if($formError) { ?>  
-          <span style="color:red" class="text-center text-danger">Please fill all mandatory fields.</span>
-          <br/>
-        <?php } ?>
-    <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-      <form action="<?php echo $action; ?>" method="post" name="payuForm">        
-        <input type="hidden" name="key" value="<?php echo $MERCHANT_KEY ?>" />
-        <input type="hidden" name="hash" value="<?php echo $hash ?>"/>
-        <input type="hidden" name="txnid" value="<?php echo $txnid ?>" />
-        <table class="table table-responsive">
-          <caption class="text-center"><h3>Mandatory fields</h3></caption>
-          <tr>
-            <td>Amount: <span class="text-danger">*</span></td>
-            <td>
-              <?php
-              foreach($items as $item){
-                $product_id = $item['id'];
-                $productQ = $db->query("SELECT * FROM products WHERE id = '{$product_id}'");
-                $product = mysqli_fetch_assoc($productQ);               
-              ?>
-              <?php 
-                  $i++;
-                  $item_count += $item['quantity'];
-                  $sub_total += ($product['price'] * $item['quantity']);
-                
-                /*$tax = TAXRATE * $sub_total;
-                $tax = number_format($tax,2);*/
-                $grand_total = $sub_total;
-              ?>
-              <?php } ?>
-              <input name="amount" value="<?=intval($grand_total);?>"/>
-            </td>
-          </tr>
-          <tr>
-            <td>First Name: <span class="text-danger">*</span></td>
-            <td><input name="firstname" id="firstname" value="<?php echo (empty($posted['firstname'])) ? '' : $posted['firstname']; ?>" /></td>
-          </tr>
-          <tr>
-            <td>Email: <span class="text-danger">*</span></td>
-            <td><input name="email" id="email" value="<?php echo (empty($posted['email'])) ? '' : $posted['email']; ?>" /></td>
-          </tr>
-          <tr>
-            <td>Phone: <span class="text-danger">*</span></td>
-            <td>
-              <input type="phone" max="10" min="10" name="phone" value="<?php echo (empty($posted['phone'])) ? '' : $posted['phone']; ?>" />
-            </td>
-          </tr>
-          <tr>
-            <td>Product Info: <span class="text-danger">*</span></td>
-            <td colspan="3"><textarea name="productinfo" rows="8" cols="40"><?php foreach($items as $item){ $product_id = $item['id']; $productQ = $db->query("SELECT * FROM products WHERE id = '{$product_id}'"); $product = mysqli_fetch_assoc($productQ); ?><?php $i++; $item_count += $item['quantity']; $sub_total += ($product['price'] * $item['quantity']); $grand_total = $sub_total; ?><?=$product['title'];?> (x<?=$item['quantity'];?>) <?php } ?></textarea></td>
-          </tr>
-          <tr>
-            <td style="display: none;">Success URI: </td>
-            <td colspan="3" style="display: none;"><input name="surl" type="hidden" value="http://localhost/khadi/success.php" size="64" /></td>
-          </tr>
-          <tr>
-            <td style="display: none;">Failure URI: </td>
-            <td colspan="3" style="display: none;"><input name="furl" type="hidden" value="http://localhost/khadi/failure.php" size="64" /></td>
-          </tr>
-
-          <tr>
-            <td colspan="3"><input type="hidden" name="service_provider" value="payu_paisa" size="64" /></td>
-          </tr>
-        </table>
-        <div>
-          <h5 class="text-info" style="line-height: 1.6em"><b>Important Note: </b>Do not edit or change the amount and the product description for successful payment processing. Please select products in cart and then proceed for successful checkout</h5>
+  <div id="about" class="view" style="height: 50%;background: url('img/2054.jpg')no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;">
+    <div class="mask rgba-black-strong">
+        <div class="container-fluid d-flex align-items-center justify-content-center h-100">
+      <div class="row d-flex justify-content-center text-center">
+        <div class="">
+          <!-- Heading -->
+          <a href=""><h1 class="white-text h1-responsive">Checkout Now</h1></a>
         </div>
       </div>
-      <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">  
-        <table class="table table-responsive">
-          <caption class="text-center"><h3>Optional fields</h3></caption>
-          <tr>
-            <td>Last Name: </td>
-            <td><input name="lastname" id="lastname" value="<?php echo (empty($posted['lastname'])) ? '' : $posted['lastname']; ?>" /></td>
-          </tr>
-          <tr>
-            <td style="display: none;">Cancel URI: </td>
-            <td style="display: none;"><input name="curl" value="" /></td>
-          </tr>
-          <tr>
-            <td>Address1: </td>
-            <td><input name="address1" value="<?php echo (empty($posted['address1'])) ? '' : $posted['address1']; ?>" /></td>
-          </tr>
-          <tr>
-            <td>Address2: </td>
-            <td><input name="address2" value="<?php echo (empty($posted['address2'])) ? '' : $posted['address2']; ?>" /></td>
-          </tr>
-          <tr>
-            <td>City: </td>
-            <td><input name="city" value="<?php echo (empty($posted['city'])) ? '' : $posted['city']; ?>" /></td>
-          </tr>
-          <tr>
-            <td>State: </td>
-            <td><input name="state" value="<?php echo (empty($posted['state'])) ? '' : $posted['state']; ?>" /></td>
-          </tr>
-          <tr>
-            <td>Country: </td>
-            <td><input name="country" value="India" disabled /></td>
-          </tr>
-          <tr>
-            <td>Zipcode: </td>
-            <td><input type="text" name="zipcode" value="<?php echo (empty($posted['zipcode'])) ? '' : $posted['zipcode']; ?>" /></td>
-          </tr>
-          <tr>
-            <td style="display: none;">UDF1: </td>
-            <td style="display: none;"><input name="udf1" value="<?php echo (empty($posted['udf1'])) ? '' : $posted['udf1']; ?>" /></td>
-          </tr>
-          <tr>
-            <td style="display: none;">UDF2: </td>
-            <td style="display: none;"><input name="udf2" value="<?php echo (empty($posted['udf2'])) ? '' : $posted['udf2']; ?>" /></td>
-          </tr>
-          <tr>
-            <td style="display: none;">UDF3: </td>
-            <td style="display: none;"><input name="udf3" value="<?php echo (empty($posted['udf3'])) ? '' : $posted['udf3']; ?>" /></td>
-          </tr>
-          <tr>
-            <td style="display: none;">UDF4: </td>
-            <td style="display: none;"><input name="udf4" value="<?php echo (empty($posted['udf4'])) ? '' : $posted['udf4']; ?>" /></td>
-          </tr>
-          <tr>
-            <td style="display: none;">UDF5: </td>
-            <td style="display: none;"><input name="udf5" value="<?php echo (empty($posted['udf5'])) ? '' : $posted['udf5']; ?>" /></td>
-          </tr>
-          <tr>
-            <td style="display: none;">PG: </td>
-            <td style="display: none;"><input name="pg" value="<?php echo (empty($posted['pg'])) ? '' : $posted['pg']; ?>" /></td>
-          </tr>
-          <tr>
-            <?php if(!$hash) { ?>
-              <td colspan="4"><input type="submit" value="Submit" class="btn btn-default btn-success" /></td>
-            <?php } ?>
-          </tr>
-        </table>
-      </form>
+        </div>
     </div>
   </div>
-  </body>
-</html>
+  <div class="container-fluid">
+    <h2 class="text-center h2-responsive px-3 py-3"><b>Checkout Form</b></h2>
+        <?php if($formError) { ?>  
+          <span style="color:red" class="text-center text-danger">Please fill all mandatory fields.</span>          
+          <br/>
+        <?php } ?>
+        <div>
+          <h6 class="text-info" style="line-height: 1.6em"><b>Important Note: </b>Do not edit or change the amount and the product description for successful payment processing. Please select products in cart and then proceed for successful checkout</h6>
+        </div>
+          <form action="<?php echo $action; ?>" method="post" name="payuForm">        
+            <input type="hidden" name="key" value="<?php echo $MERCHANT_KEY ?>" />
+            <input type="hidden" name="hash" value="<?php echo $hash ?>"/>
+            <input type="hidden" name="txnid" value="<?php echo $txnid ?>" />
+          <div class="row">
+            <div class="col-md-6">
+              <div class="md-form">
+              <?php
+                foreach($items as $item){
+                  $product_id = $item['id'];
+                  $productQ = $db->query("SELECT * FROM products WHERE id = '{$product_id}'");
+                  $product = mysqli_fetch_assoc($productQ);               
+                ?>
+                <?php 
+                    $i++;
+                    $item_count += $item['quantity'];
+                    $sub_total += ($product['price'] * $item['quantity']);
+                  
+                  /*$tax = TAXRATE * $sub_total;
+                  $tax = number_format($tax,2);*/
+                  $grand_total = $sub_total;
+                ?>
+              <?php } ?>
+                <input type="text" id="inputIconEx1" class="form-control" name="amount" value="<?=intval($grand_total);?>" />
+                <label for="inputIconEx1">Amount<span class="text-danger"> *</span></label>
+              </div>
+              <div class="md-form">
+                <input type="text" id="inputIconEx2" class="form-control" name="firstname" id="firstname" value="<?php echo (empty($posted['firstname'])) ? '' : $posted['firstname']; ?>" />
+                <label for="inputIconEx2">First Name<span class="text-danger"> *</span></label>
+              </div>
+              <div class="md-form">
+                <input type="text" id="inputIconEx3" class="form-control" name="lastname" id="lastname" value="<?php echo (empty($posted['lastname'])) ? '' : $posted['lastname']; ?>" />
+                <label for="inputIconEx3">Last Name<span class="text-danger"> *</span></label>
+              </div>
+              <div class="md-form">
+                <input type="email" id="inputIconEx10" class="form-control" name="email" id="email" value="<?php echo (empty($posted['email'])) ? '' : $posted['email']; ?>" />
+                <label for="inputIconEx10">Email<span class="text-danger"> *</span></label>
+              </div>
+              <div class="md-form">
+                <input type="text" id="inputIconEx11" class="form-control" max="10" min="10" name="phone" value="<?php echo (empty($posted['phone'])) ? '' : $posted['phone']; ?>" />
+                <label for="inputIconEx11">Phone<span class="text-danger"> *</span></label>
+              </div>
+              <div class="md-form">
+                <textarea id="textarea-char-counter" class="form-control md-textarea" name="productinfo" cols="40"><?php foreach($items as $item){ $product_id = $item['id']; $productQ = $db->query("SELECT * FROM products WHERE id = '{$product_id}'"); $product = mysqli_fetch_assoc($productQ); ?><?php $i++; $item_count += $item['quantity']; $sub_total += ($product['price'] * $item['quantity']); $grand_total = $sub_total; ?><?=$product['title'];?> (x<?=$item['quantity'];?>) <?php } ?></textarea>
+                <label for="textarea-char-counter">Product Info<span class="text-danger"> *</span></label>
+              </div>              
+              <div class="md-form" style="display: none;">
+                <input name="surl" type="hidden" value="http://localhost/khadi/success.php" size="64" />
+              </div>
+              <div class="md-form" style="display: none;">
+                <input name="furl" type="hidden" value="http://localhost/khadi/failure.php" size="64" />
+              </div>
+              <div class="md-form" style="display: none;">
+                <input name="curl" value="http://localhost/khadi/products.php" />
+              </div>
+              <div class="md-form" style="display: none;">
+                <input type="hidden" name="service_provider" value="payu_paisa" size="64" />
+              </div>
+              <div class="md-form" style="display: none;">
+                <input name="udf1" value="<?php echo (empty($posted['udf1'])) ? '' : $posted['udf1']; ?>" />
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="md-form">
+                <input type="text" id="inputIconEx4" class="form-control" name="address1" value="<?php echo (empty($posted['address1'])) ? '' : $posted['address1']; ?>" />
+                <label for="inputIconEx4">Address1<span class="text-danger"> *</span></label>
+              </div>
+              <div class="md-form">
+                <input type="text" id="inputIconEx5" class="form-control" name="address2" value="<?php echo (empty($posted['address2'])) ? '' : $posted['address2']; ?>" />
+                <label for="inputIconEx5">Address2<span class="text-danger"> *</span></label>
+              </div>
+              <div class="md-form">
+                <input type="text" id="inputIconEx6" class="form-control" name="city" value="<?php echo (empty($posted['city'])) ? '' : $posted['city']; ?>" />
+                <label for="inputIconEx6">City<span class="text-danger"> *</span></label>
+              </div>
+              <div class="md-form">
+                <input type="text" id="inputIconEx7" class="form-control" name="state" value="<?php echo (empty($posted['state'])) ? '' : $posted['state']; ?>" />
+                <label for="inputIconEx7">State<span class="text-danger"> *</span></label>
+              </div>
+              <div class="md-form">
+                <input type="text" id="inputIconEx8" class="form-control" name="zipcode" value="<?php echo (empty($posted['zipcode'])) ? '' : $posted['zipcode']; ?>" />
+                <label for="inputIconEx8">Zipcode<span class="text-danger"> *</span></label>
+              </div>
+              <div class="md-form">
+                <input type="text" id="inputIconEx9" class="form-control" name="country" value="India" />
+                <label for="inputIconEx9">Country<span class="text-danger"> *</span></label>
+              </div>
+              <div class="md-form" style="display: none;">
+                <input name="udf2" value="<?php echo (empty($posted['udf2'])) ? '' : $posted['udf2']; ?>" />
+              </div>
+              <div class="md-form" style="display: none;">
+                <input name="udf3" value="<?php echo (empty($posted['udf3'])) ? '' : $posted['udf3']; ?>" />
+              </div>
+              <div class="md-form" style="display: none;">
+                <input name="udf4" value="<?php echo (empty($posted['udf4'])) ? '' : $posted['udf4']; ?>" />
+              </div>
+              <div class="md-form" style="display: none;">
+                <input name="udf5" value="<?php echo (empty($posted['udf5'])) ? '' : $posted['udf5']; ?>" />
+              </div>
+              <div class="md-form" style="display: none;">
+                <input name="pg" value="<?php echo (empty($posted['pg'])) ? '' : $posted['pg']; ?>" />
+              </div>
+            </div>
+          </div>
+          <div>
+            <?php if(!$hash) { ?>
+              <button type="submit" class="btn btn-md btn-success">Submit</button>
+            <?php } ?>
+          </div>
+        </form>
+      </div>
+    <?php include 'includes/footer.php';?>

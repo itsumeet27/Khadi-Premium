@@ -31,13 +31,30 @@
 		exit();
 	}
 ?>
-	
+
+<div id="about" class="view" style="height: 50%;background: url('img/2054.jpg')no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;">
+	<div class="mask rgba-black-strong">
+		<div class="container-fluid d-flex align-items-center justify-content-center h-100">
+			<div class="row d-flex justify-content-center text-center">
+				<div class="">
+				<!-- Heading -->
+				<a href=""><h1 class="white-text h1-responsive">Blog Details</h1></a>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
 <div class="container-fluid">
 	<div class="row">
-		<div class='col-lg-9 col-md-9 col-sm-12 col-xs-12' style='border-right: 2px solid #ccc;'>
-			<h1 class="text-center"><?php echo $title;?></h1>
-			<img class="img-responsive" src="<?php echo $image;?>" alt="<?php echo $title;?>">
-			<h4 class="text-center"><?php echo $author; ?> | <?php echo $date; ?></h4>
+		<div class='col-lg-9 col-md-9 col-sm-12 col-xs-12'>
+			<h1 class="text-center h1-responsive"><?php echo $title;?></h1>
+			<img class="img-fluid" src="<?php echo $image;?>" alt="<?php echo $title;?>">
+			<h4 class="text-center h4-responsive"><?php echo $author; ?> | <?php echo $date; ?></h4>
 			<p style="text-align: justify;">
 				<?php echo nl2br($long_desc);?>
 			</p>
