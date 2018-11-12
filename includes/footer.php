@@ -18,21 +18,13 @@
             <a class="fb-ic ml-0">
               <i class="fa fa-facebook white-text mr-4"> </i>
             </a>
-            <!--Twitter-->
-            <a class="tw-ic">
-              <i class="fa fa-twitter white-text mr-4"> </i>
-            </a>
-            <!--Google +-->
-            <a class="gplus-ic">
-              <i class="fa fa-google-plus white-text mr-4"> </i>
-            </a>
-            <!--Linkedin-->
-            <a class="li-ic">
-              <i class="fa fa-linkedin white-text mr-4"> </i>
-            </a>
             <!--Instagram-->
-            <a class="ins-ic">
+            <a class="ins-ic" href="https://instagram.com/khadipremium">
               <i class="fa fa-instagram white-text mr-lg-4"> </i>
+            </a>
+            <!-- Youtube -->
+            <a href="https://www.youtube.com/" target="_blank">
+                <i class="fa fa-youtube mr-3"></i>
             </a>
           </div>
           <!--Grid column-->
@@ -152,6 +144,52 @@
           <script type="text/javascript" src="js/mdb.min.js"></script>
 
           <script type="text/javascript" src="js/mdb.min.js"></script>
+          <script type="text/javascript">
+            function detailsmodal(id){
+              var data = {"id" : id};
+              jQuery.ajax({
+                url : 'includes/modal.php',
+                method : "post",
+                data : data,
+                success: function(data){
+                  jQuery('body').append(data);
+                  jQuery('#details-modal').modal('toggle');
+                },
+                error: function(){
+                  alert("Something went wrong!");
+                }
+              })
+            }
+
+            function add_to_cart(){
+              jQuery('#modal-errors').html("");
+              var quantity = jQuery('#quantity').val();
+              var available = jQuery('#available').val();
+              var error = '';
+              var data = jQuery('#add_product_form').serialize();
+              if(quantity == '' || quantity == 0){
+                error += '<p class="text-danger text-center">You must choose a quantity</p>';
+                jQuery('#modal_errors').html(error);
+                return;
+              }else if(quantity > 10){
+                error += '<p class="text-danger text-center">Sorry, there are only '+available+' avaialable.</p>';
+                jQuery('#modal_errors').html(error);
+                return;
+              }else{
+                jQuery.ajax({
+                  url : '/khadi/admin/parsers/add_cart.php',
+                  method : 'post',
+                  data : data,
+                  success : function(){
+                    location.reload();
+                  },
+                  error : function(){
+                    alert('Something went wrong');
+                  }
+                });
+              }
+            }
+          </script>
           <script type="text/javascript">
             function detailsmodal(id){
               var data = {"id" : id};

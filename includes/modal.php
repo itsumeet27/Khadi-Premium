@@ -55,8 +55,7 @@ $product = mysqli_fetch_assoc($result);
 									<div class="form-group">
 										<div class="col-md-12 col-sm-12 col-xs-12">
 											<label for="quantity">Quantity: </label>
-											<input type="number" name="quantity" class="form-control" id="quantity" min=0>
-
+											<input type="number" name="quantity" class="form-control" id="quantity" min=1 value="1">
 										</div>
 									</div>
 									<div class="stock">
@@ -81,7 +80,7 @@ $product = mysqli_fetch_assoc($result);
 				<br>
 				<div class="modal-footer">
 					<button class="btn btn-default" onclick="closeModal()">Close</button>
-					<button class="btn btn-warning" onclick="add_to_cart();">Add to Cart &nbsp;<span class="glyphicon glyphicon-shopping-cart"></span></button>
+					<button class="btn btn-warning" onclick="add_to_cart();">Add to Cart &nbsp;<span class="fa fa-shopping-cart"></span></button>
 				</div>
 			</div>
 		</div>
@@ -126,6 +125,7 @@ $product = mysqli_fetch_assoc($result);
 				method : 'post',
 				data : data,
 				success : function(){
+					alert('Product has been succesfully added in your cart');
 					location.reload();
 				},
 				error : function(){

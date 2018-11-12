@@ -30,7 +30,7 @@
 			$cat_id = $row_cats['id'];
 			$cat_title = $row_cats['category'];
 
-			echo "<li><a href='skin-care.php?cat=$cat_id' style='padding: 7.5px;'>$cat_title</a></li>";
+			echo "<li><a href='skin-care.php?cat=$cat_id' style='padding: 7.5px;' class='text-white'>$cat_title</a></li>";
 			
 		}
 	}
@@ -81,10 +81,8 @@
 				                        <strong> &#8377; $pro_price</strong>
 				                    </span>
 				                    <span class='float-right'>
-				                      <button type='button' style='background: #ffa0;margin: 0;cursor: pointer;border:none;' class='' title='View Product' onclick='detailsmodal($pro_id)'><i class='fa fa-eye ml-3' style='color: #000;font-size: 1.3rem'></i></button>
-				                        <a class='' data-toggle='tooltip' data-placement='top' title='Add to Cart'>
-				                          <i class='fa fa-shopping-bag ml-3' style='color: #000;font-size: 1.3rem'></i>
-				                        </a>
+				                      <button type='button' style='background: #ffa0;margin: 0;cursor: pointer;border:none;' class='' title='View Product' onclick='detailsmodal($pro_id)'><i class='fa fa-cart-plus' style='color: #000;font-size: 1.3rem'></i></button>
+				                        
 				                    </span>
                 				</div>
           					</div>  
@@ -143,10 +141,8 @@
 				                        <strong> &#8377; $pro_price</strong>
 				                    </span>
 				                    <span class='float-right'>
-				                      <button type='button' style='background: #ffa0;margin: 0;cursor: pointer;border:none;' class='' title='View Product' onclick='detailsmodal($pro_id)'><i class='fa fa-eye ml-3' style='color: #000;font-size: 1.3rem'></i></button>
-				                        <a class='' data-toggle='tooltip' data-placement='top' title='Add to Cart'>
-				                          <i class='fa fa-shopping-bag ml-3' style='color: #000;font-size: 1.3rem'></i>
-				                        </a>
+				                      <button type='button' style='background: #ffa0;margin: 0;cursor: pointer;border:none;' class='' title='View Product' onclick='detailsmodal($pro_id)'><i class='fa fa-cart-plus' style='color: #000;font-size: 1.3rem'></i></button>
+				                        
 				                    </span>
                 				</div>
           					</div>      
@@ -171,7 +167,7 @@
 			$cat_id = $row_cats['id'];
 			$cat_title = $row_cats['category'];
 
-			echo "<li style='padding: 0.5em;'><a href='hair-care.php?cat=$cat_id'>$cat_title</a></li>";
+			echo "<li style='padding: 0.5em;'><a href='hair-care.php?cat=$cat_id' class='text-white'>$cat_title</a></li>";
 			
 		}
 	}
@@ -222,10 +218,8 @@
 				                        <strong> &#8377; $pro_price</strong>
 				                    </span>
 				                    <span class='float-right'>
-				                      <button type='button' style='background: #ffa0;margin: 0;cursor: pointer;border:none;' class='' title='View Product' onclick='detailsmodal($pro_id)'><i class='fa fa-eye ml-3' style='color: #000;font-size: 1.3rem'></i></button>
-				                        <a class='' data-toggle='tooltip' data-placement='top' title='Add to Cart'>
-				                          <i class='fa fa-shopping-bag ml-3' style='color: #000;font-size: 1.3rem'></i>
-				                        </a>
+				                      <button type='button' style='background: #ffa0;margin: 0;cursor: pointer;border:none;' class='' title='View Product' onclick='detailsmodal($pro_id)'><i class='fa fa-cart-plus' style='color: #000;font-size: 1.3rem'></i></button>
+				                        
 				                    </span>
                 				</div>
           					</div>  
@@ -284,10 +278,8 @@
 				                        <strong> &#8377; $pro_price</strong>
 				                    </span>
 				                    <span class='float-right'>
-				                      <button type='button' style='background: #ffa0;margin: 0;cursor: pointer;border:none;' class='' title='View Product' onclick='detailsmodal($pro_id)'><i class='fa fa-eye ml-3' style='color: #000;font-size: 1.3rem'></i></button>
-				                        <a class='' data-toggle='tooltip' data-placement='top' title='Add to Cart'>
-				                          <i class='fa fa-shopping-bag ml-3' style='color: #000;font-size: 1.3rem'></i>
-				                        </a>
+				                      <button type='button' style='background: #ffa0;margin: 0;cursor: pointer;border:none;' class='' title='View Product' onclick='detailsmodal($pro_id)'><i class='fa fa-cart-plus' style='color: #000;font-size: 1.3rem'></i></button>
+				                        
 				                    </span>
                 				</div>
           					</div>  
@@ -313,7 +305,7 @@
 			$cat_id = $row_cats['id'];
 			$cat_title = $row_cats['category'];
 
-			echo "<li style='padding: 0.5em;'><a href='body-care.php?cat=$cat_id'>$cat_title</a></li>";
+			echo "<li style='padding: 0.5em;'><a href='body-care.php?cat=$cat_id' class='text-white'>$cat_title</a></li>";
 			
 		}
 	}
@@ -364,10 +356,8 @@
 				                        <strong> &#8377; $pro_price</strong>
 				                    </span>
 				                    <span class='float-right'>
-				                      <button type='button' style='background: #ffa0;margin: 0;cursor: pointer;border:none;' class='' title='View Product' onclick='detailsmodal($pro_id)'><i class='fa fa-eye ml-3' style='color: #000;font-size: 1.3rem'></i></button>
-				                        <a class='' data-toggle='tooltip' data-placement='top' title='Add to Cart'>
-				                          <i class='fa fa-shopping-bag ml-3' style='color: #000;font-size: 1.3rem'></i>
-				                        </a>
+				                      <button type='button' style='background: #ffa0;margin: 0;cursor: pointer;border:none;' class='' title='View Product' onclick='detailsmodal($pro_id)'><i class='fa fa-cart-plus' style='color: #000;font-size: 1.3rem'></i></button>
+				                        
 				                    </span>
                 				</div>
           					</div>  
@@ -426,10 +416,8 @@
 				                        <strong> &#8377; $pro_price</strong>
 				                    </span>
 				                    <span class='float-right'>
-				                      <button type='button' style='background: #ffa0;margin: 0;cursor: pointer;border:none;' class='' title='View Product' onclick='detailsmodal($pro_id)'><i class='fa fa-eye ml-3' style='color: #000;font-size: 1.3rem'></i></button>
-				                        <a class='' data-toggle='tooltip' data-placement='top' title='Add to Cart'>
-				                          <i class='fa fa-shopping-bag ml-3' style='color: #000;font-size: 1.3rem'></i>
-				                        </a>
+				                      <button type='button' style='background: #ffa0;margin: 0;cursor: pointer;border:none;' class='' title='View Product' onclick='detailsmodal($pro_id)'><i class='fa fa-cart-plus' style='color: #000;font-size: 1.3rem'></i></button>
+				                        
 				                    </span>
                 				</div>
           					</div>  
@@ -455,7 +443,7 @@
 			$cat_id = $row_cats['id'];
 			$cat_title = $row_cats['category'];
 
-			echo "<li style='padding: 0.5em;'><a href='bath-and-beauty.php?cat=$cat_id'>$cat_title</a></li>";
+			echo "<li style='padding: 0.5em;'><a href='bath-and-beauty.php?cat=$cat_id' class='text-white'>$cat_title</a></li>";
 			
 		}
 	}
@@ -506,10 +494,8 @@
 				                        <strong> &#8377; $pro_price</strong>
 				                    </span>
 				                    <span class='float-right'>
-				                      <button type='button' style='background: #ffa0;margin: 0;cursor: pointer;border:none;' class='' title='View Product' onclick='detailsmodal($pro_id)'><i class='fa fa-eye ml-3' style='color: #000;font-size: 1.3rem'></i></button>
-				                        <a class='' data-toggle='tooltip' data-placement='top' title='Add to Cart'>
-				                          <i class='fa fa-shopping-bag ml-3' style='color: #000;font-size: 1.3rem'></i>
-				                        </a>
+				                      <button type='button' style='background: #ffa0;margin: 0;cursor: pointer;border:none;' class='' title='View Product' onclick='detailsmodal($pro_id)'><i class='fa fa-cart-plus' style='color: #000;font-size: 1.3rem'></i></button>
+				                        
 				                    </span>
                 				</div>
           					</div>  
@@ -568,10 +554,8 @@
 				                        <strong> &#8377; $pro_price</strong>
 				                    </span>
 				                    <span class='float-right'>
-				                      <button type='button' style='background: #ffa0;margin: 0;cursor: pointer;border:none;' class='' title='View Product' onclick='detailsmodal($pro_id)'><i class='fa fa-eye ml-3' style='color: #000;font-size: 1.3rem'></i></button>
-				                        <a class='' data-toggle='tooltip' data-placement='top' title='Add to Cart'>
-				                          <i class='fa fa-shopping-bag ml-3' style='color: #000;font-size: 1.3rem'></i>
-				                        </a>
+				                      <button type='button' style='background: #ffa0;margin: 0;cursor: pointer;border:none;' class='' title='View Product' onclick='detailsmodal($pro_id)'><i class='fa fa-cart-plus' style='color: #000;font-size: 1.3rem'></i></button>
+				                        
 				                    </span>
                 				</div>
           					</div>  
@@ -597,7 +581,7 @@
 			$cat_id = $row_cats['id'];
 			$cat_title = $row_cats['category'];
 
-			echo "<li style='padding: 0.5em;'><a href='beauty-regime.php?cat=$cat_id'>$cat_title</a></li>";
+			echo "<li style='padding: 0.5em;'><a href='beauty-regime.php?cat=$cat_id' class='text-white'>$cat_title</a></li>";
 			
 		}
 	}
@@ -648,10 +632,8 @@
 				                        <strong> &#8377; $pro_price</strong>
 				                    </span>
 				                    <span class='float-right'>
-				                      <button type='button' style='background: #ffa0;margin: 0;cursor: pointer;border:none;' class='' title='View Product' onclick='detailsmodal($pro_id)'><i class='fa fa-eye ml-3' style='color: #000;font-size: 1.3rem'></i></button>
-				                        <a class='' data-toggle='tooltip' data-placement='top' title='Add to Cart'>
-				                          <i class='fa fa-shopping-bag ml-3' style='color: #000;font-size: 1.3rem'></i>
-				                        </a>
+				                      <button type='button' style='background: #ffa0;margin: 0;cursor: pointer;border:none;' class='' title='View Product' onclick='detailsmodal($pro_id)'><i class='fa fa-cart-plus' style='color: #000;font-size: 1.3rem'></i></button>
+				                        
 				                    </span>
                 				</div>
           					</div>  
@@ -710,10 +692,8 @@
 				                        <strong> &#8377; $pro_price</strong>
 				                    </span>
 				                    <span class='float-right'>
-				                      <button type='button' style='background: #ffa0;margin: 0;cursor: pointer;border:none;' class='' title='View Product' onclick='detailsmodal($pro_id)'><i class='fa fa-eye ml-3' style='color: #000;font-size: 1.3rem'></i></button>
-				                        <a class='' data-toggle='tooltip' data-placement='top' title='Add to Cart'>
-				                          <i class='fa fa-shopping-bag ml-3' style='color: #000;font-size: 1.3rem'></i>
-				                        </a>
+				                      <button type='button' style='background: #ffa0;margin: 0;cursor: pointer;border:none;' class='' title='View Product' onclick='detailsmodal($pro_id)'><i class='fa fa-cart-plus' style='color: #000;font-size: 1.3rem'></i></button>
+				                        
 				                    </span>
                 				</div>
           					</div>  

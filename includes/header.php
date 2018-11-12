@@ -17,6 +17,21 @@
   <!-- Your custom styles (optional) -->
   <link href="css/style.css" rel="stylesheet">
 
+  <style type="text/css">
+    .top-nav-collapse {
+      background-color: #548990;
+    }
+    @media (max-width: 768px) {
+      .navbar:not(.top-nav-collapse) {
+        background-color: #548990;
+      }
+    }
+    @media (min-width: 800px) and (max-width: 850px) {
+      .navbar:not(.top-nav-collapse) {
+        background-color: #548990;
+      }
+  </style>
+
 </head>
 
 <body style="background: #ffffcc4f">
@@ -25,18 +40,14 @@
   <!--Main Navigation-->
     <!-- Navbar -->
     <nav class="navbar navbar-expand-lg navbar-dark fixed-top scrolling-navbar z-depth-0">
-
       <div class="container">
-
         <!-- Navbar brand -->
         <a class="navbar-brand" href="index.php">Khadipremium</a>
-
         <!-- Collapse button -->
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#basicExampleNav"
         aria-controls="basicExampleNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
-
       <!-- Collapsible content -->
       <div class="collapse navbar-collapse" id="basicExampleNav">
         <!-- Links -->
@@ -63,7 +74,7 @@
             <a class="nav-link" href="index.php#contact">Contact</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="cart.php">Cart <i class="fa fa-shopping-cart"></i></a>
+            <a class="nav-link" href="cart.php">Cart <i class="fa fa-opencart"></i></a>
           </li>
         </ul>
         <!-- Links -->
@@ -71,14 +82,15 @@
         <!-- Social Icon  -->
         <ul class="navbar-nav nav-flex-icons">
           <li class="nav-item">
-            <a class="nav-link"><i class="fa fa-facebook"></i></a>
+            <a class="nav-link" href="https://facebook.com/khadipremium""><i class="fa fa-facebook"></i></a>
           </li>
           <li class="nav-item">
-            <a class="nav-link"><i class="fa fa-twitter"></i></a>
+            <a class="nav-link" href="https://instagram.com/khadipremium"><i class="fa fa-instagram"></i></a>
           </li>
           <li class="nav-item">
-            <a class="nav-link"><i class="fa fa-instagram"></i></a>
+            <a class="nav-link" href=""><i class="fa fa-youtube"></i></a>
           </li>
+          
         </ul>
         <!-- Collapsible content -->
 
