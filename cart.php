@@ -36,8 +36,8 @@
 				</p>
 			</div>
 		<?php else: ?>
-		<div style="">
-			<table class="table table-responsive table-striped table-condensed" style="display: table;">
+		<div class="table-responsive">
+			<table class="table table-condensed" style="display: table;">
 				<thead class="bg-info" style="color: #fff">
 					<th>#</th>
 					<th>Item</th>

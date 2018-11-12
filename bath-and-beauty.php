@@ -25,6 +25,13 @@
       color: #fff;
     }
   }
+
+  .bc-icons-2 .breadcrumb-item + .breadcrumb-item::before {
+    content: none; 
+  }
+  .bc-icons-2 .breadcrumb-item.active {
+    color: #455a64; 
+  }
 </style>
 
 	<!--Mask-->
@@ -51,17 +58,17 @@
 <div class="container-fluid">
   <div class="row">   
     <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
-      <div class="sidebar-nav" style="background: none;">
+      <div class="sidebar-nav" style="background: #548990e0;">
         <div class="navbar navbar-default" role="navigation">
           <div class="navbar-header">
             <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".sidebar-navbar-collapse" style="background: #fff;cursor: pointer;border: none;border-radius: 5px;padding: 0.5em 0.75em">
               <i class="fa fa-reorder" aria-hidden="true"></i>
             </button>
-            <span class="visible-xs navbar-brand">&nbsp;<b>Categories</b></span>
+            <span class="visible-xs navbar-brand">&nbsp;<b class="text-white">Categories</b></span>
           </div>
           <div class="navbar-collapse collapse sidebar-navbar-collapse">
             <ul class="nav navbar-nav" style="text-align: left;">
-            <li style="padding: 7.5px;"><a href="bath-and-beauty.php">All Products</a></li>
+            <li style="padding: 7.5px;"><a href="bath-and-beauty.php" class="text-white">All Products</a></li>
             <?php getBath_BeautyCare(); ?>
             </ul>
           </div><!--/.nav-collapse -->

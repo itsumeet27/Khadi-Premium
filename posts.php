@@ -51,17 +51,17 @@
 
 <div class="container-fluid">
 	<div class="row">
-		<div class='col-lg-9 col-md-9 col-sm-12 col-xs-12'>
-			<h1 class="text-center h1-responsive"><?php echo $title;?></h1>
+		<div class='col-lg-9 col-md-9 col-sm-12 col-xs-12 px-3 py-3'>
+			<h1 class="text-center h1-responsive px-2 py-2"><b><?php echo $title;?></b></h1>
 			<img class="img-fluid" src="<?php echo $image;?>" alt="<?php echo $title;?>">
-			<h4 class="text-center h4-responsive"><?php echo $author; ?> | <?php echo $date; ?></h4>
+			<h4 class="text-center h4-responsive px-3 py-3"><?php echo $author; ?> | <?php echo $date; ?></h4>
 			<p style="text-align: justify;">
 				<?php echo nl2br($long_desc);?>
 			</p>
 		</div>
-		<div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
+		<div class="col-lg-3 col-md-3 col-sm-12 col-xs-12 px-3 py-3">
 			<ul style="list-style-type: none">
-				<li style="padding: 0.5em;"><h4><a href="blog.php">Recent Posts</a></h4></li>
+				<li style="padding: 0.5em;"><h4><a href="blog.php" style="color: #000;font-weight: bolder;">Recent Posts</a></h4></li>
 				<?php getBlog(); ?>
 			</ul>
 		</div>

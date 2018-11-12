@@ -27,8 +27,8 @@
         <div class="mask rgba-black-strong"></div>
       </div>
       <div class="carousel-caption">
-        <h3 class="h3-responsive">Light mask</h3>
-        <p>First text</p>
+        <h3 class="h3-responsive">HAIR CARE PRODUCTS</h3>
+        <a href="hair-care.php" class="btn btn-outline-white">Browse Now<i class="fa fa-shopping-cart ml-2"></i></a>
       </div>
     </div>
     <div class="carousel-item">
@@ -38,8 +38,8 @@
         <div class="mask rgba-black-strong"></div>
       </div>
       <div class="carousel-caption">
-        <h3 class="h3-responsive">Strong mask</h3>
-        <p>Secondary text</p>
+        <h3 class="h3-responsive">SKIN CARE PRODUCTS</h3>
+        <a href="skin-care.php" class="btn btn-outline-white">Browse Now<i class="fa fa-shopping-cart ml-2"></i></a>
       </div>
     </div>
     <div class="carousel-item">
@@ -49,8 +49,8 @@
         <div class="mask rgba-black-strong"></div>
       </div>
       <div class="carousel-caption">
-        <h3 class="h3-responsive">Slight mask</h3>
-        <p>Third text</p>
+        <h3 class="h3-responsive">BATH AND BEAUTY CARE PRODUCTS</h3>
+        <a href="bath-and-beauty.php" class="btn btn-outline-white">Browse Now<i class="fa fa-shopping-cart ml-2"></i></a>
       </div>
     </div>
   </div>
@@ -96,13 +96,13 @@
 				              	<strong> &#8377; <?=$product['price']; ?></strong>
 				            </span>
 				            <span class="float-right">
-				            	<button type="button" style="background: #ffa0;margin: 0;cursor: pointer;border:none;" class="" title="View Product" onclick="detailsmodal(<?= $product['id']; ?>)"><i class="fa fa-eye ml-3" style="color: #000;font-size: 1.3rem"></i></button>
+				            	<button type="button" style="background: #ffa0;margin: 0;cursor: pointer;border:none;" class="" title="View Product" onclick="detailsmodal(<?= $product['id']; ?>)"><i class="fa fa-cart-plus" style="color: #000;font-size: 1.3rem"></i></button>
 				              	<!-- <a class="" data-toggle="tooltip" data-placement="top" title="View Product">
 				                	<i class="fa fa-eye grey-text ml-3"></i>
-				              	</a> -->
+				              	</a> --><!-- 
 				              	<a class="" data-toggle="tooltip" data-placement="top" title="Add to Cart">
-				                	<i class="fa fa-shopping-bag ml-3" style="color: #000;font-size: 1.3rem"></i>
-				              	</a>
+				                	<i class="fa fa-cart-plus" style="color: #000;font-size: 1.3rem"></i>
+				              	</a> -->
 				            </span>
 				        </div>
 					</div>	
