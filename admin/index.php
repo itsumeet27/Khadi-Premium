@@ -19,17 +19,34 @@
 	$invoiceQuery = "SELECT t.id, t.cart_id, t.firstname, t.email, t.phone, t.address1, t.address2, t.city, t.zipcode, t.productinfo, t.txn_date, t.total, c.items, c.paid FROM transactions t LEFT JOIN cart c ON t.cart_id = c.id WHERE c.paid = 1 ORDER BY t.txn_date";
 	$invoiceResults = $db->query($invoiceQuery);
 ?>
+
+	<div id="about" class="view" style="height: 50%;background: url('../img/2054.jpg')no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;">
+      <div class="mask rgba-black-strong">
+        <div class="container-fluid d-flex align-items-center justify-content-center h-100">
+          <div class="row d-flex justify-content-center text-center">
+            <div class="">
+              <!-- Heading -->
+              <a href=""><h1 class="white-text h1-responsive">Admin Panel</h1></a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
 	<div class="container-fluid">
-		<div class="row">
-			<div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+		<div class="row px-3 py-3">
+			<div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 table-responsive">
 				<h3 class="text-center">Orders to Ship</h3>
-				<table class="table table-condensed table-bordered table-responsive table-striped">
+				<table class="table table-condensed table-bordered table-striped" style="display: table;">
 					<thead>
 						<th></th>
-						<th>Name</th>
-						<th>Description</th>
-						<th>Total</th>
-						<th>Date</th>
+						<th><h5 class="h5-responsive"><b>Name</b></h5></th>
+						<th><h5 class="h5-responsive"><b>Description</b></h5></th>
+						<th><h5 class="h5-responsive"><b>Total</b></h5></th>
+						<th><h5 class="h5-responsive"><b>Date</b></h5></th>
 					</thead>
 					<tbody>
 						<?php while($order = mysqli_fetch_assoc($txnResults)): ?>
@@ -77,26 +94,26 @@
 					?>
 				</div>
 			</div>
-			<div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+			<div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 table-responsive">
 				<h3 class="text-center">Sales by Month</h3>
-				<table class="table table-condensed table-striped table-responsive table-bordered">
+				<table class="table table-condensed table-striped table-bordered" style="display: table;">
 					<thead>
 						<th></th>
-						<th><?=$lastYear;?></th>
-						<th><?=$thisYear;?></th>
+						<th><h5 class="h5-responsive"><b><?=$lastYear;?></b></h5></th>
+						<th><h5 class="h5-responsive"><b><?=$thisYear;?></b></h5></th>
 					</thead>
 					<tbody>
 						<?php for($i=1;$i<=12;$i++): 
 							$dt = DateTime::createFromFormat('!m',$i);
 						?>
 							<tr<?=(date("m") == $i)?' class="info"':'';?>>
-								<td><?=$dt->format("F");?></td>
+								<td><h6 class="h6-responsive"><b><?=$dt->format("F");?></b></h6></td>
 								<td><?=(array_key_exists($i, $last))?money($last[$i]):money(0);?></td>
 								<td><?=(array_key_exists($i, $current))?money($current[$i]):money(0);?></td>
 							</tr>
 						<?php endfor; ?>
 						<tr>
-							<td>Total</td>
+							<td><h6 class="h6-responsive"><b>Total</b></h6></td>
 							<td><?=money($lastTotal);?></td>
 							<td><?=money($currentTotal);?></td>
 						</tr>
@@ -105,20 +122,20 @@
 			</div>
 		</div>
 		<div class="row">
-			<div class="col-md-12">
+			<div class="col-md-12 table-responsive">
 				<h3 class="text-center">Invoice</h3>
-				<table class="table table-condensed table-bordered table-responsive table-striped">
+				<table class="table table-condensed table-bordered table-striped" style="display: table;">
 					<thead>
-						<th></th>
-						<th>Name</th>
-						<th>Email</th>
-						<th>Phone</th>
-						<th colspan="2">Address</th>
-						<th>City</th>
-						<th>Zipcode</th>
-						<th>Product Details</th>
-						<th>Total</th>
-						<th>Date</th>
+						<th><h6 class="h6-responsive"><b></b></h6></th>
+						<th><h6 class="h6-responsive"><b>Name</b></h6></th>
+						<th><h6 class="h6-responsive"><b>Email</b></h6></th>
+						<th><h6 class="h6-responsive"><b>Phone</b></h6></th>
+						<th colspan="2"><h6 class="h6-responsive"><b>Address</b></h6></th>
+						<th><h6 class="h6-responsive"><b>City</b></h6></th>
+						<th><h6 class="h6-responsive"><b>Zipcode</b></h6></th>
+						<th><h6 class="h6-responsive"><b>Product Details</b></h6></th>
+						<th><h6 class="h6-responsive"><b>Total</b></h6></th>
+						<th><h6 class="h6-responsive"><b>Date</b></h6></th>
 					</thead>
 					<tbody>
 						<?php while($invoice = mysqli_fetch_assoc($invoiceResults)): ?>

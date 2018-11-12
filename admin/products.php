@@ -1,3 +1,19 @@
+	<div id="about" class="view" style="height: 50%;background: url('../img/2054.jpg')no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;">
+      <div class="mask rgba-black-strong">
+        <div class="container-fluid d-flex align-items-center justify-content-center h-100">
+          <div class="row d-flex justify-content-center text-center">
+            <div class="">
+              <!-- Heading -->
+              <a href=""><h1 class="white-text h1-responsive">Products</h1></a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
 <?php
 	require_once $_SERVER['DOCUMENT_ROOT'].'/khadi/core/init.php';	
 	if(!is_logged_in()){
@@ -121,10 +137,11 @@
 			}
 		}
 		?>
-		<div class="container">
-		<h2 class="text-center"><?=((isset($_GET['edit']))?'Edit':'Add');?> Product</h2>
+		
+		<div class="container table-responsive">
+		<h2 class="text-center px-3 py-3"><?=((isset($_GET['edit']))?'Edit':'Add');?> Product</h2>
 		<form action="products.php?<?=((isset($_GET['edit']))?'edit='.$edit_id:'add=1');?>" method="post" enctype="multipart/form-data">
-			<table class="table table-responsive table-striped">
+			<table class="table table-striped" style="display: table;">
 				<tr>
 					<th>Title*</th>
 					<td><input type="text" class="form-control" name="title" id="title" value="<?=$title;?>"></td>
@@ -173,7 +190,7 @@
 						<img src="<?=$image;?>" alt="saved image" />
 					</td>
 					<td class="del-image">
-						<a href="products.php?delete_image=1&edit=<?=$edit_id;?>&imgi=<?=$imgi;?>" class=" btn btn-danger text-danger">Delete Image</a>
+						<a href="products.php?delete_image=1&edit=<?=$edit_id;?>&imgi=<?=$imgi;?>" class=" btn btn-danger">Delete Image</a>
 					</td>
 					<?php 
 						$imgi++;
@@ -204,9 +221,7 @@
 					<td><input type="text" id="cat_name" name="cat_name" class="form-control" value="<?=$cat_name;?>" placeholder="Eg: skin-care, hair-care, body-care, bath-and-beauty"></td>
 				</tr>
 				<tr>
-					<td><input type="submit" name="add" value="<?=((isset($_GET['edit']))?'Edit':'Add');?> Product" class="btn btn-success"></td>
-					<td><input type="reset" name="reset" value="Reset Product" class="btn btn-success"></td>
-					<td><a href="products.php" class="btn btn-info form-control">Cancel</a></td>
+					<td><button type="submit" name="add" value="" class="btn btn-success"><?=((isset($_GET['edit']))?'Edit':'Add');?> Product</button></td>
 				</tr>				
 			</table>
 		</form>
@@ -221,6 +236,7 @@
 			$featuresql = "UPDATE products SET featured = '$featured' WHERE id = '$id'";
 			$db->query($featuresql);
 		}
+
 		if(isset($_GET['beauty_regime'])){
 			$id = (int)$_GET['id'];
 			$beauty_regime = (int)$_GET['beauty_regime'];
@@ -228,19 +244,18 @@
 			$db->query($beauty_regime_sql);
 		}
 ?>
-<div class="container-fluid">
-	<h2 class="text-center">Products</h2>
+<div class="container-fluid table-responsive">	
 	<a href="products.php?add=1" class="btn btn-success" id="add-product-btn">Add Product</a>
 	<div class="clearfix"></div>
-	<table class="table table-responsive">
+	<table class="table table-condensed" style="display: table;">
 		<thead>
 			<th></th>
-			<th>Product</th>
-			<th>Price</th>
-			<th>Category</th>
-			<th>Featured</th>
-			<th>Beauty Regime</th>
-			<th>Sold</th>
+			<th><h5 class="h6-responsive"><b>Product</b></h5></th>
+			<th><h5 class="h6-responsive"><b>Price</b></h5></th>
+			<th><h5 class="h6-responsive"><b>Category</b></h5></th>
+			<th><h5 class="h6-responsive"><b>Featured</b></h5></th>
+			<th><h5 class="h6-responsive"><b>Beauty Regime</b></h5></th>
+			<!-- <th>Sold</th> -->
 		</thead>
 		<tbody>
 			<?php while($product = mysqli_fetch_assoc($presults)):
@@ -256,25 +271,25 @@
 			?>
 				<tr>
 					<td>
-						<a href="products.php?edit=<?=$product['id'];?>" class="btn btn-xs btn-default"><span class="glyphicon glyphicon-pencil"></span></a>
-						<a href="products.php?delete=<?=$product['id'];?>" class="btn btn-xs btn-default"><span class="glyphicon glyphicon-trash"></span></a>
+						<a href="products.php?edit=<?=$product['id'];?>" class=""><i class="fa fa-pencil-square fa-lg"></i></a>
+						<a href="products.php?delete=<?=$product['id'];?>" class=""><i class="fa fa-trash fa-lg"></i></a>
 					</td>
 					<td><?=$product['title'];?></td>
 					<td><?=money($product['price']);?></td>
 					<td><?=$category;?></td>
 					<td>
-						<a href="products.php?featured=<?=(($product['featured'] == 0)?'1':'0');?>&id=<?=$product['id'];?>" class="btn btn-xs btn-default">
-							<span class="glyphicon glyphicon-<?=(($product['featured'] == 1)?'minus':'plus');?>"></span>
+						<a href="products.php?featured=<?=(($product['featured'] == 0)?'1':'0');?>&id=<?=$product['id'];?>" class="">
+							<i class="fa fa-<?=(($product['featured'] == 1)?'minus-circle':'plus-circle');?> fa-lg"></i>
 						</a>
 						&nbsp;<?=(($product['featured'] == 1)?'Featured Product':'Not Featured');?>
 					</td>
 					<td>
-						<a href="products.php?beauty_regime=<?=(($product['beauty_regime'] == 0)?'1':'0');?>&id=<?=$product['id'];?>" class="btn btn-xs btn-default">
-							<span class="glyphicon glyphicon-<?=(($product['beauty_regime'] == 1)?'minus':'plus');?>"></span>
+						<a href="products.php?beauty_regime=<?=(($product['beauty_regime'] == 0)?'1':'0');?>&id=<?=$product['id'];?>" class="">
+							<i class="fa fa-<?=(($product['beauty_regime'] == 1)?'minus-circle':'plus-circle');?> fa-lg"></i>
 						</a>
 						&nbsp;<?=(($product['beauty_regime'] == 1)?'Included':'Excluded');?>
 					</td>
-					<td>0</td>
+					<!-- <td>0</td> -->
 				</tr>
 			<?php endwhile;?>
 		</tbody>

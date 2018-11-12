@@ -39,7 +39,7 @@
 ?>
 
 	<h2 class="text-center">Items Ordered</h2>
-	<div class="container-fluid">
+	<div class="container-fluid table-responsive">
 		<table class="table table-bordered table-striped table-condensed">
 			<thead>
 				<th>Title</th>
@@ -58,7 +58,7 @@
 		</table>
 
 		<div class="row">
-			<div class="col-md-6">
+			<div class="col-md-6 table-responsive">
 				<h3 class="text-center">Order Details</h3>
 				<table class="table table-striped table-bordered table-condensed">
 					<tbody>

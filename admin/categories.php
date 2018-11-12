@@ -69,7 +69,7 @@
 			</script>
 	<?php	}else{
 			//Update Database
-			$updatesql = "INSERT INTO categories (category,	parent) VALUES ('$category', '$parent')";
+			$updatesql = "INSERT INTO categories (category, parent) VALUES ('$category', '$parent')";
 			if(isset($_GET['edit'])){
 				$updatesql = "UPDATE categories SET category = '$category', parent = '$post_parent' WHERE id = '$edit_id'";
 			}
@@ -90,15 +90,29 @@
 	}
 
 ?>
+	<div id="about" class="view" style="height: 50%;background: url('../img/2054.jpg')no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;">
+      <div class="mask rgba-black-strong">
+        <div class="container-fluid d-flex align-items-center justify-content-center h-100">
+          <div class="row d-flex justify-content-center text-center">
+            <div class="">
+              <!-- Heading -->
+              <a href=""><h1 class="white-text h1-responsive">Categories</h1></a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
 
-<h2 class="text-center">Categories</h2>
 <div class="container-fluid">
 	<div class="row">
-
 		<!--Form for Category-->
 		<div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
 			<form class="form" action="categories.php<?=((isset($_GET['edit']))?'?edit='.$edit_id:'');?>" method="post">
-				<legend><?=((isset($_GET['edit']))?'Edit':'Add a');?> Category</legend>
+				<legend class="px-3 py-3"><?=((isset($_GET['edit']))?'Edit':'Add a');?> Category</legend>
 				<div id="errors"></div>
 				<div class="=form-group">
 					<label for="parent">Parent</label>
@@ -108,23 +122,23 @@
 							<option value="<?=$parent['id'];?>"<?=(($parent_value == $parent['id'])?'selected = "selected"':'');?>><?=$parent['category'];?></option>
 						<?php endwhile;?>
 					</select>
-				</div>
+				</div><br>
 				<div class="form-group">
 					<label for="category">Category</label>
 					<input type="text" class="form-control" name="category" id="category" value="<?=$category_value;?>">
 				</div>
 				<div class="form-group">
-					<input type="submit" value="<?=((isset($_GET['edit']))?'Edit':'Add');?> Category" class="btn btn-success" name="add_cat">
+					<button type="submit" value="" class="btn btn-success" name="add_cat"><?=((isset($_GET['edit']))?'Edit':'Add');?> Category</button>
 				</div>
 			</form>
 		</div>
 
 		<!--Category Table-->
-		<div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-			<table class="table table-responsive ">
+		<div class="col-lg-6 col-md-6 col-sm-12 col-xs-1 table-responsive2">
+			<table class="table" style="display: table;">
 				<thead>
-					<th>Category</th>
-					<th>Parent</th>
+					<th><h5 class="h5-responsive"><b>Category</b></h5></th>
+					<th><h5 class="h5-responsive"><b>Parent</b></h5></th>
 
 				</thead>
 				<tbody>
@@ -136,21 +150,21 @@
 							$sql2 = "SELECT *FROM categories WHERE parent = '$parent_id'";
 							$cresult = $db->query($sql2);
 					?>
-					<tr class="bg-primary">
-						<td><?=$parent['category'];?></td>
-						<td>Parent</td>
+					<tr style="background: #2196f3; color: #fff;">
+						<td><h6 class="h6-responsive"><b><?=$parent['category'];?></b></h6></td>
+						<td><h6 class="h6-responsive"><b>Parent</b></h6></td>
 						<td>
-							<a href="categories.php?edit=<?=$parent['id'];?>" class="btn btn-xs btn-default"><span class="glyphicon glyphicon-pencil"></span></a>
-							<a href="categories.php?delete=<?=$parent['id'];?>" class="btn btn-xs btn-default"><span class="glyphicon glyphicon-trash"></span></a>
+							<a href="categories.php?edit=<?=$parent['id'];?>" class=""><i class="fa fa-pencil-square fa-lg" style="color: #fff"></i></a>
+							<a href="categories.php?delete=<?=$parent['id'];?>" class=""><i class="fa fa-trash fa-lg" style="color: #fff"></i></a>
 						</td>
 					</tr>
 					<?php while($child = mysqli_fetch_assoc($cresult)): ?>
-					<tr class="bg-info">
+					<tr style="background: #64ffda;">
 						<td><?=$child['category'];?></td>
 						<td><?=$parent['category'];?></td>
 						<td>
-							<a href="categories.php?edit=<?=$child['id'];?>" class="btn btn-xs btn-default"><span class="glyphicon glyphicon-pencil"></span></a>
-							<a href="categories.php?delete=<?=$child['id'];?>" class="btn btn-xs btn-default"><span class="glyphicon glyphicon-trash"></span></a>
+							<a href="categories.php?edit=<?=$child['id'];?>" class=""><i class="fa fa-pencil-square fa-lg"></i></a>
+							<a href="categories.php?delete=<?=$child['id'];?>" class=""><i class="fa fa-trash fa-lg"></i></a>
 						</td>
 					</tr>
 					<?php endwhile;?>

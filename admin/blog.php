@@ -1,3 +1,20 @@
+
+		<div id="about" class="view" style="height: 50%;background: url('../img/2054.jpg')no-repeat center center fixed;
+	    -webkit-background-size: cover;
+	    -moz-background-size: cover;
+	    -o-background-size: cover;
+	    background-size: cover;">
+	      <div class="mask rgba-black-strong">
+	        <div class="container-fluid d-flex align-items-center justify-content-center h-100">
+	          <div class="row d-flex justify-content-center text-center">
+	            <div class="">
+	              <!-- Heading -->
+	              <a href=""><h1 class="white-text h1-responsive">Blog</h1></a>
+	            </div>
+	          </div>
+	        </div>
+	      </div>
+	    </div>
 <?php
 	require_once $_SERVER['DOCUMENT_ROOT'].'/khadi/core/init.php';	
 	if(!is_logged_in()){
@@ -92,31 +109,20 @@
 					 	move_uploaded_file($tmpLoc[$i],$uploadPath[$i]);
 					}	
 				}
-
-				function createSlug($slug){
-					$lettersNumberSpacesHypens = '/[^\-\s\pN\pL]+/u';
-					$spacesDuplicateHypens =  '/[\-\s]+/';
-					$slug = preg_replace($lettersNumberSpacesHypens, '', mb_strtolower($slug, 'UTF-8'));
-					$slug = preg_replace($spacesDuplicateHypens, '-', $slug);
-					$slug = trim($slug, '-');
-
-					return $slug;
-				}
-				$slug = createSlug($title);
 				
-				$insertSql = "INSERT INTO blog (`title`,`author`,`image`,`short_desc`,`long_desc`,`slug`) VALUES ('$title','$author','$dbpath','$short_desc','$long_desc', '$slug')";
+				$insertSql = "INSERT INTO blog (`title`,`author`,`image`,`short_desc`,`long_desc`) VALUES ('$title','$author','$dbpath','$short_desc','$long_desc')";
 					if(isset($_GET['edit'])){
-						$insertSql = "UPDATE blog SET title = '$title', author = '$author', image = '$dbpath', short_desc = '$short_desc', long_desc = '$long_desc', slug = '$slug' WHERE id = '$edit_id'";
+						$insertSql = "UPDATE blog SET title = '$title', author = '$author', image = '$dbpath', short_desc = '$short_desc', long_desc = '$long_desc' WHERE id = '$edit_id'";
 					}
 				$db->query($insertSql);
 				
 			}
 		}
 		?>
-		<div class="container">
-		<h2 class="text-center"><?=((isset($_GET['edit']))?'Edit':'Add');?> Blog</h2>
+		<div class="container table-responsive">
+		<h2 class="text-center px-3 py-3"><?=((isset($_GET['edit']))?'Edit':'Add');?> Blog</h2>
 		<form action="blog.php?<?=((isset($_GET['edit']))?'edit='.$edit_id:'add=1');?>" method="post" enctype="multipart/form-data">
-			<table class="table table-responsive table-striped">
+			<table class="table table-striped" style="display: table;">
 				<tr>
 					<th>Title*</th>
 					<td><input type="text" class="form-control" name="title" id="title" value="<?=$title;?>"></td>
@@ -133,7 +139,7 @@
 						?>
 					<?php foreach($images as $image): ?>
 					<td class="saved-image">
-						<img src="<?=$image;?>" alt="saved image" />
+						<img src="<?=$image;?>" alt="saved image" class="img-fluid" />
 					</td>
 					<td class="del-image">
 						<a href="blog.php?delete_image=1&edit=<?=$edit_id;?>&imgi=<?=$imgi;?>" class=" btn btn-danger text-danger">Delete Image</a>
@@ -155,9 +161,7 @@
 					<td><textarea id="long_desc" name="long_desc" class="form-control" rows="6"><?=$long_desc;?></textarea></td>
 				</tr>
 				<tr>
-					<td><input type="submit" name="add" value="<?=((isset($_GET['edit']))?'Edit':'Add');?> Blog" class="btn btn-success"></td>
-					<td><input type="reset" name="reset" value="Reset Blog" class="btn btn-success"></td>
-					<td><a href="blog.php" class="btn btn-info form-control">Cancel</a></td>
+					<td><button type="submit" name="add" value="" class="btn btn-success"><?=((isset($_GET['edit']))?'Edit':'Add');?> Blog</button></td>
 				</tr>				
 			</table>
 		</form>
@@ -173,18 +177,17 @@
 			$db->query($featuresql);
 		}
 ?>
-<div class="container-fluid">
-	<h2 class="text-center">Blog</h2>
-	<a href="blog.php?add=1" class="btn btn-success" id="add-product-btn">Add Blog</a>
+<div class="container-fluid table-responsive">	
+	<a href="blog.php?add=1" class="btn btn-success px-3 py-3" id="add-product-btn">Add Blog</a>
 	<div class="clearfix"></div><br>
-	<table class="table table-responsive table-striped table-bordered">
+	<table class="table table-striped table-bordered" style="display: table;">
 		<thead>
 			<th></th>
-			<th>Blog title</th>
-			<th>Author</th>
-			<th>Short Description</th>
-			<th>Long Description</th>
-			<th>Featured</th>
+			<th><h5 class="h5-responsive"><b>Blog title</b></h5></th>
+			<th><h5 class="h5-responsive"><b>Author</b></h5></th>
+			<th><h5 class="h5-responsive"><b>Short Description</b></h5></th>
+			<th><h5 class="h5-responsive"><b>Long Description</b></h5></th>
+			<th><h5 class="h5-responsive"><b>Featured</b></h5></th>
 		</thead>
 		<tbody>
 			<?php 
@@ -195,16 +198,16 @@
 			<?php while($blog = mysqli_fetch_assoc($blogs)):?>
 				<tr>
 					<td>
-						<a href="blog.php?edit=<?=$blog['id'];?>" class="btn btn-xs btn-default"><span class="glyphicon glyphicon-pencil"></span></a>
-						<a href="blog.php?delete=<?=$blog['id'];?>" class="btn btn-xs btn-default"><span class="glyphicon glyphicon-trash"></span></a>
+						<a href="blog.php?edit=<?=$blog['id'];?>"><i class="fa fa-pencil-square fa-lg"></i></a>
+						<a href="blog.php?delete=<?=$blog['id'];?>"><i class="fa fa-trash fa-lg"></i></a>
 					</td>
 					<td><?=$blog['title'];?></td>
 					<td><?=$blog['author'];?></td>
 					<td><?=$blog['short_desc'];?></td>
 					<td><?=$blog['long_desc'];?></td>
 					<td>
-						<a href="blog.php?featured=<?=(($blog['featured'] == 0)?'1':'0');?>&id=<?=$blog['id'];?>" class="btn btn-xs btn-default">
-							<span class="glyphicon glyphicon-<?=(($blog['featured'] == 1)?'minus':'plus');?>"></span>
+						<a href="blog.php?featured=<?=(($blog['featured'] == 0)?'1':'0');?>&id=<?=$blog['id'];?>">
+							<i class="fa fa-<?=(($blog['featured'] == 1)?'minus-circle':'plus-circle');?> fa-lg"></i>
 						</a>
 						&nbsp;<?=(($blog['featured'] == 1)?'Featured Blog':'Not Featured');?>
 					</td>
