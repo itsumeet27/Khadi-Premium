@@ -10,7 +10,7 @@
 		while ($row_blog = mysqli_fetch_array($run_blog)) {
 			$blog_id = $row_blog['id'];
 			$blog_title = $row_blog['title'];
-			echo "<li style='padding: 0.5em;'><a href='posts.php?blog_id=$blog_id'>$blog_title</a></li>";
+			echo "<li style='padding: 0.5em;'><a href='posts.php?blog_id=$blog_id' style='color: #555;'>$blog_title</a></li>";
 			
 		}
 	}
@@ -59,30 +59,26 @@
 							<div class='card card-cascade wider card-ecommerce'>
 					            <div class='view zoom view-cascade overlay'>
 					            	<img src='$photos[0]' class='card-img-top img-fluid' alt='$pro_title'>
-					              	<a>
+					              	<button onclick='detailsmodal($pro_id)' style='background: none;border: none;cursor: pointer'>
 					              		<div class='mask rgba-white-slight'></div>
-					              	</a>
+					              	</button>
 					            </div>
             					<div class='card-body card-body-cascade text-center'>
-              						<a href='' class='grey-text'></a>
                   					<h5>
 					                    <strong>
-					                        <a href='' class='dark-grey-text'>$pro_title
+					                        <button onclick='detailsmodal($pro_id)' style='background: none;border: none;cursor: pointer'><b>$pro_title</b></button>
 					                        <br>
-					                            <span class='badge badge-pill primary-color my-2'>$pro_weight
-					                            </span>
-					                        </a>
+					                            <span class='badge badge-pill my-2 z-depth-0' style='font-weight: 150;background-color: #546e7a'>&#8377; $pro_price</span>
+						                			&nbsp;&nbsp;&nbsp;
+						                		<span class='badge badge-pill my-2 z-depth-0' style='font-weight: 150;background-color: #546e7a'>$pro_weight</span>
+					                        
 					                    </strong>
 					                </h5>
                   					<h6 class=''>$pro_short_desc</h6>
               					</div>
               					<div class='card-footer px-1 px-3 py-3'>
-				                    <span class='float-left font-weight-bold'>
-				                        <strong> &#8377; $pro_price</strong>
-				                    </span>
 				                    <span class='float-right'>
-				                      <button type='button' style='background: #ffa0;margin: 0;cursor: pointer;border:none;' class='' title='View Product' onclick='detailsmodal($pro_id)'><i class='fa fa-cart-plus' style='color: #000;font-size: 1.3rem'></i></button>
-				                        
+				                      	<button type='button' style='margin: 0;cursor: pointer;border:none;border-radius: 10em;background: #1c2a48' class='btn btn-md' title='Add to Product' onclick='detailsmodal($pro_id)'>Add to Cart &nbsp;<i class='fa fa-cart-plus'></i></button>
 				                    </span>
                 				</div>
           					</div>  
@@ -119,34 +115,31 @@
 							<div class='card card-cascade wider card-ecommerce'>
 					            <div class='view zoom view-cascade overlay'>
 					            	<img src='$photos[0]' class='card-img-top img-fluid' alt='$pro_title'>
-					              	<a>
+					              	<button onclick='detailsmodal($pro_id)' style='background: none;border: none;cursor: pointer'>
 					              		<div class='mask rgba-white-slight'></div>
-					              	</a>
+					              	</button>
 					            </div>
             					<div class='card-body card-body-cascade text-center'>
-              						<a href='' class='grey-text'></a>
                   					<h5>
 					                    <strong>
-					                        <a href='' class='dark-grey-text'>$pro_title
+					                        <button onclick='detailsmodal($pro_id)' style='background: none;border: none;cursor: pointer'><b>$pro_title</b></button>
 					                        <br>
-					                            <span class='badge badge-pill primary-color my-2'>$pro_weight
-					                            </span>
-					                        </a>
+					                            <span class='badge badge-pill my-2 z-depth-0' style='font-weight: 150;background-color: #546e7a'>&#8377; $pro_price</span>
+						                			&nbsp;&nbsp;&nbsp;
+						                		<span class='badge badge-pill my-2 z-depth-0' style='font-weight: 150;background-color: #546e7a'>$pro_weight</span>
+					                        
 					                    </strong>
 					                </h5>
                   					<h6 class=''>$pro_short_desc</h6>
               					</div>
               					<div class='card-footer px-1 px-3 py-3'>
-				                    <span class='float-left font-weight-bold'>
-				                        <strong> &#8377; $pro_price</strong>
-				                    </span>
 				                    <span class='float-right'>
-				                      <button type='button' style='background: #ffa0;margin: 0;cursor: pointer;border:none;' class='' title='View Product' onclick='detailsmodal($pro_id)'><i class='fa fa-cart-plus' style='color: #000;font-size: 1.3rem'></i></button>
-				                        
+				                      	<button type='button' style='margin: 0;cursor: pointer;border:none;border-radius: 10em;background: #1c2a48' class='btn btn-md' title='Add to Product' onclick='detailsmodal($pro_id)'>Add to Cart &nbsp;<i class='fa fa-cart-plus'></i></button>
 				                    </span>
                 				</div>
-          					</div>      
-						</div>		
+          					</div>  
+         					<br>        
+						</div>
 					";
 			}
 		}
@@ -196,35 +189,31 @@
 							<div class='card card-cascade wider card-ecommerce'>
 					            <div class='view zoom view-cascade overlay'>
 					            	<img src='$photos[0]' class='card-img-top img-fluid' alt='$pro_title'>
-					              	<a>
+					              	<button onclick='detailsmodal($pro_id)' style='background: none;border: none;cursor: pointer'>
 					              		<div class='mask rgba-white-slight'></div>
-					              	</a>
+					              	</button>
 					            </div>
             					<div class='card-body card-body-cascade text-center'>
-              						<a href='' class='grey-text'></a>
                   					<h5>
 					                    <strong>
-					                        <a href='' class='dark-grey-text'>$pro_title
+					                        <button onclick='detailsmodal($pro_id)' style='background: none;border: none;cursor: pointer'><b>$pro_title</b></button>
 					                        <br>
-					                            <span class='badge badge-pill primary-color my-2'>$pro_weight
-					                            </span>
-					                        </a>
+					                            <span class='badge badge-pill my-2 z-depth-0' style='font-weight: 150;background-color: #546e7a'>&#8377; $pro_price</span>
+						                			&nbsp;&nbsp;&nbsp;
+						                		<span class='badge badge-pill my-2 z-depth-0' style='font-weight: 150;background-color: #546e7a'>$pro_weight</span>
+					                        
 					                    </strong>
 					                </h5>
                   					<h6 class=''>$pro_short_desc</h6>
               					</div>
               					<div class='card-footer px-1 px-3 py-3'>
-				                    <span class='float-left font-weight-bold'>
-				                        <strong> &#8377; $pro_price</strong>
-				                    </span>
 				                    <span class='float-right'>
-				                      <button type='button' style='background: #ffa0;margin: 0;cursor: pointer;border:none;' class='' title='View Product' onclick='detailsmodal($pro_id)'><i class='fa fa-cart-plus' style='color: #000;font-size: 1.3rem'></i></button>
-				                        
+				                      	<button type='button' style='margin: 0;cursor: pointer;border:none;border-radius: 10em;background: #1c2a48' class='btn btn-md' title='Add to Product' onclick='detailsmodal($pro_id)'>Add to Cart &nbsp;<i class='fa fa-cart-plus'></i></button>
 				                    </span>
                 				</div>
           					</div>  
          					<br>        
-						</div>					
+						</div>
 					";
 			}
 		}
@@ -256,35 +245,31 @@
 							<div class='card card-cascade wider card-ecommerce'>
 					            <div class='view zoom view-cascade overlay'>
 					            	<img src='$photos[0]' class='card-img-top img-fluid' alt='$pro_title'>
-					              	<a>
+					              	<button onclick='detailsmodal($pro_id)' style='background: none;border: none;cursor: pointer'>
 					              		<div class='mask rgba-white-slight'></div>
-					              	</a>
+					              	</button>
 					            </div>
             					<div class='card-body card-body-cascade text-center'>
-              						<a href='' class='grey-text'></a>
                   					<h5>
 					                    <strong>
-					                        <a href='' class='dark-grey-text'>$pro_title
+					                        <button onclick='detailsmodal($pro_id)' style='background: none;border: none;cursor: pointer'><b>$pro_title</b></button>
 					                        <br>
-					                            <span class='badge badge-pill primary-color my-2'>$pro_weight
-					                            </span>
-					                        </a>
+					                            <span class='badge badge-pill my-2 z-depth-0' style='font-weight: 150;background-color: #546e7a'>&#8377; $pro_price</span>
+						                			&nbsp;&nbsp;&nbsp;
+						                		<span class='badge badge-pill my-2 z-depth-0' style='font-weight: 150;background-color: #546e7a'>$pro_weight</span>
+					                        
 					                    </strong>
 					                </h5>
                   					<h6 class=''>$pro_short_desc</h6>
               					</div>
               					<div class='card-footer px-1 px-3 py-3'>
-				                    <span class='float-left font-weight-bold'>
-				                        <strong> &#8377; $pro_price</strong>
-				                    </span>
 				                    <span class='float-right'>
-				                      <button type='button' style='background: #ffa0;margin: 0;cursor: pointer;border:none;' class='' title='View Product' onclick='detailsmodal($pro_id)'><i class='fa fa-cart-plus' style='color: #000;font-size: 1.3rem'></i></button>
-				                        
+				                      	<button type='button' style='margin: 0;cursor: pointer;border:none;border-radius: 10em;background: #1c2a48' class='btn btn-md' title='Add to Product' onclick='detailsmodal($pro_id)'>Add to Cart &nbsp;<i class='fa fa-cart-plus'></i></button>
 				                    </span>
                 				</div>
           					</div>  
          					<br>        
-						</div>						
+						</div>
 					";
 			}
 		}
@@ -334,35 +319,31 @@
 							<div class='card card-cascade wider card-ecommerce'>
 					            <div class='view zoom view-cascade overlay'>
 					            	<img src='$photos[0]' class='card-img-top img-fluid' alt='$pro_title'>
-					              	<a>
+					              	<button onclick='detailsmodal($pro_id)' style='background: none;border: none;cursor: pointer'>
 					              		<div class='mask rgba-white-slight'></div>
-					              	</a>
+					              	</button>
 					            </div>
             					<div class='card-body card-body-cascade text-center'>
-              						<a href='' class='grey-text'></a>
                   					<h5>
 					                    <strong>
-					                        <a href='' class='dark-grey-text'>$pro_title
+					                        <button onclick='detailsmodal($pro_id)' style='background: none;border: none;cursor: pointer'><b>$pro_title</b></button>
 					                        <br>
-					                            <span class='badge badge-pill primary-color my-2'>$pro_weight
-					                            </span>
-					                        </a>
+					                            <span class='badge badge-pill my-2 z-depth-0' style='font-weight: 150;background-color: #546e7a'>&#8377; $pro_price</span>
+						                			&nbsp;&nbsp;&nbsp;
+						                		<span class='badge badge-pill my-2 z-depth-0' style='font-weight: 150;background-color: #546e7a'>$pro_weight</span>
+					                        
 					                    </strong>
 					                </h5>
                   					<h6 class=''>$pro_short_desc</h6>
               					</div>
               					<div class='card-footer px-1 px-3 py-3'>
-				                    <span class='float-left font-weight-bold'>
-				                        <strong> &#8377; $pro_price</strong>
-				                    </span>
 				                    <span class='float-right'>
-				                      <button type='button' style='background: #ffa0;margin: 0;cursor: pointer;border:none;' class='' title='View Product' onclick='detailsmodal($pro_id)'><i class='fa fa-cart-plus' style='color: #000;font-size: 1.3rem'></i></button>
-				                        
+				                      	<button type='button' style='margin: 0;cursor: pointer;border:none;border-radius: 10em;background: #1c2a48' class='btn btn-md' title='Add to Product' onclick='detailsmodal($pro_id)'>Add to Cart &nbsp;<i class='fa fa-cart-plus'></i></button>
 				                    </span>
                 				</div>
           					</div>  
          					<br>        
-						</div>				
+						</div>
 					";
 			}
 		}
@@ -394,35 +375,31 @@
 							<div class='card card-cascade wider card-ecommerce'>
 					            <div class='view zoom view-cascade overlay'>
 					            	<img src='$photos[0]' class='card-img-top img-fluid' alt='$pro_title'>
-					              	<a>
+					              	<button onclick='detailsmodal($pro_id)' style='background: none;border: none;cursor: pointer'>
 					              		<div class='mask rgba-white-slight'></div>
-					              	</a>
+					              	</button>
 					            </div>
             					<div class='card-body card-body-cascade text-center'>
-              						<a href='' class='grey-text'></a>
                   					<h5>
 					                    <strong>
-					                        <a href='' class='dark-grey-text'>$pro_title
+					                        <button onclick='detailsmodal($pro_id)' style='background: none;border: none;cursor: pointer'><b>$pro_title</b></button>
 					                        <br>
-					                            <span class='badge badge-pill primary-color my-2'>$pro_weight
-					                            </span>
-					                        </a>
+					                            <span class='badge badge-pill my-2 z-depth-0' style='font-weight: 150;background-color: #546e7a'>&#8377; $pro_price</span>
+						                			&nbsp;&nbsp;&nbsp;
+						                		<span class='badge badge-pill my-2 z-depth-0' style='font-weight: 150;background-color: #546e7a'>$pro_weight</span>
+					                        
 					                    </strong>
 					                </h5>
                   					<h6 class=''>$pro_short_desc</h6>
               					</div>
               					<div class='card-footer px-1 px-3 py-3'>
-				                    <span class='float-left font-weight-bold'>
-				                        <strong> &#8377; $pro_price</strong>
-				                    </span>
 				                    <span class='float-right'>
-				                      <button type='button' style='background: #ffa0;margin: 0;cursor: pointer;border:none;' class='' title='View Product' onclick='detailsmodal($pro_id)'><i class='fa fa-cart-plus' style='color: #000;font-size: 1.3rem'></i></button>
-				                        
+				                      	<button type='button' style='margin: 0;cursor: pointer;border:none;border-radius: 10em;background: #1c2a48' class='btn btn-md' title='Add to Product' onclick='detailsmodal($pro_id)'>Add to Cart &nbsp;<i class='fa fa-cart-plus'></i></button>
 				                    </span>
                 				</div>
           					</div>  
          					<br>        
-						</div>				
+						</div>
 					";
 			}
 		}
@@ -472,35 +449,31 @@
 							<div class='card card-cascade wider card-ecommerce'>
 					            <div class='view zoom view-cascade overlay'>
 					            	<img src='$photos[0]' class='card-img-top img-fluid' alt='$pro_title'>
-					              	<a>
+					              	<button onclick='detailsmodal($pro_id)' style='background: none;border: none;cursor: pointer'>
 					              		<div class='mask rgba-white-slight'></div>
-					              	</a>
+					              	</button>
 					            </div>
             					<div class='card-body card-body-cascade text-center'>
-              						<a href='' class='grey-text'></a>
                   					<h5>
 					                    <strong>
-					                        <a href='' class='dark-grey-text'>$pro_title
+					                        <button onclick='detailsmodal($pro_id)' style='background: none;border: none;cursor: pointer'><b>$pro_title</b></button>
 					                        <br>
-					                            <span class='badge badge-pill primary-color my-2'>$pro_weight
-					                            </span>
-					                        </a>
+					                            <span class='badge badge-pill my-2 z-depth-0' style='font-weight: 150;background-color: #546e7a'>&#8377; $pro_price</span>
+						                			&nbsp;&nbsp;&nbsp;
+						                		<span class='badge badge-pill my-2 z-depth-0' style='font-weight: 150;background-color: #546e7a'>$pro_weight</span>
+					                        
 					                    </strong>
 					                </h5>
                   					<h6 class=''>$pro_short_desc</h6>
               					</div>
               					<div class='card-footer px-1 px-3 py-3'>
-				                    <span class='float-left font-weight-bold'>
-				                        <strong> &#8377; $pro_price</strong>
-				                    </span>
 				                    <span class='float-right'>
-				                      <button type='button' style='background: #ffa0;margin: 0;cursor: pointer;border:none;' class='' title='View Product' onclick='detailsmodal($pro_id)'><i class='fa fa-cart-plus' style='color: #000;font-size: 1.3rem'></i></button>
-				                        
+				                      	<button type='button' style='margin: 0;cursor: pointer;border:none;border-radius: 10em;background: #1c2a48' class='btn btn-md' title='Add to Product' onclick='detailsmodal($pro_id)'>Add to Cart &nbsp;<i class='fa fa-cart-plus'></i></button>
 				                    </span>
                 				</div>
           					</div>  
          					<br>        
-						</div>					
+						</div>
 					";
 			}
 		}
@@ -532,35 +505,31 @@
 							<div class='card card-cascade wider card-ecommerce'>
 					            <div class='view zoom view-cascade overlay'>
 					            	<img src='$photos[0]' class='card-img-top img-fluid' alt='$pro_title'>
-					              	<a>
+					              	<button onclick='detailsmodal($pro_id)' style='background: none;border: none;cursor: pointer'>
 					              		<div class='mask rgba-white-slight'></div>
-					              	</a>
+					              	</button>
 					            </div>
             					<div class='card-body card-body-cascade text-center'>
-              						<a href='' class='grey-text'></a>
                   					<h5>
 					                    <strong>
-					                        <a href='' class='dark-grey-text'>$pro_title
+					                        <button onclick='detailsmodal($pro_id)' style='background: none;border: none;cursor: pointer'><b>$pro_title</b></button>
 					                        <br>
-					                            <span class='badge badge-pill primary-color my-2'>$pro_weight
-					                            </span>
-					                        </a>
+					                            <span class='badge badge-pill my-2 z-depth-0' style='font-weight: 150;background-color: #546e7a'>&#8377; $pro_price</span>
+						                			&nbsp;&nbsp;&nbsp;
+						                		<span class='badge badge-pill my-2 z-depth-0' style='font-weight: 150;background-color: #546e7a'>$pro_weight</span>
+					                        
 					                    </strong>
 					                </h5>
                   					<h6 class=''>$pro_short_desc</h6>
               					</div>
               					<div class='card-footer px-1 px-3 py-3'>
-				                    <span class='float-left font-weight-bold'>
-				                        <strong> &#8377; $pro_price</strong>
-				                    </span>
 				                    <span class='float-right'>
-				                      <button type='button' style='background: #ffa0;margin: 0;cursor: pointer;border:none;' class='' title='View Product' onclick='detailsmodal($pro_id)'><i class='fa fa-cart-plus' style='color: #000;font-size: 1.3rem'></i></button>
-				                        
+				                      	<button type='button' style='margin: 0;cursor: pointer;border:none;border-radius: 10em;background: #1c2a48' class='btn btn-md' title='Add to Product' onclick='detailsmodal($pro_id)'>Add to Cart &nbsp;<i class='fa fa-cart-plus'></i></button>
 				                    </span>
                 				</div>
           					</div>  
          					<br>        
-						</div>					
+						</div>
 					";
 			}
 		}
@@ -610,35 +579,31 @@
 							<div class='card card-cascade wider card-ecommerce'>
 					            <div class='view zoom view-cascade overlay'>
 					            	<img src='$photos[0]' class='card-img-top img-fluid' alt='$pro_title'>
-					              	<a>
+					              	<button onclick='detailsmodal($pro_id)' style='background: none;border: none;cursor: pointer'>
 					              		<div class='mask rgba-white-slight'></div>
-					              	</a>
+					              	</button>
 					            </div>
             					<div class='card-body card-body-cascade text-center'>
-              						<a href='' class='grey-text'></a>
                   					<h5>
 					                    <strong>
-					                        <a href='' class='dark-grey-text'>$pro_title
+					                        <button onclick='detailsmodal($pro_id)' style='background: none;border: none;cursor: pointer'><b>$pro_title</b></button>
 					                        <br>
-					                            <span class='badge badge-pill primary-color my-2'>$pro_weight
-					                            </span>
-					                        </a>
+					                            <span class='badge badge-pill my-2 z-depth-0' style='font-weight: 150;background-color: #546e7a'>&#8377; $pro_price</span>
+						                			&nbsp;&nbsp;&nbsp;
+						                		<span class='badge badge-pill my-2 z-depth-0' style='font-weight: 150;background-color: #546e7a'>$pro_weight</span>
+					                        
 					                    </strong>
 					                </h5>
                   					<h6 class=''>$pro_short_desc</h6>
               					</div>
               					<div class='card-footer px-1 px-3 py-3'>
-				                    <span class='float-left font-weight-bold'>
-				                        <strong> &#8377; $pro_price</strong>
-				                    </span>
 				                    <span class='float-right'>
-				                      <button type='button' style='background: #ffa0;margin: 0;cursor: pointer;border:none;' class='' title='View Product' onclick='detailsmodal($pro_id)'><i class='fa fa-cart-plus' style='color: #000;font-size: 1.3rem'></i></button>
-				                        
+				                      	<button type='button' style='margin: 0;cursor: pointer;border:none;border-radius: 10em;background: #1c2a48' class='btn btn-md' title='Add to Product' onclick='detailsmodal($pro_id)'>Add to Cart &nbsp;<i class='fa fa-cart-plus'></i></button>
 				                    </span>
                 				</div>
           					</div>  
          					<br>        
-						</div>						
+						</div>
 					";
 			}
 		}
@@ -670,35 +635,31 @@
 							<div class='card card-cascade wider card-ecommerce'>
 					            <div class='view zoom view-cascade overlay'>
 					            	<img src='$photos[0]' class='card-img-top img-fluid' alt='$pro_title'>
-					              	<a>
+					              	<button onclick='detailsmodal($pro_id)' style='background: none;border: none;cursor: pointer'>
 					              		<div class='mask rgba-white-slight'></div>
-					              	</a>
+					              	</button>
 					            </div>
             					<div class='card-body card-body-cascade text-center'>
-              						<a href='' class='grey-text'></a>
                   					<h5>
 					                    <strong>
-					                        <a href='' class='dark-grey-text'>$pro_title
+					                        <button onclick='detailsmodal($pro_id)' style='background: none;border: none;cursor: pointer'><b>$pro_title</b></button>
 					                        <br>
-					                            <span class='badge badge-pill primary-color my-2'>$pro_weight
-					                            </span>
-					                        </a>
+					                            <span class='badge badge-pill my-2 z-depth-0' style='font-weight: 150;background-color: #546e7a'>&#8377; $pro_price</span>
+						                			&nbsp;&nbsp;&nbsp;
+						                		<span class='badge badge-pill my-2 z-depth-0' style='font-weight: 150;background-color: #546e7a'>$pro_weight</span>
+					                        
 					                    </strong>
 					                </h5>
                   					<h6 class=''>$pro_short_desc</h6>
               					</div>
               					<div class='card-footer px-1 px-3 py-3'>
-				                    <span class='float-left font-weight-bold'>
-				                        <strong> &#8377; $pro_price</strong>
-				                    </span>
 				                    <span class='float-right'>
-				                      <button type='button' style='background: #ffa0;margin: 0;cursor: pointer;border:none;' class='' title='View Product' onclick='detailsmodal($pro_id)'><i class='fa fa-cart-plus' style='color: #000;font-size: 1.3rem'></i></button>
-				                        
+				                      	<button type='button' style='margin: 0;cursor: pointer;border:none;border-radius: 10em;background: #1c2a48' class='btn btn-md' title='Add to Product' onclick='detailsmodal($pro_id)'>Add to Cart &nbsp;<i class='fa fa-cart-plus'></i></button>
 				                    </span>
                 				</div>
           					</div>  
          					<br>        
-						</div>					
+						</div>
 					";
 			}
 		}

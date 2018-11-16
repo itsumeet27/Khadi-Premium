@@ -1,5 +1,5 @@
 <!-- Footer -->
-  <footer class="page-footer unique-color-dark">
+  <footer class="page-footer unique-color-dark" style="font-family: Roboto;font-weight: 400;">
 
     <!-- Social buttons -->
     <div class="blue-grey">
@@ -8,23 +8,23 @@
         <div class="row py-3 d-flex align-items-center">
           <!--Grid column-->
           <div class="col-md-6 col-lg-5 text-center text-md-left mb-4 mb-md-0">
-            <h6 class="mb-0 white-text">Get connected with us on social networks!</h6>
+            <h6 class="mb-0 white-text" style="font-weight: 400">Get connected with us on social networks!</h6>
           </div>
           <!--Grid column-->
 
           <!--Grid column-->
           <div class="col-md-6 col-lg-7 text-center text-md-right">
             <!--Facebook-->
-            <a class="fb-ic ml-0">
-              <i class="fa fa-facebook white-text mr-4"> </i>
+            <a class="fb-ic" href="https://instagram.com/khadipremium">
+              <i class="fa fa-facebook white-text mr-3"> </i>
             </a>
             <!--Instagram-->
             <a class="ins-ic" href="https://instagram.com/khadipremium">
-              <i class="fa fa-instagram white-text mr-lg-4"> </i>
+              <i class="fa fa-instagram white-text mr-3"> </i>
             </a>
             <!-- Youtube -->
             <a href="https://www.youtube.com/" target="_blank">
-                <i class="fa fa-youtube mr-3"></i>
+                <i class="fa fa-youtube white-text mr-3"></i>
             </a>
           </div>
           <!--Grid column-->
@@ -109,7 +109,7 @@
           </h6>
           <hr class="blue-grey accent-2 mb-4 mt-0 d-inline-block mx-auto" style="width: 60px;">
           <p style="text-align: justify;">
-            <i class="fa fa-home mr-3"></i> 954, Riddhi Siddhi Society, Adarsh Nagar, Off Link Road, Jogeshwari (W), Mumbai - 400102, India
+            <i class="fa fa-home mr-3"></i> Adarsh Nagar, Off Link Road, Jogeshwari (W), Mumbai - 400102, India
           </p>
           <p>
             <i class="fa fa-envelope mr-3"></i> info@khadipremium.in
@@ -126,7 +126,7 @@
             <!-- Footer Links -->
 
             <!-- Copyright -->
-            <div class="footer-copyright text-center py-3">&copy; 2018 Copyright:
+            <div class="footer-copyright text-center py-3" style="font-family: Poppins">&copy; 2018 Copyright:
               <a href="https://www.khadipremium.in"> Khadi Premium Cosmetics</a> developed and maintained by <a href="https://www.lukaenterprises.com">Luka Enterprises</a>
             </div>
             <!-- Copyright -->
@@ -144,6 +144,25 @@
           <script type="text/javascript" src="js/mdb.min.js"></script>
 
           <script type="text/javascript" src="js/mdb.min.js"></script>
+
+          <script type="text/javascript">
+            function initMap(){
+              var location = {lat: 19.147030,lng: 72.828730};
+              var map = new google.maps.Map(document.getElementById("map-container"),{
+                zoom: 8,
+                center: location
+              });
+              var marker = new google.maps.Marker({
+                position: location,
+                map: map
+              });
+            }
+          </script>
+
+          <script async defer
+src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA3LOQAS97y1ctCLRMVl6NjMlcG6pLC_8o&callback=initMap">
+</script>
+
           <script type="text/javascript">
             function detailsmodal(id){
               var data = {"id" : id};
@@ -223,6 +242,11 @@
             }
           
           </script> 
+          <script>
+            $('.carousel').carousel({
+              interval: 3000,
+            })
+          </script>
 </body>
 
 </html>

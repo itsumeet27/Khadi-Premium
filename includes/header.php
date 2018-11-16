@@ -6,8 +6,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   <title>Material Design Bootstrap</title>
+  <link rel="icon" type="icon/png" href="img/logo.png" />
   <link href="https://fonts.googleapis.com/css?family=Cookie" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css?family=Berkshire+Swash|Montserrat" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Berkshire+Swash|Montserrat|Poppins" rel="stylesheet">
   <!-- Font Awesome -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
   <!-- Bootstrap core CSS -->
@@ -16,30 +17,34 @@
   <link href="css/mdb.min.css" rel="stylesheet">
   <!-- Your custom styles (optional) -->
   <link href="css/style.css" rel="stylesheet">
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+
+  <link  href="http://cdnjs.cloudflare.com/ajax/libs/fotorama/4.6.4/fotorama.css" rel="stylesheet"> <!-- 3 KB -->
+  <script src="http://cdnjs.cloudflare.com/ajax/libs/fotorama/4.6.4/fotorama.js"></script> <!-- 16 KB -->
 
   <style type="text/css">
     .top-nav-collapse {
-      background-color: #548990;
+      background-color: #3b465e;
     }
     @media (max-width: 768px) {
       .navbar:not(.top-nav-collapse) {
-        background-color: #548990;
+        background-color: #3b465e;
       }
     }
     @media (min-width: 800px) and (max-width: 850px) {
       .navbar:not(.top-nav-collapse) {
-        background-color: #548990;
+        background-color: #3b465e;
       }
   </style>
 
 </head>
 
-<body style="background: #ffffcc4f">
+<body style="background: #e8f0ff;font-family: 'Poppins', 'sans-serif'">
 
   <!-- Start your project here-->
   <!--Main Navigation-->
     <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg navbar-dark fixed-top scrolling-navbar z-depth-0">
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top scrolling-navbar z-depth-0" style="font-family: Roboto;font-weight: 400;">
       <div class="container">
         <!-- Navbar brand -->
         <a class="navbar-brand" href="index.php">Khadipremium</a>

@@ -21,9 +21,9 @@ $product = mysqli_fetch_assoc($result);
 	<div class="modal fade details-1" id="details-modal" tabindex="-1" role="dialog" aria-labelledby="details-1" aria-hidden="true" data-backdrop="static" data-keyboard="false">
 		<div class="modal-dialog modal-lg">
 			<div class="modal-content">
-				<div class="modal-header">								
+				<div class="modal-header" style="background: #3b465e;color: #fff;">								
 					<h4 class="modal-title text-center"><?= $product['title']; ?></h4>
-					<button class="close" type="button" onclick="closeModal()" aria-label="Close">
+					<button class="close" type="button" onclick="closeModal()" aria-label="Close" style="color: #fff">
 						<span aria-hidden="true">&times;</span>
 					</button>
 				</div>
@@ -39,54 +39,92 @@ $product = mysqli_fetch_assoc($result);
 								<?php endforeach; ?>
 							</div>
 							<div class="col-md-6">
-								<h5>ITEM CODE: <?= $product['sku']; ?></h5>
+								<h5><b>ITEM CODE:</b> <?= $product['sku']; ?></h5>
 								<label><?= $product['tagline']; ?></label>
 								<p><?= $product['short_desc']; ?></p>
-								<p>&#8377; <?= $product['price']; ?></p>
 								<form action="add_cart.php" method="post" id="add_product_form">
 									<input type="hidden" name="product_id" value="<?=$id;?>">
 									<input type="hidden" name="available" id="available" value=10>
 									<div class="form-group">
 										<div class="col-md-12 col-sm-12 col-xs-12">
-											<label for="Weight">Weight: </label>
+											<label><b>Price:</b> &#8377; <?= $product['price']; ?></label>
+										</div>
+									</div>
+
+									<div class="form-group">
+										<div class="col-md-12 col-sm-12 col-xs-12">
+											<label for="Weight"><b>Weight:</b> </label>
 											<?= $product['weight']; ?>
 										</div>
 									</div>
 									<div class="form-group">
 										<div class="col-md-12 col-sm-12 col-xs-12">
-											<label for="quantity">Quantity: </label>
+											<label for="quantity"><b>Quantity:</b> </label>
 											<input type="number" name="quantity" class="form-control" id="quantity" min=1 value="1">
 										</div>
 									</div>
 									<div class="stock">
 										<div class="col-md-12 col-sm-12 col-xs-12">
-											<p>Product Availability: <?= $product['stock']; ?></p>
+											<p><b>Product Availability:</b> <?= $product['stock']; ?></p>
 										</div>
 									</div>	  											
 								</form>
 								
 							</div>
 							<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+								<h5 class="h5-responsive py-3"><b>Description:</b></h5>
 								<p align="justify">
 									<?= nl2br($product['long_desc']); ?>
 								</p>
 							</div>
 							<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-								<a href="#" class="regime-shop">Write a Review</a>
+								<a href="#" class="btn" id="review-form" style="background-color: #607d8b">Write a Review</a>
+							</div>
+							<div class="col-md-12 container" id="review" style="display: none;">
+								<div class="card">
+									<form class="p-5 grey-text" method="post" action="review.php">
+							            <div class="md-form form-sm"> <i class="fa fa-user prefix"></i>
+							              <input type="text" id="form6" class="form-control form-control-sm" name="name">
+							              <label for="form3">Your name</label>
+							            </div>
+							            <div class="md-form form-sm"> <i class="fa fa-envelope prefix"></i>
+							              <input type="text" id="form7" class="form-control form-control-sm" name="email">
+							              <label for="form2">Your email</label>
+							            </div>
+							            <div class="md-form form-sm"> <i class="fa fa-tag prefix"></i>
+							              <input type="text" id="form10" class="form-control form-control-sm" name="product" value="<?=$product['title'];?>">
+							              <label for="form34">Your product</label>
+							            </div>
+							            <div class="md-form form-sm"> <i class="fa fa-pencil prefix"></i>
+							              <textarea type="text" id="form9" class="md-textarea form-control form-control-sm" rows="4" name="message"></textarea>
+							              <label for="form8">Your review</label>
+							            </div>
+							            <div class="text-center mt-4">
+							              <button class="btn" type="submit" name="submit" style="background: #607d8b">Send <i class="fa fa-paper-plane-o ml-1"></i></button>
+							            </div>
+							        </form>
+								</div>								
 							</div>
 						</div>
 					</div>
 				</div>
 				<br>
-				<div class="modal-footer">
-					<button class="btn btn-default" onclick="closeModal()">Close</button>
-					<button class="btn btn-warning" onclick="add_to_cart();">Add to Cart &nbsp;<span class="fa fa-shopping-cart"></span></button>
+				<div class="modal-footer blue-grey">
+					<button class="btn btn-white" style="border-radius: 10em;" onclick="closeModal()">Close</button>
+					<button class="btn btn-white" style="border-radius: 10em;" onclick="add_to_cart();">Add to Cart &nbsp;<span class="fa fa-shopping-cart"></span></button>
 				</div>
 			</div>
 		</div>
 	</div>
 </body>
 </html>
+<script type="text/javascript">
+	$(document).ready(function(){
+	    $("#review-form").click(function(){
+	        $("#review").slideToggle("slow");
+	    });
+	});
+</script>
 <script type="text/javascript">
 
 	jQuery('#quantity').change(function(){
