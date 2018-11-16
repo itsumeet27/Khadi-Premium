@@ -15,17 +15,28 @@
     <link href="../css/datatables.css" rel="stylesheet">
 
     <link href="../css/datatables.min.css" rel="stylesheet">
+    <style type="text/css">
+        .top-nav-collapse {
+            background-color: #3b465e;
+        }
+        @media (max-width: 768px) {
+            .navbar:not(.top-nav-collapse) {
+                background-color: #3b465e;
+            }
+        }
+        @media (min-width: 800px) and (max-width: 850px) {
+            .navbar:not(.top-nav-collapse) {
+                background-color: #3b465e;
+        }
+    </style>
 </head>
 
 <body class="grey lighten-3">
         <!-- Navbar -->
-        <nav class="navbar fixed-top navbar-expand-lg navbar-light white scrolling-navbar">
-            <div class="container-fluid">
-
-                <!-- Brand -->
-                <a class="navbar-brand waves-effect" href="" target="_blank">
-                    <strong class="blue-text">Khadi Premium</strong>
-                </a>
+        <nav class="navbar navbar-expand-lg navbar-dark fixed-top scrolling-navbar z-depth-0">
+            <div class="container">
+                <!-- Navbar brand -->
+                <a class="navbar-brand" href="index.php">Khadipremium</a>
 
                 <!-- Collapse -->
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
@@ -39,25 +50,25 @@
                     <!-- Left -->
                     <ul class="navbar-nav mr-auto">
                         <li class="nav-item">
-                            <a class="nav-link waves-effect" href="products.php" target="_blank">Products</a>
+                            <a class="nav-link waves-effect" href="products.php">Products</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link waves-effect" href="categories.php" target="_blank">Categories</a>
+                            <a class="nav-link waves-effect" href="categories.php">Categories</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link waves-effect" href="blog.php" target="_blank">Blog</a>
+                            <a class="nav-link waves-effect" href="blog.php">Blog</a>
                         </li>
                     </ul>
 
                     <!-- Right -->
                     <ul class="navbar-nav nav-flex-icons">
                         <li class="nav-item">
-                            <a href="https://www.facebook.com/khadipremium" class="nav-link waves-effect" target="_blank">
+                            <a href="https://www.facebook.com/khadipremium" class="nav-link waves-effect">
                                 <i class="fa fa-facebook"></i>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="https://instagram.com/khadipremium" class="nav-link waves-effect" target="_blank">
+                            <a href="https://instagram.com/khadipremium" class="nav-link waves-effect">
                                 <i class="fa fa-instagram"></i>
                             </a>
                         </li>

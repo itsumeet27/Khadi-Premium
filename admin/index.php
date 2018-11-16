@@ -51,7 +51,7 @@
 					<tbody>
 						<?php while($order = mysqli_fetch_assoc($txnResults)): ?>
 							<tr>
-								<td><a href="orders.php?txn_id=<?=$order['id'];?>" class="btn btn-xs btn-info">Details</a></td>
+								<td><a href="orders.php?txn_id=<?=$order['id'];?>" class="btn btn-xs" style="color: #fff;background: #1c2a48">Details</a></td>
 								<td><?=$order['firstname'];?></td>
 								<td><?=$order['productinfo'];?></td>
 								<td><?=money($order['total']);?></td>
@@ -140,7 +140,7 @@
 					<tbody>
 						<?php while($invoice = mysqli_fetch_assoc($invoiceResults)): ?>
 							<tr>
-								<td><a href="invoice.php?txn_id=<?=$invoice['id'];?>" class="btn btn-xs btn-info">Details</a></td>
+								<td><a href="invoice.php?txn_id=<?=$invoice['id'];?>" class="btn btn-xs" style="color: #fff;background: #1c2a48">Details</a></td>
 								<td><?=$invoice['firstname'];?></td>
 								<td><?=$invoice['email'];?></td>
 								<td><?=$invoice['phone'];?></td>

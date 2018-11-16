@@ -186,12 +186,14 @@
 							$images = explode(',', $saved_image);
 						?>
 					<?php foreach($images as $image): ?>
-					<td class="saved-image">
-						<img src="<?=$image;?>" alt="saved image" />
+					<td class="saved-image"">
+						<img src="<?=$image;?>" alt="saved image" style="width: 250px;" />
 					</td>
 					<td class="del-image">
-						<a href="products.php?delete_image=1&edit=<?=$edit_id;?>&imgi=<?=$imgi;?>" class=" btn btn-danger">Delete Image</a>
+						<a href="products.php?delete_image=1&edit=<?=$edit_id;?>&imgi=<?=$imgi;?>" class=" btn btn-danger text-white">Delete Image</a>
 					</td>
+				</tr>
+				<tr>
 					<?php 
 						$imgi++;
 						endforeach;?>
@@ -221,7 +223,7 @@
 					<td><input type="text" id="cat_name" name="cat_name" class="form-control" value="<?=$cat_name;?>" placeholder="Eg: skin-care, hair-care, body-care, bath-and-beauty"></td>
 				</tr>
 				<tr>
-					<td><button type="submit" name="add" value="" class="btn btn-success"><?=((isset($_GET['edit']))?'Edit':'Add');?> Product</button></td>
+					<td><button type="submit" name="add" value="" class="btn" style="background-color: #1c2a48;"><?=((isset($_GET['edit']))?'Edit':'Add');?> Product</button></td>
 				</tr>				
 			</table>
 		</form>
@@ -245,7 +247,7 @@
 		}
 ?>
 <div class="container-fluid table-responsive">	
-	<a href="products.php?add=1" class="btn btn-success" id="add-product-btn">Add Product</a>
+	<a href="products.php?add=1" class="btn text-white" id="add-product-btn" style="background: #1c2a48">Add Product</a>
 	<div class="clearfix"></div>
 	<table class="table table-condensed" style="display: table;">
 		<thead>

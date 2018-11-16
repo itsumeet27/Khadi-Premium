@@ -1,71 +1,85 @@
 <!--Footer-->
-    <footer class="page-footer text-center font-small primary-color-dark darken-2 mt-4 wow fadeIn">
-        <hr class="my-4">
-
-        <!-- Social icons -->
-        <div class="pb-4">
-            <a href="https://www.facebook.com/khadipremium" target="_blank">
-                <i class="fa fa-facebook mr-3"></i>
-            </a>
-
-            <a href="https://instagram.com/khadipremium" target="_blank">
-                <i class="fa fa-instagram mr-3"></i>
-            </a>
-
-            <a href="https://www.youtube.com/" target="_blank">
-                <i class="fa fa-youtube mr-3"></i>
-            </a>
+<footer class="page-footer unique-color-dark wow fadeIn">
+    <div class="blue-grey">
+      <div class="container">
+        <!--Grid row-->
+        <div class="row py-3 d-flex align-items-center">
+          <!--Grid column-->
+          <div class="col-md-6 col-lg-5 text-center text-md-left mb-4 mb-md-0">
+            <h6 class="mb-0 white-text">Get connected with us on social networks!</h6>
         </div>
-        <!-- Social icons -->
+        <!--Grid column-->
 
-        <!--Copyright-->
-        <div class="footer-copyright py-3">
-            © 2018 Copyright:
-            <a href="https://localhost/khadi/index.php" target="_blank"> Khadi Premium Cosmetics </a>
-        </div>
-        <!--/.Copyright-->
+        <!--Grid column-->
+        <div class="col-md-6 col-lg-7 text-center text-md-right">
+            <!--Facebook-->
+            <a class="fb-ic" href="https://instagram.com/khadipremium">
+              <i class="fa fa-facebook white-text mr-3"> </i>
+          </a>
+          <!--Instagram-->
+          <a class="ins-ic" href="https://instagram.com/khadipremium">
+              <i class="fa fa-instagram white-text mr-3"> </i>
+          </a>
+          <!-- Youtube -->
+          <a href="https://www.youtube.com/" target="_blank">
+            <i class="fa fa-youtube white-text mr-3"></i>
+        </a>
+    </div>
+    <!--Grid column-->
 
-    </footer>
-    <!--/.Footer-->
+</div>
+<!--Grid row-->
+</div>
+</div>
+<!-- Social buttons -->
 
-    <!-- SCRIPTS -->
-    <!-- JQuery -->
-    <script type="text/javascript" src="../js/jquery-3.3.1.min.js"></script>
-    <!-- Bootstrap tooltips -->
-    <script type="text/javascript" src="../js/popper.min.js"></script>
-    <!-- Bootstrap core JavaScript -->
-    <script type="text/javascript" src="../js/bootstrap.min.js"></script>
-    <!-- MDB core JavaScript -->
-    <script type="text/javascript" src="../js/mdb.min.js"></script>
+<!-- Copyright -->
+<div class="footer-copyright text-center py-3">&copy; 2018 Copyright:
+  <a href="https://www.khadipremium.in"> Khadi Premium Cosmetics</a> developed and maintained by <a href="https://www.lukaenterprises.com">Luka Enterprises</a>
+</div>
+<!-- Copyright -->
 
-    <script type="text/javascript" src="../js/datatables.js"></script>
+</footer>
+<!--/.Footer-->
 
-    <script type="text/javascript" src="../js/datatables.min.js"></script>
-    <script type="text/javascript">
-		function get_child_options(selected){
-			if(typeof selected === 'undefined'){
-				var selected = '';
-			}
-			var parentID = jQuery('#parent').val();
-			jQuery.ajax({
-				url: '/khadi/admin/parsers/child_categories.php',
-				type: 'POST',
-				data: {parentID : parentID, selected : selected},
-				success: function(data){
-					jQuery('#child').html(data);
-				},
-				error: function(){
-					alert("Something went wrong!");
-				},
-			});
-		}
-		jQuery('select[name="parent"]').change(function(){
-			get_child_options();
-		});
-	</script>
-    <!--Google Maps-->
-    <script src="https://maps.google.com/maps/api/js"></script>
-    <script>
+<!-- SCRIPTS -->
+<!-- JQuery -->
+<script type="text/javascript" src="../js/jquery-3.3.1.min.js"></script>
+<!-- Bootstrap tooltips -->
+<script type="text/javascript" src="../js/popper.min.js"></script>
+<!-- Bootstrap core JavaScript -->
+<script type="text/javascript" src="../js/bootstrap.min.js"></script>
+<!-- MDB core JavaScript -->
+<script type="text/javascript" src="../js/mdb.min.js"></script>
+
+<script type="text/javascript" src="../js/datatables.js"></script>
+
+<script type="text/javascript" src="../js/datatables.min.js"></script>
+<script type="text/javascript">
+  function get_child_options(selected){
+     if(typeof selected === 'undefined'){
+        var selected = '';
+    }
+    var parentID = jQuery('#parent').val();
+    jQuery.ajax({
+        url: '/khadi/admin/parsers/child_categories.php',
+        type: 'POST',
+        data: {parentID : parentID, selected : selected},
+        success: function(data){
+           jQuery('#child').html(data);
+       },
+       error: function(){
+           alert("Something went wrong!");
+       },
+   });
+}
+jQuery('select[name="parent"]').change(function(){
+ get_child_options();
+});
+</script>
+<!--Google Maps-->
+<script src="https://maps.google.com/maps/api/js"></script>
+<script>
         // Regular map
         function regular_map() {
             var var_location = new google.maps.LatLng(40.725118, -73.997699);
@@ -93,5 +107,5 @@
 
 </html>
 
-	</body>
+</body>
 </html>

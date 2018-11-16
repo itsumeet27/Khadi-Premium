@@ -128,7 +128,7 @@
 					<input type="text" class="form-control" name="category" id="category" value="<?=$category_value;?>">
 				</div>
 				<div class="form-group">
-					<button type="submit" value="" class="btn btn-success" name="add_cat"><?=((isset($_GET['edit']))?'Edit':'Add');?> Category</button>
+					<button type="submit" value="" class="btn text-white" style="background: #1c2a48;" name="add_cat"><?=((isset($_GET['edit']))?'Edit':'Add');?> Category</button>
 				</div>
 			</form>
 		</div>
@@ -150,7 +150,7 @@
 							$sql2 = "SELECT *FROM categories WHERE parent = '$parent_id'";
 							$cresult = $db->query($sql2);
 					?>
-					<tr style="background: #2196f3; color: #fff;">
+					<tr style="background: #1c2a48; color: #fff;">
 						<td><h6 class="h6-responsive"><b><?=$parent['category'];?></b></h6></td>
 						<td><h6 class="h6-responsive"><b>Parent</b></h6></td>
 						<td>
@@ -159,7 +159,7 @@
 						</td>
 					</tr>
 					<?php while($child = mysqli_fetch_assoc($cresult)): ?>
-					<tr style="background: #64ffda;">
+					<tr style="background: #d0d6e2;">
 						<td><?=$child['category'];?></td>
 						<td><?=$parent['category'];?></td>
 						<td>

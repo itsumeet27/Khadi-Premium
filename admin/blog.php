@@ -142,7 +142,7 @@
 						<img src="<?=$image;?>" alt="saved image" class="img-fluid" />
 					</td>
 					<td class="del-image">
-						<a href="blog.php?delete_image=1&edit=<?=$edit_id;?>&imgi=<?=$imgi;?>" class=" btn btn-danger text-danger">Delete Image</a>
+						<a href="blog.php?delete_image=1&edit=<?=$edit_id;?>&imgi=<?=$imgi;?>" class=" btn btn-danger text-white">Delete Image</a>
 					</td>
 					<?php 
 						$imgi++;
@@ -178,7 +178,7 @@
 		}
 ?>
 <div class="container-fluid table-responsive">	
-	<a href="blog.php?add=1" class="btn btn-success px-3 py-3" id="add-product-btn">Add Blog</a>
+	<a href="blog.php?add=1" class="btn text-white" style="background-color: #1c2a48" id="add-product-btn">Add Blog</a>
 	<div class="clearfix"></div><br>
 	<table class="table table-striped table-bordered" style="display: table;">
 		<thead>

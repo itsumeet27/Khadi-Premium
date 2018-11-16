@@ -37,8 +37,25 @@
 		$products[] = array_merge($x, $p);
 	}
 ?>
+	<div id="about" class="view" style="height: 50%;background: url('../img/2054.jpg')no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;">
+      <div class="mask rgba-black-strong">
+        <div class="container-fluid d-flex align-items-center justify-content-center h-100">
+          <div class="row d-flex justify-content-center text-center">
+            <div class="">
+              <!-- Heading -->
+              <a href=""><h1 class="white-text h1-responsive">Orders</h1></a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+<div class="container-fluid">
 
-	<h2 class="text-center">Items Ordered</h2>
+	<h2 class="text-center px-2 py-2">Items Ordered</h2>
 	<div class="container-fluid table-responsive">
 		<table class="table table-bordered table-striped table-condensed">
 			<thead>
@@ -85,9 +102,10 @@
 			</div>
 		</div>
 		<div class="pull-right">
-			<a href="index.php" class="btn btn-default btn-large">Cancel</a>
-			<a href="orders.php?complete=1&cart_id=<?=$cart_id;?>" class="btn btn-primary btn-default btn-large">Complete Order</a>
+			<a href="index.php" class="btn text-white" style="background-color: #1c2a48;border-radius: 10em;">Cancel</a>
+			<a href="orders.php?complete=1&cart_id=<?=$cart_id;?>" class="btn text-white" style="background-color: #1c2a48;border-radius: 10em;">Complete Order</a>
 		</div>
 	</div>
+</div>
 
 <?php include 'includes/footer.php';?>
