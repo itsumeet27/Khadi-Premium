@@ -38,7 +38,7 @@
 		<?php else: ?>
 		<div class="table-responsive">
 			<table class="table table-condensed" style="display: table;">
-				<thead class="bg-info" style="color: #fff">
+				<thead style="background: #54899095;color: #fff">
 					<th>#</th>
 					<th>Item</th>
 					<th>Price</th>
@@ -58,10 +58,10 @@
 							<th><?=$product['title']; ?></th>
 							<th><?=money($product['price']);?></th>
 							<th>
-								<button class="btn-xs btn-default" onclick="update_cart('removeone','<?=$product['id'];?>');" style="border: none;border-radius: 5px;cursor: pointer;">-</button>
+								<button class="btn-xs" onclick="update_cart('removeone','<?=$product['id'];?>');" style="border: none;border-radius: 5px;cursor: pointer;background-color: #1c2a48;color: #fff">-</button>
 								<?=$item['quantity'];?>
 								<?php if($item['quantity'] < 10): ?>
-									<button class="btn-xs btn-default" onclick="update_cart('addone','<?=$product['id'];?>');" style="border: none;border-radius: 5px;cursor: pointer;">+</button>
+									<button class="btn-xs" onclick="update_cart('addone','<?=$product['id'];?>');" style="border: none;border-radius: 5px;cursor: pointer;background-color: #1c2a48;color: #fff">+</button>
 								<?php else: ?>
 									<span class="text-danger">Max</span>
 								<?php endif; ?>
@@ -79,7 +79,7 @@
 					?>						
 				</tbody>
 				<tfoot>
-					<tr class="bg-success" style="color: #fff">
+					<tr class="blue-grey" style="color: #fff">
 						<th colspan="3">Total</th>
 						<th>No. of items: <?=$item_count;?></th>
 						<th><?=money($grand_total);?></th>
@@ -88,7 +88,7 @@
 			</table>
 		</div>
 		<div class="text-right">
-			<a href="checkout.php" class="btn btn-primary"><i class="fa fa-shopping-cart">&nbsp;</i>Checkout</a>
+			<a href="checkout.php" class="btn" style="border-radius: 10em;background: #1c2a48"><i class="fa fa-shopping-cart">&nbsp;</i>Checkout</a>
 		</div>
 		<?php endif; ?>
 </div>

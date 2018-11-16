@@ -67,7 +67,7 @@
 <div class="container-fluid">
   <div class="row">   
     <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
-      <div class="sidebar-nav" style="background: #548990e0;">
+      <div class="sidebar-nav" style="background: #3b465e;">
         <div class="navbar navbar-default" role="navigation">
           <div class="navbar-header">
             <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".sidebar-navbar-collapse" style="background: #fff;cursor: pointer;border: none;border-radius: 5px;padding: 0.5em 0.75em">

@@ -6,10 +6,8 @@ use PHPMailer\PHPMailer\Exception;
 if(isset($_POST['submit'])){
     $name = $_POST['name'];
     $email = $_POST['email'];
-    $subject = $_POST['subject'];
+    $product = $_POST['product'];
     $message = $_POST['message'];
-
-    
 
 require 'PHPMailer/src/Exception.php';
 require 'PHPMailer/src/PHPMailer.php';
@@ -26,11 +24,12 @@ try {
         $mail->SMTPSecure = 'tls';                                       // Enable TLS encryption, `ssl` also accepted
         $mail->Username = 'sksharma.sharma87@gmail.com';                 // SMTP username
         $mail->Password = 'shar2103';                                    // SMTP password
+                                            
 
         //Recipients
-        $mail->setFrom($email, $name);
-        $mail->addAddress('sksharma.sharma87@gmail.com', 'Sumit Sharma');     // Add a recipient // Name is optional
-        $mail->addReplyTo($email, $name);
+        $mail->setFrom('sksharma.sharma87@gmail.com', 'Sumit');
+        $mail->addAddress($email, $name);     // Add a recipient // Name is optional
+        // $mail->addReplyTo('info@example.com', 'Information');
         // $mail->addCC('cc@example.com');
         // $mail->addBCC('bcc@example.com');
 
@@ -39,13 +38,13 @@ try {
         // $mail->addAttachment('/tmp/image.jpg', 'new.jpg');    // Optional name
 
         //Content
-        $mail->isHTML(true);                                  // Set email format to HTML
-        $mail->Subject = 'Inquiry on: '. $subject;
-        $mail->Body    = $message;
-        $mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
+        $mail->isHTML(true);       
+        $mail->Subject = 'Review on: '. $product;
+        $mail->Body    = 'Your message has been received';
+        $mail->AltBody = $message;
 
         $mail->send();
-        echo 'Message has been sent. Thank You '. $name;
+        echo 'Message has been sent';
     } catch (Exception $e) {
         echo 'Message could not be sent. Mailer Error: ', $mail->ErrorInfo;
     }

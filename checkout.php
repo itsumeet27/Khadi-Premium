@@ -68,35 +68,6 @@ if(empty($posted['hash']) && sizeof($posted) > 0) {
   $action = $PAYU_BASE_URL . '/_payment';
 }
 ?>
-
-<?php
-  
-  if(isset($_POST['send_otp'])){
-    require('verification/credential.php');
-    require('verification/textlocal.class.php');
-    $textlocal = new Textlocal(false, false, API_KEY);
-    $numbers = array(MOBILE);
-    $sender = 'TXTLCL';
-    $otp = mt_rand(100000,999999);
-    $message = 'Hello'. $_POST['firstname']. "This is to your OTP: " . $otp;
-    try {
-        $result = $textlocal->sendSms($numbers, $message, $sender);
-        echo "OTP Sent Successfully";
-        setcookie('otp', $otp);
-    } catch (Exception $e) {
-        die('Error: ' . $e->getMessage());
-    }
-  }
-  if(isset($_POST['verify_otp'])){
-    $otp = $_POST['otp'];
-    if($_COOKIE['otp'] == $otp){
-      echo "Congratulations, Your mobile is verified"; 
-    }else{
-      echo "Enter coorect OTP";
-    }
-  }
-?>
-
   <script>
     var hash = '<?php echo $hash ?>';
     function submitPayuForm() {
@@ -131,7 +102,7 @@ if(empty($posted['hash']) && sizeof($posted) > 0) {
           <br/>
         <?php } ?>
         <div>
-          <h6 class="text-info" style="line-height: 1.6em"><b>Important Note: </b>Do not edit or change the amount and the product description for successful payment processing. Please select products in cart and then proceed for successful checkout</h6>
+          <h6 class="h6-responsive" style="color: #1c2a48;line-height: 1.6em;"><b>Important Note: </b>Do not edit or change the amount and the product description for successful payment processing. Please select products in cart and then proceed for successful checkout</h6>
         </div>
           <form action="<?php echo $action; ?>" method="post" name="payuForm">        
             <input type="hidden" name="key" value="<?php echo $MERCHANT_KEY ?>" />
@@ -156,27 +127,27 @@ if(empty($posted['hash']) && sizeof($posted) > 0) {
                   $grand_total = $sub_total;
                 ?>
               <?php } ?>
-                <input type="text" id="inputIconEx1" class="form-control" name="amount" value="<?=intval($grand_total);?>" />
+                <input type="text" id="inputIconEx1" class="form-control" name="amount" value="<?=intval($grand_total);?>"  style="border-color: #1c2a48"/>
                 <label for="inputIconEx1">Amount<span class="text-danger"> *</span></label>
               </div>
               <div class="md-form">
-                <input type="text" id="inputIconEx2" class="form-control" name="firstname" id="firstname" value="<?php echo (empty($posted['firstname'])) ? '' : $posted['firstname']; ?>" />
-                <label for="inputIconEx2">First Name<span class="text-danger"> *</span></label>
+                <input type="text" id="inputIconEx2" class="form-control" name="firstname" id="firstname" value="<?php echo (empty($posted['firstname'])) ? '' : $posted['firstname']; ?>"  style="border-color: #1c2a48"/>
+                <label for="inputIconEx2">Full Name<span class="text-danger"> *</span></label>
               </div>
-              <div class="md-form">
-                <input type="text" id="inputIconEx3" class="form-control" name="lastname" id="lastname" value="<?php echo (empty($posted['lastname'])) ? '' : $posted['lastname']; ?>" />
+              <div class="md-form" style="display: none">
+                <input type="text" id="inputIconEx3" class="form-control" name="lastname" id="lastname" value="<?php echo (empty($posted['lastname'])) ? '' : $posted['lastname']; ?>"  style="border-color: #1c2a48"/>
                 <label for="inputIconEx3">Last Name<span class="text-danger"> *</span></label>
               </div>
               <div class="md-form">
-                <input type="email" id="inputIconEx10" class="form-control" name="email" id="email" value="<?php echo (empty($posted['email'])) ? '' : $posted['email']; ?>" />
+                <input type="email" id="inputIconEx10" class="form-control" name="email" id="email" value="<?php echo (empty($posted['email'])) ? '' : $posted['email']; ?>"  style="border-color: #1c2a48"/>
                 <label for="inputIconEx10">Email<span class="text-danger"> *</span></label>
               </div>
               <div class="md-form">
-                <input type="text" id="inputIconEx11" class="form-control" max="10" min="10" name="phone" value="<?php echo (empty($posted['phone'])) ? '' : $posted['phone']; ?>" />
+                <input type="text" id="inputIconEx11" class="form-control" max="10" min="10" name="phone" value="<?php echo (empty($posted['phone'])) ? '' : $posted['phone']; ?>"  style="border-color: #1c2a48"/>
                 <label for="inputIconEx11">Phone<span class="text-danger"> *</span></label>
               </div>
               <div class="md-form">
-                <textarea id="textarea-char-counter" class="form-control md-textarea" name="productinfo" cols="40"><?php foreach($items as $item){ $product_id = $item['id']; $productQ = $db->query("SELECT * FROM products WHERE id = '{$product_id}'"); $product = mysqli_fetch_assoc($productQ); ?><?php $i++; $item_count += $item['quantity']; $sub_total += ($product['price'] * $item['quantity']); $grand_total = $sub_total; ?><?=$product['title'];?> (x<?=$item['quantity'];?>) <?php } ?></textarea>
+                <textarea id="textarea-char-counter" class="form-control md-textarea" name="productinfo" cols="40"  style="border-color: #1c2a48"><?php foreach($items as $item){ $product_id = $item['id']; $productQ = $db->query("SELECT * FROM products WHERE id = '{$product_id}'"); $product = mysqli_fetch_assoc($productQ); ?><?php $i++; $item_count += $item['quantity']; $sub_total += ($product['price'] * $item['quantity']); $grand_total = $sub_total; ?><?=$product['title'];?> (x<?=$item['quantity'];?>) <?php } ?></textarea>
                 <label for="textarea-char-counter">Product Info<span class="text-danger"> *</span></label>
               </div>              
               <div class="md-form" style="display: none;">
@@ -197,27 +168,27 @@ if(empty($posted['hash']) && sizeof($posted) > 0) {
             </div>
             <div class="col-md-6">
               <div class="md-form">
-                <input type="text" id="inputIconEx4" class="form-control" name="address1" value="<?php echo (empty($posted['address1'])) ? '' : $posted['address1']; ?>" />
+                <input type="text" id="inputIconEx4" class="form-control" name="address1" value="<?php echo (empty($posted['address1'])) ? '' : $posted['address1']; ?>" style="border-color: #1c2a48"/>
                 <label for="inputIconEx4">Address1<span class="text-danger"> *</span></label>
               </div>
               <div class="md-form">
-                <input type="text" id="inputIconEx5" class="form-control" name="address2" value="<?php echo (empty($posted['address2'])) ? '' : $posted['address2']; ?>" />
+                <input type="text" id="inputIconEx5" class="form-control" name="address2" value="<?php echo (empty($posted['address2'])) ? '' : $posted['address2']; ?>" style="border-color: #1c2a48"/>
                 <label for="inputIconEx5">Address2<span class="text-danger"> *</span></label>
               </div>
               <div class="md-form">
-                <input type="text" id="inputIconEx6" class="form-control" name="city" value="<?php echo (empty($posted['city'])) ? '' : $posted['city']; ?>" />
+                <input type="text" id="inputIconEx6" class="form-control" name="city" value="<?php echo (empty($posted['city'])) ? '' : $posted['city']; ?>" style="border-color: #1c2a48"/>
                 <label for="inputIconEx6">City<span class="text-danger"> *</span></label>
               </div>
               <div class="md-form">
-                <input type="text" id="inputIconEx7" class="form-control" name="state" value="<?php echo (empty($posted['state'])) ? '' : $posted['state']; ?>" />
+                <input type="text" id="inputIconEx7" class="form-control" name="state" value="<?php echo (empty($posted['state'])) ? '' : $posted['state']; ?>" style="border-color: #1c2a48"/>
                 <label for="inputIconEx7">State<span class="text-danger"> *</span></label>
               </div>
               <div class="md-form">
-                <input type="text" id="inputIconEx8" class="form-control" name="zipcode" value="<?php echo (empty($posted['zipcode'])) ? '' : $posted['zipcode']; ?>" />
+                <input type="text" id="inputIconEx8" class="form-control" name="zipcode" value="<?php echo (empty($posted['zipcode'])) ? '' : $posted['zipcode']; ?>" style="border-color: #1c2a48"/>
                 <label for="inputIconEx8">Zipcode<span class="text-danger"> *</span></label>
               </div>
               <div class="md-form">
-                <input type="text" id="inputIconEx9" class="form-control" name="country" value="India" />
+                <input type="text" id="inputIconEx9" class="form-control" name="country" value="India" style="border-color: #1c2a48"/>
                 <label for="inputIconEx9">Country<span class="text-danger"> *</span></label>
               </div>
               <div class="md-form" style="display: none;">
@@ -239,7 +210,7 @@ if(empty($posted['hash']) && sizeof($posted) > 0) {
           </div>
           <div>
             <?php if(!$hash) { ?>
-              <button type="submit" class="btn btn-md btn-success">Submit</button>
+              <button type="submit" class="btn" style="background: #1c2a48;border-radius: 10em">Submit</button>
             <?php } ?>
           </div>
         </form>

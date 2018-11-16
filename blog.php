@@ -26,13 +26,13 @@
 		<div class="row px-4 py-4">
 			<?php while($blog = mysqli_fetch_assoc($blogs)): ?>
 			<div class="col-lg-4 col-md-6 col-sm-12 col-xs-12">
-				<div class="blog px-3 py-3" style="box-shadow: 0px 4px 10px 0px rgba(0,0,0,0.35); border-radius: 10px;">
+				<div class="blog px-3 py-3" style="box-shadow: 0px 4px 10px 0px rgba(0,0,0,0.5); border-radius: 10px;background: #fff">
 					<div class="blog-img">
 						<?php $photos = explode(',',$blog['image']); ?>
 						<a href="posts.php?blog_id=<?=$blog['id'];?>"><img src="<?= $photos[0]; ?>" class="img-fluid" alt="<?= $blog['title']; ?>"></a>
 					</div>
 					<div class="blog-title">
-						<a href="posts.php?blog_id=<?=$blog['id'];?>"><h4 class="text-center px-2 py-2"><b><?=$blog['title']; ?></b></h4></a>
+						<a href="posts.php?blog_id=<?=$blog['id'];?>"><h4 class="text-center px-2 py-2" style="color: #1c2a48"><b><?=$blog['title']; ?></b></h4></a>
 					</div>
 					<div class="blog-desc">
 						<h6 class="text-center px-2 py-2"><b><?=$blog['author']; ?> | <?= $blog['date']; ?></b></h6>
@@ -42,6 +42,7 @@
 						</p>
 					</div>
 				</div>
+				<br>
 			</div>
 		<?php endwhile;?>
 		</div>

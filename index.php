@@ -17,7 +17,7 @@
       <div class="row d-flex justify-content-center text-center">
         <div class="col-md-10">
           <!-- Heading -->
-          <a href=""><img src="img/Logo.png" class="img-fluid" style="width: 500px;"></a>
+          <a href=""><img src="img/Logo.png" class="img-fluid" style="width: 400px;"></a>
           <!-- Divider -->
           <hr class="hr-light">
           <!-- Description -->
@@ -36,14 +36,14 @@
 <main>
   
   <!-- Quote -->
-  <div class="" style="background: rgba(255, 152, 0, 0.1);padding: 5em 2.5em;">
-    <h1 class="title h1-responsive" style="font-family: 'Berkshire Swash', cursive; color: #805a26;text-align: center">
+  <div class="" style="padding: 5em 0em;">
+    <h1 class="h1-responsive" style="font-family: 'Cookie', cursive; color: #805a26;text-align: center;font-weight: bold">
       If Good Skin is Treasure, Nature is the Key!
     </h1>
-    <h5 class="title-text h5-responsive" style="padding: 1em; line-height: 1.6em; text-align: center;font-family: 'Berkshire Swash', cursive;">
+    <h3 class="title-text h3-responsive" style="padding: 1em; line-height: 1.6em; text-align: center;font-family: 'Cookie', cursive;">
       India's greatest potential lies in the age-old medicinal and transformational herbs that spring off the deeply rich earth of this country. Some with properties so effective, they're seen in scriptures as almost mystical or magical. By complimenting the magic of Indian ingredients with exotic essential oils, we at Khadi Premium proud ourselves for creating the perfect mix of products for your Hair, Skin and Body.
-    </h5>
-    <h1 class="title h1-responsive" style="font-family: 'Berkshire Swash', cursive; color: #805a26;text-align: center">
+    </h3>
+    <h1 class="h1-responsive" style="font-family: 'Cookie', cursive; color: #805a26;text-align: center;font-weight: bold">
       So go ahead, Discover these Treasures for Yourself!
     </h1>
   </div>
@@ -70,13 +70,13 @@
 </div>
 
 <!-- Best Sellers -->
-<div style="background: #e5e5c482;padding: 5em 2.5em;">
+<div style="background: #e5e5c482;">
   <div class="container-fluid">
     <!-- Section: Products v.5 -->
-    <section class="text-center my-5">
+    <section class="text-center" style="padding: 4em 0em">
 
       <!-- Section heading -->
-      <h2 class="h1-responsive font-weight-bold text-center my-5">Our bestsellers</h2>
+      <h2 class="h1-responsive font-weight-bold text-center py-5">Our bestsellers</h2>
       <!-- Section description -->
       <!-- <p class="grey-text text-center w-responsive mx-auto mb-5">Lorem ipsum dolor sit amet, consectetur
         adipisicing elit. Fugit, error amet numquam iure provident voluptate esse quasi, veritatis totam voluptas
@@ -89,29 +89,28 @@
             <div class="view zoom view-cascade overlay">
               <?php $photos = explode(',',$product['image']); ?>
               <img src="<?= $photos[0]; ?>" class="card-img-top img-fluid" alt="<?= $product['title']; ?>">
-              <a><div class="mask rgba-white-slight"></div></a>
+              <button onclick="detailsmodal(<?= $product['id']; ?>)" style="background: none;border: none;cursor: pointer"><div class="mask rgba-white-slight"></div></button>
             </div>
             <div class="card-body card-body-cascade text-center">
                   <h5>
                       <strong>
-                        <a href="" class="dark-grey-text"><?=$product['title'];?><br>
-                            <span class="badge badge-pill primary-color my-2"><?=$product['weight']; ?></span>
-                        </a>
+                        <button onclick="detailsmodal(<?= $product['id']; ?>)" style="background: none;border: none;cursor: pointer;padding-bottom: 1em;"><b><?=$product['title'];?></b></button>
                       </strong>
                   </h5>
                   <h6 class=""><?=$product['short_desc'];?></h6>
               </div>
               <div class="card-footer px-1 px-3 py-3">
                     <span class="float-left font-weight-bold">
-                        <strong> &#8377; <?=$product['price']; ?></strong>
+                        <strong><?=$product['weight']; ?></strong>
                     </span>
                     <span class="float-right">
-                      <button type="button" style="background: #ffa0;margin: 0;cursor: pointer;border:none;" class="" title="View Product" onclick="detailsmodal(<?= $product['id']; ?>)"><i class="fa fa-cart-plus" style="color: #000;font-size: 1.3rem"></i></button>
+                      <a href="description.php?pro_id=<?= $product['id']; ?>" style="margin: 0;cursor: pointer;border:none;border-radius: 10em;background: #1c2a48;color: #fff" class="btn btn-md" title="Add to Product">Add to Cart</a>
+                      <!-- <button type="button" style="margin: 0;cursor: pointer;border:none;background: #1c2a48;border-radius: 10em;" class="btn btn-md" title="View Product" onclick="detailsmodal(<?= $product['id']; ?>)">Add to Cart &nbsp;<i class="fa fa-cart-plus"></i></button> -->
                         <!-- <a class="" data-toggle="tooltip" data-placement="top" title="View Product">
                           <i class="fa fa-eye grey-text ml-3"></i>
                         </a> -->
                     </span>
-                </div>
+              </div>
           </div>  
           <br>        
         </div>
@@ -251,12 +250,9 @@ padding: 15em 2.5em;">
 </div>
 
 <!--Section: Contact-->
-<section style="padding: 5em 2.5em;background: rgba(205, 220, 57, 0.1);">
+<section style="padding: 4em 0em;background: rgba(205, 220, 57, 0.1);" id="contact">
 
-  <section id="contact" class="container-fluid">
-
-    <!-- Heading -->
-    <h2 class="mb-5 font-weight-bold text-center">Contact us</h2>
+  <section class="container-fluid">
 
     <!--Grid row-->
     <div class="row">
@@ -264,11 +260,11 @@ padding: 15em 2.5em;">
       <!--Grid column-->
       <div class="col-lg-5 col-md-12">
         <div class="card">
-          <div class="card-header info-color white-text text-center py-4" style="position: absolute;width: 90%;margin-left: 5%;box-shadow: 0px 3px 7px 0px rgba(0,0,0,0.5);margin-top: -2.5em; border-radius: 5px;">
+          <div class="card-header white-text text-center py-3" style="background: #548990;">
             <h4 class="h4-responsive text-center">Leave a message</h4>
           </div>
           <!-- Form contact -->
-          <form class="p-5 grey-text" method="post" action="email.php">
+          <form class="p-4 grey-text" method="post" action="email.php">
             <div class="md-form form-sm"> <i class="fa fa-user prefix"></i>
               <input type="text" id="form3" class="form-control form-control-sm" name="name">
               <label for="form3">Your name</label>
@@ -285,8 +281,8 @@ padding: 15em 2.5em;">
               <textarea type="text" id="form8" class="md-textarea form-control form-control-sm" rows="4" name="message"></textarea>
               <label for="form8">Your message</label>
             </div>
-            <div class="text-center mt-4">
-              <button class="btn btn-primary" type="submit" name="submit">Send <i class="fa fa-paper-plane-o ml-1"></i></button>
+            <div class="text-center mt-2">
+              <button class="btn" type="submit" name="submit" style="background: #607d8b">Send <i class="fa fa-paper-plane-o ml-1"></i></button>
             </div>
           </form>
           <!-- Form contact -->
@@ -295,7 +291,7 @@ padding: 15em 2.5em;">
       <!--Grid column-->
 
       <!--Grid column-->
-      <div class="col-lg-7 col-md-12">
+      <div class="col-lg-7 col-md-12 p-3">
 
         <!--Google map-->
         <!--Grid row-->
@@ -327,7 +323,7 @@ padding: 15em 2.5em;">
 
         </div>
         <!--Grid row-->
-        <div id="map-container" class="z-depth-1-half map-container mb-5" style="height: 400px"></div>
+        <div id="map-container" class="z-depth-0-half map-container mb-5" style="height: 400px"></div>
 
       </div>
       <!--Grid column-->
