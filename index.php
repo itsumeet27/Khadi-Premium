@@ -1,8 +1,7 @@
 <?php 
-
+  session_start();
   include('includes/header.php');
   include('core/init.php');
-
 ?>
 
 <?php 
@@ -29,6 +28,7 @@
   </div>
 </div>
 <!--/.Mask-->
+
 
 <!--/.Navbar-->
 </header>
@@ -81,10 +81,11 @@
       <!-- <p class="grey-text text-center w-responsive mx-auto mb-5">Lorem ipsum dolor sit amet, consectetur
         adipisicing elit. Fugit, error amet numquam iure provident voluptate esse quasi, veritatis totam voluptas
       nostrum quisquam eum porro a pariatur veniam.</p> -->
-
+      
       <div class="row">   
         <?php while($product = mysqli_fetch_assoc($products)): ?>
-        <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12 mb-lg-0 mb-4">         
+        <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12 mb-lg-0 mb-4"> 
+        <?php cart(); ?>        
           <div class="card card-cascade wider card-ecommerce">
             <div class="view zoom view-cascade overlay">
               <?php $photos = explode(',',$product['image']); ?>
@@ -99,17 +100,19 @@
                   </h5>
                   <h6 class=""><?=$product['short_desc'];?></h6>
               </div>
+
               <div class="card-footer px-1 px-3 py-3">
                     <span class="float-left font-weight-bold">
                         <strong><?=$product['weight']; ?></strong>
                     </span>
                     <span class="float-right">
-                      <a href="description.php?pro_id=<?= $product['id']; ?>" style="margin: 0;cursor: pointer;border:none;border-radius: 10em;background: #1c2a48;color: #fff" class="btn btn-md" title="Add to Product">Add to Cart</a>
-                      <!-- <button type="button" style="margin: 0;cursor: pointer;border:none;background: #1c2a48;border-radius: 10em;" class="btn btn-md" title="View Product" onclick="detailsmodal(<?= $product['id']; ?>)">Add to Cart &nbsp;<i class="fa fa-cart-plus"></i></button> -->
+                      <!-- <a href="description.php?pro_id=<?= $product['id']; ?>" style="margin: 0;cursor: pointer;border:none;border-radius: 10em;background: #1c2a48;color: #fff" class="btn btn-md" title="Add to Product">Add to Cart</a> -->
+                      <a href="index.php?add_cart=<?=$product['id'];?>" style="margin: 0;cursor: pointer;border:none;background: #1c2a48;border-radius: 10em;" class="btn btn-md white-text" title="View Product">Add to Cart &nbsp;<i class="fa fa-cart-plus"></i></a>
                         <!-- <a class="" data-toggle="tooltip" data-placement="top" title="View Product">
                           <i class="fa fa-eye grey-text ml-3"></i>
                         </a> -->
                     </span>
+                    
               </div>
           </div>  
           <br>        

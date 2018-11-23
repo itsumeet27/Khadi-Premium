@@ -66,6 +66,36 @@
 			</ul>
 		</div>
 	</div>
+	<div class="card">
+		<div class="card-header">
+			<h3 class="h3-responsive p-2">Leave Your Comments</h3>
+		</div>
+		<form class="p-3 grey-text" method="post" action="thankyoublog.php">
+            <div class="md-form form-sm"> <i class="fa fa-user prefix"></i>
+              <input type="text" id="form16" class="form-control form-control-sm" name="blog_name">
+              <label for="name">Your name</label>
+            </div>
+            <div class="md-form form-sm"> <i class="fa fa-envelope prefix"></i>
+              <input type="text" id="form17" class="form-control form-control-sm" name="blog_email">
+              <label for="email">Your email</label>
+            </div>
+            <div class="md-form form-sm"> <i class="fa fa-tag prefix"></i>
+              <input type="text" id="form18" class="form-control form-control-sm" name="blog_tagline">
+              <label for="headline">Your headline</label>
+            </div>
+            <div class="md-form form-sm" style="display: none;"> <i class="fa fa-tag prefix"></i>
+              <input type="text" id="form19" class="form-control form-control-sm" name="blog" value="<?php echo $title; ?>">
+              <label for="blog">Blog</label>
+            </div>
+            <div class="md-form form-sm"> <i class="fa fa-pencil prefix"></i>
+              <textarea type="text" id="form20" class="md-textarea form-control form-control-sm" rows="4" name="blog_message"></textarea>
+              <label for="review">Your review</label>
+            </div>
+            <div class="text-center mt-4">
+              <button class="btn" type="submit" name="submit" style="background: #607d8b">Send <i class="fa fa-paper-plane-o ml-1"></i></button>
+            </div>
+        </form>
+	</div>								
 </div>
 
 

@@ -1,15 +1,26 @@
 <?php
-  include 'includes/header.php';
+  session_start();
   require_once 'core/init.php';
-  if($cart_id != ''){
-    $cartQ = $db->query("SELECT * FROM cart WHERE id = '{$cart_id}'");
-    $result = mysqli_fetch_assoc($cartQ);
-    $items = json_decode($result['items'],true);
-    $i = 1;
-    $sub_total = 0;
-    $item_count = 0;
+  include 'includes/header.php';
+
+  $ip = getIp();
+  $total = 0;
+  $sel_price = "SELECT * FROM cart WHERE ip_add = '$ip'";
+  $run_price = $db->query($sel_price);
+  while ($p_price = mysqli_fetch_array($run_price)) {
+    $qty = $p_price['quantity'];
+    $pro_id = $p_price['pid'];
+    $pro_price = "SELECT * FROM products WHERE id = '$pro_id'";
+    $run_pro_price = $db->query($pro_price);
+    while ($pp_price = mysqli_fetch_array($run_pro_price)) {
+      $product_price = array($pp_price['price']);
+      $product_title = $pp_price['title'];
+      $values = array_sum($product_price);
+      $total += $values * $qty;
+    }
   }
 ?>
+
 
 <?php
 // Merchant key here as provided by Payu
@@ -95,6 +106,30 @@ if(empty($posted['hash']) && sizeof($posted) > 0) {
         </div>
     </div>
   </div>
+  <?php 
+    if(!isset($_SESSION['email'])){
+      echo "<script>window.open('','_self')</script>";
+    }else{
+        $ip = getIp();
+        $sql = "SELECT * FROM customers";
+        $result = $db->query($sql);
+        while ($row_pro = mysqli_fetch_array($result)) {
+              $cus_id = $row_pro['id'];
+              $cus_name = $row_pro['fullname'];
+              $cus_email = $row_pro['email'];
+              $cus_address1 = $row_pro['address1'];
+              $cus_address2 = $row_pro['address2'];
+              $cus_city = $row_pro['city'];
+              $cus_state = $row_pro['state'];
+              $cus_zipcode = $row_pro['zipcode'];
+              $cus_phone = $row_pro['phone'];
+              $cus_country = $row_pro['country'];
+        }
+
+      }
+    
+  ?>
+
   <div class="container-fluid">
     <h2 class="text-center h2-responsive px-3 py-3"><b>Checkout Form</b></h2>
         <?php if($formError) { ?>  
@@ -111,43 +146,28 @@ if(empty($posted['hash']) && sizeof($posted) > 0) {
           <div class="row">
             <div class="col-md-6">
               <div class="md-form">
-              <?php
-                foreach($items as $item){
-                  $product_id = $item['id'];
-                  $productQ = $db->query("SELECT * FROM products WHERE id = '{$product_id}'");
-                  $product = mysqli_fetch_assoc($productQ);               
-                ?>
-                <?php 
-                    $i++;
-                    $item_count += $item['quantity'];
-                    $sub_total += ($product['price'] * $item['quantity']);
-                  
-                  /*$tax = TAXRATE * $sub_total;
-                  $tax = number_format($tax,2);*/
-                  $grand_total = $sub_total;
-                ?>
-              <?php } ?>
-                <input type="text" id="inputIconEx1" class="form-control" name="amount" value="<?=intval($grand_total);?>"  style="border-color: #1c2a48"/>
+              
+                <input type="text" id="inputIconEx1" class="form-control" name="amount" value="<?php echo intval($total); ?>"  style="border-color: #1c2a48"/>
                 <label for="inputIconEx1">Amount<span class="text-danger"> *</span></label>
               </div>
               <div class="md-form">
-                <input type="text" id="inputIconEx2" class="form-control" name="firstname" id="firstname" value="<?php echo (empty($posted['firstname'])) ? '' : $posted['firstname']; ?>"  style="border-color: #1c2a48"/>
+                <input type="text" id="inputIconEx2" class="form-control" name="firstname" id="firstname" value="<?php if(isset($_SESSION['email'])){ echo $cus_name; } else { echo (empty($posted['firstname'])) ? '' : $posted['firstname']; } ?>"  style="border-color: #1c2a48"/>
                 <label for="inputIconEx2">Full Name<span class="text-danger"> *</span></label>
               </div>
               <div class="md-form" style="display: none">
-                <input type="text" id="inputIconEx3" class="form-control" name="lastname" id="lastname" value="<?php echo (empty($posted['lastname'])) ? '' : $posted['lastname']; ?>"  style="border-color: #1c2a48"/>
+                <input type="text" id="inputIconEx3" class="form-control" name="lastname" id="lastname" value=""  style="border-color: #1c2a48"/>
                 <label for="inputIconEx3">Last Name<span class="text-danger"> *</span></label>
               </div>
               <div class="md-form">
-                <input type="email" id="inputIconEx10" class="form-control" name="email" id="email" value="<?php echo (empty($posted['email'])) ? '' : $posted['email']; ?>"  style="border-color: #1c2a48"/>
+                <input type="email" id="inputIconEx10" class="form-control" name="email" id="email" value="<?php if(isset($_SESSION['email'])){ echo $cus_email; } else { echo (empty($posted['email'])) ? '' : $posted['email']; } ?>"  style="border-color: #1c2a48"/>
                 <label for="inputIconEx10">Email<span class="text-danger"> *</span></label>
               </div>
               <div class="md-form">
-                <input type="text" id="inputIconEx11" class="form-control" max="10" min="10" name="phone" value="<?php echo (empty($posted['phone'])) ? '' : $posted['phone']; ?>"  style="border-color: #1c2a48"/>
+                <input type="text" id="inputIconEx11" class="form-control" max="10" min="10" name="phone" value="<?php if(isset($_SESSION['email'])){ echo $cus_phone; } else { echo (empty($posted['phone'])) ? '' : $posted['phone']; } ?>"  style="border-color: #1c2a48"/>
                 <label for="inputIconEx11">Phone<span class="text-danger"> *</span></label>
               </div>
               <div class="md-form">
-                <textarea id="textarea-char-counter" class="form-control md-textarea" name="productinfo" cols="40"  style="border-color: #1c2a48"><?php foreach($items as $item){ $product_id = $item['id']; $productQ = $db->query("SELECT * FROM products WHERE id = '{$product_id}'"); $product = mysqli_fetch_assoc($productQ); ?><?php $i++; $item_count += $item['quantity']; $sub_total += ($product['price'] * $item['quantity']); $grand_total = $sub_total; ?><?=$product['title'];?> (x<?=$item['quantity'];?>) <?php } ?></textarea>
+                <textarea id="textarea-char-counter" class="form-control md-textarea" name="productinfo" cols="40"  style="border-color: #1c2a48"><?php $total = 0;$ip = getIp();$sel_price = "SELECT * FROM cart WHERE ip_add = '$ip'";$run_price = $db->query($sel_price);while ($p_price = mysqli_fetch_array($run_price)) {$qty = $p_price['quantity'];$pro_id = $p_price['pid'];$pro_price = "SELECT * FROM products WHERE id = '$pro_id'";$run_pro_price = $db->query($pro_price);while ($pp_price = mysqli_fetch_array($run_pro_price)) {$product_price = array($pp_price['price']);$product_title = $pp_price['title'];$values = array_sum($product_price);$total += $values * $qty; echo $product_title . "(x" . $qty . ") ";}}?></textarea>
                 <label for="textarea-char-counter">Product Info<span class="text-danger"> *</span></label>
               </div>              
               <div class="md-form" style="display: none;">
@@ -168,27 +188,27 @@ if(empty($posted['hash']) && sizeof($posted) > 0) {
             </div>
             <div class="col-md-6">
               <div class="md-form">
-                <input type="text" id="inputIconEx4" class="form-control" name="address1" value="<?php echo (empty($posted['address1'])) ? '' : $posted['address1']; ?>" style="border-color: #1c2a48"/>
+                <input type="text" id="inputIconEx4" class="form-control" name="address1" value="<?php if(isset($_SESSION['email'])){ echo $cus_address1; } else { echo (empty($posted['address1'])) ? '' : $posted['address1']; }?>" style="border-color: #1c2a48"/>
                 <label for="inputIconEx4">Address1<span class="text-danger"> *</span></label>
               </div>
               <div class="md-form">
-                <input type="text" id="inputIconEx5" class="form-control" name="address2" value="<?php echo (empty($posted['address2'])) ? '' : $posted['address2']; ?>" style="border-color: #1c2a48"/>
+                <input type="text" id="inputIconEx5" class="form-control" name="address2" value="<?php if(isset($_SESSION['email'])){ echo $cus_address2; } else { echo (empty($posted['address2'])) ? '' : $posted['address2']; }?>" style="border-color: #1c2a48"/>
                 <label for="inputIconEx5">Address2<span class="text-danger"> *</span></label>
               </div>
               <div class="md-form">
-                <input type="text" id="inputIconEx6" class="form-control" name="city" value="<?php echo (empty($posted['city'])) ? '' : $posted['city']; ?>" style="border-color: #1c2a48"/>
+                <input type="text" id="inputIconEx6" class="form-control" name="city" value="<?php if(isset($_SESSION['email'])){ echo $cus_city; } else { echo (empty($posted['city'])) ? '' : $posted['city']; }?>" style="border-color: #1c2a48"/>
                 <label for="inputIconEx6">City<span class="text-danger"> *</span></label>
               </div>
               <div class="md-form">
-                <input type="text" id="inputIconEx7" class="form-control" name="state" value="<?php echo (empty($posted['state'])) ? '' : $posted['state']; ?>" style="border-color: #1c2a48"/>
+                <input type="text" id="inputIconEx7" class="form-control" name="state" value="<?php if(isset($_SESSION['email'])){ echo $cus_state; } else { echo (empty($posted['state'])) ? '' : $posted['state']; }?>" style="border-color: #1c2a48"/>
                 <label for="inputIconEx7">State<span class="text-danger"> *</span></label>
               </div>
               <div class="md-form">
-                <input type="text" id="inputIconEx8" class="form-control" name="zipcode" value="<?php echo (empty($posted['zipcode'])) ? '' : $posted['zipcode']; ?>" style="border-color: #1c2a48"/>
+                <input type="text" id="inputIconEx8" class="form-control" name="zipcode" value="<?php if(isset($_SESSION['email'])){ echo $cus_zipcode; } else { echo (empty($posted['zipcode'])) ? '' : $posted['zipcode']; }?>" style="border-color: #1c2a48"/>
                 <label for="inputIconEx8">Zipcode<span class="text-danger"> *</span></label>
               </div>
               <div class="md-form">
-                <input type="text" id="inputIconEx9" class="form-control" name="country" value="India" style="border-color: #1c2a48"/>
+                <input type="text" id="inputIconEx9" class="form-control" name="country" value="<?php if(isset($_SESSION['email'])){ echo $cus_country; } else { echo (empty($posted['country'])) ? '' : $posted['country']; }?>" style="border-color: #1c2a48"/>
                 <label for="inputIconEx9">Country<span class="text-danger"> *</span></label>
               </div>
               <div class="md-form" style="display: none;">

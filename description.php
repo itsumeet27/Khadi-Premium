@@ -2,7 +2,6 @@
 <?php 
 	include('includes/header.php');
 	include('core/init.php');
-	include('includes/functions.php');
 
 if(isset($_GET['pro_id'])){
 		$id = sanitize((int)$_GET['pro_id']);
@@ -20,11 +19,10 @@ if(isset($_GET['pro_id'])){
 				$long_desc = $row['long_desc'];
 				$price = $row['price'];
 				$weight = $row['weight'];
-				$stock = $row['stock'];
-				
+				$stock = $row['stock'];				
 			}
 		}else{
-			echo "Blog does not exist";
+			echo "Product does not exist";
 			exit();
 		}
 	}
@@ -34,6 +32,15 @@ if(isset($_GET['pro_id'])){
 	}
 
 ?>
+
+<!-- <?php 
+	// $revQuery = "SELECT r.id, r.name, r.tagline, r.message, p.id, p.title FROM review r LEFT JOIN products p ON r.product = p.title ORDER BY p.id";
+	// $revResults = $db->query($revQuery);
+?> -->
+
+<style type="text/css">
+	.fotorama__stage{width: 500px!important;height:500px!important;}
+</style>
 
 <div id="about" class="view" style="height: 50%;background: url('img/2054.jpg')no-repeat center center fixed;
     -webkit-background-size: cover;
@@ -62,14 +69,17 @@ if(isset($_GET['pro_id'])){
 					<div class="container-fluid">
 						<span id="modal_errors"></span>
 						<div class="row">
-							<div class="col-md-6 fotorama">
-								<?php $photos = explode(',',$image);
-								foreach($photos as $photo):
-									?>
-									<img src="<?=$photo; ?>" alt="<?php echo $title; ?>" class="details img-fluid">
-								<?php endforeach; ?>
+							<div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 fotorama">
+								
+									<?php $photos = explode(',',$image);
+									foreach($photos as $photo):?>
+									<div data-zoom="<?=$photo; ?>" class="zoom" style="max-width: 100%; border: 1px solid black; overflow: hidden;">
+										<img src="<?=$photo; ?>" alt="<?php echo $title; ?>" class="details img-fluid">
+									</div>							
+									<?php endforeach; ?>
+														    
 							</div>
-							<div class="col-md-6">
+							<div class="col-lg-6 col-md-6"col-sm-12 col-xs-12 >
 								<h5><b>ITEM CODE:</b> <?php echo $sku; ?></h5>
 								<label><?php echo $tagline; ?></label>
 								<p><?php echo $short_desc; ?></p>
@@ -110,15 +120,23 @@ if(isset($_GET['pro_id'])){
 								</form>
 								
 							</div>
+							<!-- <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+								<h3 class="h3-responsive p-3">Reviews</h3>
+								<?php while($review = mysqli_fetch_assoc($revResults)): ?>
+									<h5 class="h5-responsive p-2"><?=$review['name'];?></h5>
+									<label class="h5-responsive p-2">"<?=$review['tagline'];?>"</label>
+									<p class="p-2"><?=$review['message'];?></p>
+								<?php endwhile; ?>
+							</div> -->
 							<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-								
-							</div>
-							<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-								<a href="#" class="btn" id="review-form" style="background-color: #607d8b">Write a Review</a>
+								<a href="#" class="btn text-white" id="review-form" style="background-color: #607d8b">Write a Review</a>
 							</div>
 							<div class="col-md-12 container" id="review" style="display: none;">
 								<div class="card">
-									<form class="p-5 grey-text" method="post" action="review.php">
+									<div class="card-header">
+										<h3 class="h3-responsive p-2">Leave Your Review</h3>
+									</div>
+									<form class="p-3 grey-text" method="post" action="thankyoureview.php">
 							            <div class="md-form form-sm"> <i class="fa fa-user prefix"></i>
 							              <input type="text" id="form6" class="form-control form-control-sm" name="name">
 							              <label for="form3">Your name</label>
@@ -128,8 +146,12 @@ if(isset($_GET['pro_id'])){
 							              <label for="form2">Your email</label>
 							            </div>
 							            <div class="md-form form-sm"> <i class="fa fa-tag prefix"></i>
-							              <input type="text" id="form10" class="form-control form-control-sm" name="product" value="<?php echo $title;?>">
-							              <label for="form34">Your product</label>
+							              <input type="text" id="form10" class="form-control form-control-sm" name="tagline">
+							              <label for="form34">Your headline</label>
+							            </div>
+							            <div class="md-form form-sm" style="display: none;"> <i class="fa fa-tag prefix"></i>
+							              <input type="text" id="form15" class="form-control form-control-sm" name="product" value="<?php echo $title; ?>">
+							              <label for="form30">Product</label>
 							            </div>
 							            <div class="md-form form-sm"> <i class="fa fa-pencil prefix"></i>
 							              <textarea type="text" id="form9" class="md-textarea form-control form-control-sm" rows="4" name="message"></textarea>
@@ -151,6 +173,12 @@ if(isset($_GET['pro_id'])){
 			</div>
 		</div>
 	</div>
+
+	<script src="http://code.jquery.com/jquery-3.1.1.min.js"></script>
+	<script src="js/jquery.imagezoom.js"></script>
+	<script>
+      	$('.zoom').zoom();
+    </script>	
 
 <script type="text/javascript">
 	$(document).ready(function(){

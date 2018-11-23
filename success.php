@@ -31,13 +31,13 @@ $posted_hash=$_POST['hash'];
 $key=$_POST['key'];
 $productinfo=$_POST['productinfo'];
 $email=$_POST['email'];
-$phone=sanitize($_POST['phone']);
-$address1=sanitize($_POST['address1']);
-$address2=sanitize($_POST['address2']);
-$city=sanitize($_POST['city']);
+$phone=$_POST['phone'];
+$address1=$_POST['address1'];
+$address2=$_POST['address2'];
+$city=$_POST['city'];
 $state=$_POST['state'];
 $country=$_POST['country'];
-$zipcode=sanitize($_POST['zipcode']);
+$zipcode=$_POST['zipcode'];
 $salt='U5A5zpZYXd';
 // Salt should be same Post Request 
 If (isset($_POST['additionalCharges'])) {
@@ -103,7 +103,6 @@ If (isset($_POST['additionalCharges'])) {
               <h6 class=''><?=$product['short_desc'];?></h6>
           </div>
           <div class='card-footer px-1 px-3 py-3'>
-
                 <span class='float-right'>
                   <button type='button' style='margin: 0;cursor: pointer;border:none;border-radius: 10em;background: #1c2a48' class='btn btn-md' title='Add to Product' onclick='detailsmodal(<?= $product['id']; ?>)'>Add to Cart &nbsp;<i class='fa fa-cart-plus'></i></button>
                 </span>
@@ -112,7 +111,6 @@ If (isset($_POST['additionalCharges'])) {
       <br>        
     </div>
     <?php endwhile;?> 
-
   </div>
 </div>
 

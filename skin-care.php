@@ -1,7 +1,6 @@
 <?php 
   include('includes/header.php');
   require_once 'core/init.php';
-  include('includes/functions.php');
 ?>
 
 <style type="text/css">
