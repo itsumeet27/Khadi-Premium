@@ -1,5 +1,82 @@
 <?php include('core/init.php');?>
 
+
+<!-- Ip Address -->
+<!-- Directly Add to Cart -->
+<?php 
+
+	function getIp() {
+
+		//Get IP Address
+	    $ip = $_SERVER['REMOTE_ADDR'];	 
+	    if (!empty($_SERVER['HTTP_CLIENT_IP'])) {
+	        $ip = $_SERVER['HTTP_CLIENT_IP'];
+	    } elseif (!empty($_SERVER['HTTP_X_FORWARDED_FOR'])) {
+	        $ip = $_SERVER['HTTP_X_FORWARDED_FOR'];
+	    }	 
+	    return $ip;
+	}
+?>
+	<?php
+
+	function cart(){
+		if(isset($_GET['add_cart'])){
+			global $db;
+			$ip = getIp();
+			$pro_id = $_GET['add_cart'];
+			$check_pro = "SELECT * FROM cart WHERE ip_add = '{$ip}' AND pid = '{$pro_id}'";
+			$run_check = $db->query($check_pro);
+			if(mysqli_num_rows($run_check) > 0){
+				echo "";
+			}else{
+				$insertPro = "INSERT INTO cart (pid, ip_add) VALUES ('$pro_id', '$ip')";
+				$db->query($insertPro);
+				$setQty = "UPDATE cart SET quantity = 1 WHERE pid = '$pro_id'";
+				$db->query($setQty);
+				echo "<script>window.open('index.php', '_self')</script>";
+			}
+		}
+	}
+
+	function totalItems(){
+		if(isset($_GET['add_cart'])){
+			global $db;
+			$ip = getIp();
+			$getItems = "SELECT * FROM cart WHERE ip_add = '{$ip}'";
+			$run_items = $db->query($getItems);
+			$count_items = mysqli_num_rows($run_items);
+
+		}else{
+			global $db;
+			$ip = getIp();
+			$getItems = "SELECT * FROM cart WHERE ip_add = '{$ip}'";
+			$run_items = $db->query($getItems);
+			$count_items = mysqli_num_rows($run_items);
+		}
+		echo $count_items;
+	}
+
+	function totalPrice(){
+		$total = 0;
+		global $db;
+		$ip = getIp();
+		$sel_price = "SELECT * FROM cart WHERE ip_add = '$ip'";
+		$run_price = $db->query($sel_price);
+		while ($p_price = mysqli_fetch_array($run_price)) {		
+			$pro_id = $p_price['pid'];
+			$pro_price = "SELECT * FROM products WHERE id = '$pro_id'";
+			$run_pro_price = $db->query($pro_price);
+			while ($pp_price = mysqli_fetch_array($run_pro_price)) {			
+				$product_price = array($pp_price['price']);
+				$values = array_sum($product_price);
+				$total += $values;
+			}
+		}
+		echo $total;
+	}
+?>
+
+
 <!-- Blogs -->
 
 <?php 

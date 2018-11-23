@@ -1,5 +1,9 @@
 <!DOCTYPE html>
-<?php include 'core/init.php';?>
+<?php 
+  include 'core/init.php';
+  include 'includes/functions.php';
+?>
+
 <html lang="en" style="overflow-x: hidden;">
 <head>
   <meta charset="utf-8">
@@ -17,10 +21,15 @@
   <link href="css/mdb.min.css" rel="stylesheet">
   <!-- Your custom styles (optional) -->
   <link href="css/style.css" rel="stylesheet">
-<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
 
-  <link  href="http://cdnjs.cloudflare.com/ajax/libs/fotorama/4.6.4/fotorama.css" rel="stylesheet"> <!-- 3 KB -->
-  <script src="http://cdnjs.cloudflare.com/ajax/libs/fotorama/4.6.4/fotorama.js"></script> <!-- 16 KB -->
+  <link rel="stylesheet" href="styles/style.css">
+  <link href="http://www.jqueryscript.net/css/jquerysctipttop.css" rel="stylesheet" type="text/css">
+
+  <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+
+  <link  href="css/fotorama.css" rel="stylesheet"> <!-- 3 KB -->
+
+  <script src="js/fotorama.js"></script> <!-- 16 KB -->
 
   <style type="text/css">
     .top-nav-collapse {
@@ -40,7 +49,16 @@
 </head>
 
 <body style="background: #e8f0ff;font-family: 'Poppins', 'sans-serif'">
-
+  <!-- <div class="container">
+    <?php 
+      if(isset($_SESSION['email'])){
+        echo "<div class='text-center p-3'><b>Welcome: </b>" . $_SESSION['email'] . "</div>";
+      }
+      else{
+        echo "<div class='text-center p-3'>Welcome Guest</div>";
+      }
+    ?>
+  </div> -->
   <!-- Start your project here-->
   <!--Main Navigation-->
     <!-- Navbar -->
@@ -79,7 +97,17 @@
             <a class="nav-link" href="index.php#contact">Contact</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="cart.php">Cart <i class="fa fa-opencart"></i></a>
+            <a class="nav-link" href="cart.php"><i class="fa fa-shopping-cart"></i></a>
+          </li>
+          <li class="nav-item">
+            <?php 
+              if(!isset($_SESSION['email'])){
+                echo "<a href='myaccount.php' class='nav-link' style='border-radius: 10em;'>My Account</a>";
+              }
+              else{
+                echo "<a href='logout.php' class='nav-link' style='border-radius: 10em;'>Logout</a>";
+              }
+            ?>
           </li>
         </ul>
         <!-- Links -->
@@ -98,7 +126,6 @@
           
         </ul>
         <!-- Collapsible content -->
-
       </div>
 
     </nav>
