@@ -58,6 +58,9 @@
                         <li class="nav-item">
                             <a class="nav-link waves-effect" href="blog.php">Blog</a>
                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link waves-effect" href="users.php">Users</a>
+                        </li>
                     </ul>
 
                     <!-- Right -->
