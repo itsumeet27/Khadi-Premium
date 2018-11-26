@@ -1,9 +1,6 @@
 <!DOCTYPE html>
-<?php 
-  include 'core/init.php';
-  include 'includes/functions.php';
-?>
-
+<?php include 'core/init.php';?>
+<?php include 'includes/functions.php';?>
 <html lang="en" style="overflow-x: hidden;">
 <head>
   <meta charset="utf-8">
@@ -48,21 +45,12 @@
 
 </head>
 
-<body style="background: #e8f0ff;font-family: 'Poppins', 'sans-serif'">
-  <!-- <div class="container">
-    <?php 
-      if(isset($_SESSION['email'])){
-        echo "<div class='text-center p-3'><b>Welcome: </b>" . $_SESSION['email'] . "</div>";
-      }
-      else{
-        echo "<div class='text-center p-3'>Welcome Guest</div>";
-      }
-    ?>
-  </div> -->
+<body style="background: #d0d6e2">
+
   <!-- Start your project here-->
   <!--Main Navigation-->
     <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg navbar-dark fixed-top scrolling-navbar z-depth-0" style="font-family: Roboto;font-weight: 400;">
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top scrolling-navbar z-depth-0">
       <div class="container">
         <!-- Navbar brand -->
         <a class="navbar-brand" href="index.php">Khadipremium</a>
@@ -97,18 +85,17 @@
             <a class="nav-link" href="index.php#contact">Contact</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="cart.php"><i class="fa fa-shopping-cart"></i></a>
+            <a class="nav-link" href="cart.php">Cart <i class="fa fa-opencart"></i></a>
           </li>
-          <li class="nav-item">
             <?php 
               if(!isset($_SESSION['email'])){
-                echo "<a href='myaccount.php' class='nav-link' style='border-radius: 10em;'>My Account</a>";
+                echo "<li class='nav-item'><a href='myaccount.php' class='nav-link' style='border-radius: 10em;'>My Account</a></li>";
               }
               else{
-                echo "<a href='logout.php' class='nav-link' style='border-radius: 10em;'>Logout</a>";
+                echo "<li class='nav-item'><a href='myaccount.php' class='nav-link' style='border-radius: 10em;'>My Account</a></li>";
+                echo "<li class='nav-item'><a href='logout.php' class='nav-link' style='border-radius: 10em;'>Logout</a></li>";
               }
             ?>
-          </li>
         </ul>
         <!-- Links -->
 
@@ -123,9 +110,11 @@
           <li class="nav-item">
             <a class="nav-link" href=""><i class="fa fa-youtube"></i></a>
           </li>
+
           
         </ul>
         <!-- Collapsible content -->
+
       </div>
 
     </nav>

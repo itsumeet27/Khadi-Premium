@@ -68,10 +68,9 @@ $product = mysqli_fetch_assoc($result);
 											<p><b>Product Availability:</b> <?= $product['stock']; ?></p>
 										</div>
 									</div>	  											
-								</form>
-								
+								</form>								
 							</div>
-							<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+							<!-- <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 								<h5 class="h5-responsive py-3"><b>Description:</b></h5>
 								<p align="justify">
 									<?= nl2br($product['long_desc']); ?>
@@ -104,14 +103,14 @@ $product = mysqli_fetch_assoc($result);
 							            </div>
 							        </form>
 								</div>								
-							</div>
+							</div> -->
 						</div>
 					</div>
 				</div>
 				<br>
 				<div class="modal-footer blue-grey">
-					<button class="btn btn-white" style="border-radius: 10em;" onclick="closeModal()">Close</button>
-					<button class="btn btn-white" style="border-radius: 10em;" onclick="add_to_cart();">Add to Cart &nbsp;<span class="fa fa-shopping-cart"></span></button>
+					<a href="description.php?pro_id=<?= $product['id']; ?>" class="btn btn-white" style="border-radius: 10em;" title="View Product">View Product</a>
+					<button class="btn btn-white" style="border-radius: 10em;" title="Add to Cart" onclick="add_to_cart();">Add to Cart &nbsp;<span class="fa fa-shopping-cart"></span></button>
 				</div>
 			</div>
 		</div>

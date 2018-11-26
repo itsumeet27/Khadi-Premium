@@ -1,12 +1,9 @@
 <?php include('core/init.php');?>
 
+<!-- Blogs -->
 
-<!-- Ip Address -->
-<!-- Directly Add to Cart -->
 <?php 
-
 	function getIp() {
-
 		//Get IP Address
 	    $ip = $_SERVER['REMOTE_ADDR'];	 
 	    if (!empty($_SERVER['HTTP_CLIENT_IP'])) {
@@ -16,70 +13,7 @@
 	    }	 
 	    return $ip;
 	}
-?>
-	<?php
 
-	function cart(){
-		if(isset($_GET['add_cart'])){
-			global $db;
-			$ip = getIp();
-			$pro_id = $_GET['add_cart'];
-			$check_pro = "SELECT * FROM cart WHERE ip_add = '{$ip}' AND pid = '{$pro_id}'";
-			$run_check = $db->query($check_pro);
-			if(mysqli_num_rows($run_check) > 0){
-				echo "";
-			}else{
-				$insertPro = "INSERT INTO cart (pid, ip_add) VALUES ('$pro_id', '$ip')";
-				$db->query($insertPro);
-				$setQty = "UPDATE cart SET quantity = 1 WHERE pid = '$pro_id'";
-				$db->query($setQty);
-				echo "<script>window.open('index.php', '_self')</script>";
-			}
-		}
-	}
-
-	function totalItems(){
-		if(isset($_GET['add_cart'])){
-			global $db;
-			$ip = getIp();
-			$getItems = "SELECT * FROM cart WHERE ip_add = '{$ip}'";
-			$run_items = $db->query($getItems);
-			$count_items = mysqli_num_rows($run_items);
-
-		}else{
-			global $db;
-			$ip = getIp();
-			$getItems = "SELECT * FROM cart WHERE ip_add = '{$ip}'";
-			$run_items = $db->query($getItems);
-			$count_items = mysqli_num_rows($run_items);
-		}
-		echo $count_items;
-	}
-
-	function totalPrice(){
-		$total = 0;
-		global $db;
-		$ip = getIp();
-		$sel_price = "SELECT * FROM cart WHERE ip_add = '$ip'";
-		$run_price = $db->query($sel_price);
-		while ($p_price = mysqli_fetch_array($run_price)) {		
-			$pro_id = $p_price['pid'];
-			$pro_price = "SELECT * FROM products WHERE id = '$pro_id'";
-			$run_pro_price = $db->query($pro_price);
-			while ($pp_price = mysqli_fetch_array($run_pro_price)) {			
-				$product_price = array($pp_price['price']);
-				$values = array_sum($product_price);
-				$total += $values;
-			}
-		}
-		echo $total;
-	}
-?>
-
-
-<!-- Blogs -->
-
-<?php 
 	function getBlog(){
 		global $db;
 		$get_blog = "SELECT * FROM blog WHERE deleted = 0";
@@ -145,18 +79,21 @@
 					                    <strong>
 					                        <button onclick='detailsmodal($pro_id)' style='background: none;border: none;cursor: pointer'><b>$pro_title</b></button>
 					                        <br>
-					                            <span class='badge badge-pill my-2 z-depth-0' style='font-weight: 150;background-color: #546e7a'>&#8377; $pro_price</span>
+					                            <span class='badge badge-pill my-2 z-depth-0' style='background-color: #546e7a'>&#8377; $pro_price</span>
 						                			&nbsp;&nbsp;&nbsp;
-						                		<span class='badge badge-pill my-2 z-depth-0' style='font-weight: 150;background-color: #546e7a'>$pro_weight</span>
+						                		<span class='badge badge-pill my-2 z-depth-0' style='background-color: #546e7a'>$pro_weight</span>
 					                        
 					                    </strong>
 					                </h5>
                   					<h6 class=''>$pro_short_desc</h6>
               					</div>
               					<div class='card-footer px-1 px-3 py-3'>
-				                    <span class='float-right'>
-				                      	<button type='button' style='margin: 0;cursor: pointer;border:none;border-radius: 10em;background: #1c2a48' class='btn btn-md' title='Add to Product' onclick='detailsmodal($pro_id)'>Add to Cart &nbsp;<i class='fa fa-cart-plus'></i></button>
-				                    </span>
+				                    <span class='float-left'>
+							    		<button onclick='detailsmodal($pro_id)' style='margin: 0;cursor: pointer;border:none;background: #1c2a48;border-radius: 10em;' class='btn btn-md white-text' title='Quick View'>Quick View</button>
+							    	</span>
+						            <span class='float-right'>
+						            	<a href='description.php?pro_id=$pro_id' style='margin: 0;cursor: pointer;border:none;background: #1c2a48;border-radius: 10em;' class='btn btn-md white-text' title='Add to Cart'>Add to Cart &nbsp;<i class='fa fa-cart-plus'></i></a>
+						            </span>
                 				</div>
           					</div>  
          					<br>        
@@ -201,18 +138,21 @@
 					                    <strong>
 					                        <button onclick='detailsmodal($pro_id)' style='background: none;border: none;cursor: pointer'><b>$pro_title</b></button>
 					                        <br>
-					                            <span class='badge badge-pill my-2 z-depth-0' style='font-weight: 150;background-color: #546e7a'>&#8377; $pro_price</span>
+					                            <span class='badge badge-pill my-2 z-depth-0' style='background-color: #546e7a'>&#8377; $pro_price</span>
 						                			&nbsp;&nbsp;&nbsp;
-						                		<span class='badge badge-pill my-2 z-depth-0' style='font-weight: 150;background-color: #546e7a'>$pro_weight</span>
+						                		<span class='badge badge-pill my-2 z-depth-0' style='background-color: #546e7a'>$pro_weight</span>
 					                        
 					                    </strong>
 					                </h5>
                   					<h6 class=''>$pro_short_desc</h6>
               					</div>
               					<div class='card-footer px-1 px-3 py-3'>
-				                    <span class='float-right'>
-				                      	<button type='button' style='margin: 0;cursor: pointer;border:none;border-radius: 10em;background: #1c2a48' class='btn btn-md' title='Add to Product' onclick='detailsmodal($pro_id)'>Add to Cart &nbsp;<i class='fa fa-cart-plus'></i></button>
-				                    </span>
+				                    <span class='float-left'>
+							    		<button onclick='detailsmodal($pro_id)' style='margin: 0;cursor: pointer;border:none;background: #1c2a48;border-radius: 10em;' class='btn btn-md white-text' title='Quick View'>Quick View</button>
+							    	</span>
+						            <span class='float-right'>
+						            	<a href='description.php?pro_id=$pro_id' style='margin: 0;cursor: pointer;border:none;background: #1c2a48;border-radius: 10em;' class='btn btn-md white-text' title='Add to Cart'>Add to Cart &nbsp;<i class='fa fa-cart-plus'></i></a>
+						            </span>
                 				</div>
           					</div>  
          					<br>        
@@ -275,18 +215,21 @@
 					                    <strong>
 					                        <button onclick='detailsmodal($pro_id)' style='background: none;border: none;cursor: pointer'><b>$pro_title</b></button>
 					                        <br>
-					                            <span class='badge badge-pill my-2 z-depth-0' style='font-weight: 150;background-color: #546e7a'>&#8377; $pro_price</span>
+					                            <span class='badge badge-pill my-2 z-depth-0' style='background-color: #546e7a'>&#8377; $pro_price</span>
 						                			&nbsp;&nbsp;&nbsp;
-						                		<span class='badge badge-pill my-2 z-depth-0' style='font-weight: 150;background-color: #546e7a'>$pro_weight</span>
+						                		<span class='badge badge-pill my-2 z-depth-0' style='background-color: #546e7a'>$pro_weight</span>
 					                        
 					                    </strong>
 					                </h5>
                   					<h6 class=''>$pro_short_desc</h6>
               					</div>
               					<div class='card-footer px-1 px-3 py-3'>
-				                    <span class='float-right'>
-				                      	<button type='button' style='margin: 0;cursor: pointer;border:none;border-radius: 10em;background: #1c2a48' class='btn btn-md' title='Add to Product' onclick='detailsmodal($pro_id)'>Add to Cart &nbsp;<i class='fa fa-cart-plus'></i></button>
-				                    </span>
+				                    <span class='float-left'>
+							    		<button onclick='detailsmodal($pro_id)' style='margin: 0;cursor: pointer;border:none;background: #1c2a48;border-radius: 10em;' class='btn btn-md white-text' title='Quick View'>Quick View</button>
+							    	</span>
+						            <span class='float-right'>
+						            	<a href='description.php?pro_id=$pro_id' style='margin: 0;cursor: pointer;border:none;background: #1c2a48;border-radius: 10em;' class='btn btn-md white-text' title='Add to Cart'>Add to Cart &nbsp;<i class='fa fa-cart-plus'></i></a>
+						            </span>
                 				</div>
           					</div>  
          					<br>        
@@ -331,18 +274,21 @@
 					                    <strong>
 					                        <button onclick='detailsmodal($pro_id)' style='background: none;border: none;cursor: pointer'><b>$pro_title</b></button>
 					                        <br>
-					                            <span class='badge badge-pill my-2 z-depth-0' style='font-weight: 150;background-color: #546e7a'>&#8377; $pro_price</span>
+					                            <span class='badge badge-pill my-2 z-depth-0' style='background-color: #546e7a'>&#8377; $pro_price</span>
 						                			&nbsp;&nbsp;&nbsp;
-						                		<span class='badge badge-pill my-2 z-depth-0' style='font-weight: 150;background-color: #546e7a'>$pro_weight</span>
+						                		<span class='badge badge-pill my-2 z-depth-0' style='background-color: #546e7a'>$pro_weight</span>
 					                        
 					                    </strong>
 					                </h5>
                   					<h6 class=''>$pro_short_desc</h6>
               					</div>
               					<div class='card-footer px-1 px-3 py-3'>
-				                    <span class='float-right'>
-				                      	<button type='button' style='margin: 0;cursor: pointer;border:none;border-radius: 10em;background: #1c2a48' class='btn btn-md' title='Add to Product' onclick='detailsmodal($pro_id)'>Add to Cart &nbsp;<i class='fa fa-cart-plus'></i></button>
-				                    </span>
+				                    <span class='float-left'>
+							    		<button onclick='detailsmodal($pro_id)' style='margin: 0;cursor: pointer;border:none;background: #1c2a48;border-radius: 10em;' class='btn btn-md white-text' title='Quick View'>Quick View</button>
+							    	</span>
+						            <span class='float-right'>
+						            	<a href='description.php?pro_id=$pro_id' style='margin: 0;cursor: pointer;border:none;background: #1c2a48;border-radius: 10em;' class='btn btn-md white-text' title='Add to Cart'>Add to Cart &nbsp;<i class='fa fa-cart-plus'></i></a>
+						            </span>
                 				</div>
           					</div>  
          					<br>        
@@ -405,18 +351,21 @@
 					                    <strong>
 					                        <button onclick='detailsmodal($pro_id)' style='background: none;border: none;cursor: pointer'><b>$pro_title</b></button>
 					                        <br>
-					                            <span class='badge badge-pill my-2 z-depth-0' style='font-weight: 150;background-color: #546e7a'>&#8377; $pro_price</span>
+					                            <span class='badge badge-pill my-2 z-depth-0' style='background-color: #546e7a'>&#8377; $pro_price</span>
 						                			&nbsp;&nbsp;&nbsp;
-						                		<span class='badge badge-pill my-2 z-depth-0' style='font-weight: 150;background-color: #546e7a'>$pro_weight</span>
+						                		<span class='badge badge-pill my-2 z-depth-0' style='background-color: #546e7a'>$pro_weight</span>
 					                        
 					                    </strong>
 					                </h5>
                   					<h6 class=''>$pro_short_desc</h6>
               					</div>
               					<div class='card-footer px-1 px-3 py-3'>
-				                    <span class='float-right'>
-				                      	<button type='button' style='margin: 0;cursor: pointer;border:none;border-radius: 10em;background: #1c2a48' class='btn btn-md' title='Add to Product' onclick='detailsmodal($pro_id)'>Add to Cart &nbsp;<i class='fa fa-cart-plus'></i></button>
-				                    </span>
+				                    <span class='float-left'>
+							    		<button onclick='detailsmodal($pro_id)' style='margin: 0;cursor: pointer;border:none;background: #1c2a48;border-radius: 10em;' class='btn btn-md white-text' title='Quick View'>Quick View</button>
+							    	</span>
+						            <span class='float-right'>
+						            	<a href='description.php?pro_id=$pro_id' style='margin: 0;cursor: pointer;border:none;background: #1c2a48;border-radius: 10em;' class='btn btn-md white-text' title='Add to Cart'>Add to Cart &nbsp;<i class='fa fa-cart-plus'></i></a>
+						            </span>
                 				</div>
           					</div>  
          					<br>        
@@ -461,18 +410,21 @@
 					                    <strong>
 					                        <button onclick='detailsmodal($pro_id)' style='background: none;border: none;cursor: pointer'><b>$pro_title</b></button>
 					                        <br>
-					                            <span class='badge badge-pill my-2 z-depth-0' style='font-weight: 150;background-color: #546e7a'>&#8377; $pro_price</span>
+					                            <span class='badge badge-pill my-2 z-depth-0' style='background-color: #546e7a'>&#8377; $pro_price</span>
 						                			&nbsp;&nbsp;&nbsp;
-						                		<span class='badge badge-pill my-2 z-depth-0' style='font-weight: 150;background-color: #546e7a'>$pro_weight</span>
+						                		<span class='badge badge-pill my-2 z-depth-0' style='background-color: #546e7a'>$pro_weight</span>
 					                        
 					                    </strong>
 					                </h5>
                   					<h6 class=''>$pro_short_desc</h6>
               					</div>
               					<div class='card-footer px-1 px-3 py-3'>
-				                    <span class='float-right'>
-				                      	<button type='button' style='margin: 0;cursor: pointer;border:none;border-radius: 10em;background: #1c2a48' class='btn btn-md' title='Add to Product' onclick='detailsmodal($pro_id)'>Add to Cart &nbsp;<i class='fa fa-cart-plus'></i></button>
-				                    </span>
+				                    <span class='float-left'>
+							    		<button onclick='detailsmodal($pro_id)' style='margin: 0;cursor: pointer;border:none;background: #1c2a48;border-radius: 10em;' class='btn btn-md white-text' title='Quick View'>Quick View</button>
+							    	</span>
+						            <span class='float-right'>
+						            	<a href='description.php?pro_id=$pro_id' style='margin: 0;cursor: pointer;border:none;background: #1c2a48;border-radius: 10em;' class='btn btn-md white-text' title='Add to Cart'>Add to Cart &nbsp;<i class='fa fa-cart-plus'></i></a>
+						            </span>
                 				</div>
           					</div>  
          					<br>        
@@ -535,18 +487,21 @@
 					                    <strong>
 					                        <button onclick='detailsmodal($pro_id)' style='background: none;border: none;cursor: pointer'><b>$pro_title</b></button>
 					                        <br>
-					                            <span class='badge badge-pill my-2 z-depth-0' style='font-weight: 150;background-color: #546e7a'>&#8377; $pro_price</span>
+					                            <span class='badge badge-pill my-2 z-depth-0' style='background-color: #546e7a'>&#8377; $pro_price</span>
 						                			&nbsp;&nbsp;&nbsp;
-						                		<span class='badge badge-pill my-2 z-depth-0' style='font-weight: 150;background-color: #546e7a'>$pro_weight</span>
+						                		<span class='badge badge-pill my-2 z-depth-0' style='background-color: #546e7a'>$pro_weight</span>
 					                        
 					                    </strong>
 					                </h5>
                   					<h6 class=''>$pro_short_desc</h6>
               					</div>
               					<div class='card-footer px-1 px-3 py-3'>
-				                    <span class='float-right'>
-				                      	<button type='button' style='margin: 0;cursor: pointer;border:none;border-radius: 10em;background: #1c2a48' class='btn btn-md' title='Add to Product' onclick='detailsmodal($pro_id)'>Add to Cart &nbsp;<i class='fa fa-cart-plus'></i></button>
-				                    </span>
+				                    <span class='float-left'>
+							    		<button onclick='detailsmodal($pro_id)' style='margin: 0;cursor: pointer;border:none;background: #1c2a48;border-radius: 10em;' class='btn btn-md white-text' title='Quick View'>Quick View</button>
+							    	</span>
+						            <span class='float-right'>
+						            	<a href='description.php?pro_id=$pro_id' style='margin: 0;cursor: pointer;border:none;background: #1c2a48;border-radius: 10em;' class='btn btn-md white-text' title='Add to Cart'>Add to Cart &nbsp;<i class='fa fa-cart-plus'></i></a>
+						            </span>
                 				</div>
           					</div>  
          					<br>        
@@ -591,18 +546,21 @@
 					                    <strong>
 					                        <button onclick='detailsmodal($pro_id)' style='background: none;border: none;cursor: pointer'><b>$pro_title</b></button>
 					                        <br>
-					                            <span class='badge badge-pill my-2 z-depth-0' style='font-weight: 150;background-color: #546e7a'>&#8377; $pro_price</span>
+					                            <span class='badge badge-pill my-2 z-depth-0' style='background-color: #546e7a'>&#8377; $pro_price</span>
 						                			&nbsp;&nbsp;&nbsp;
-						                		<span class='badge badge-pill my-2 z-depth-0' style='font-weight: 150;background-color: #546e7a'>$pro_weight</span>
+						                		<span class='badge badge-pill my-2 z-depth-0' style='background-color: #546e7a'>$pro_weight</span>
 					                        
 					                    </strong>
 					                </h5>
                   					<h6 class=''>$pro_short_desc</h6>
               					</div>
               					<div class='card-footer px-1 px-3 py-3'>
-				                    <span class='float-right'>
-				                      	<button type='button' style='margin: 0;cursor: pointer;border:none;border-radius: 10em;background: #1c2a48' class='btn btn-md' title='Add to Product' onclick='detailsmodal($pro_id)'>Add to Cart &nbsp;<i class='fa fa-cart-plus'></i></button>
-				                    </span>
+				                    <span class='float-left'>
+							    		<button onclick='detailsmodal($pro_id)' style='margin: 0;cursor: pointer;border:none;background: #1c2a48;border-radius: 10em;' class='btn btn-md white-text' title='Quick View'>Quick View</button>
+							    	</span>
+						            <span class='float-right'>
+						            	<a href='description.php?pro_id=$pro_id' style='margin: 0;cursor: pointer;border:none;background: #1c2a48;border-radius: 10em;' class='btn btn-md white-text' title='Add to Cart'>Add to Cart &nbsp;<i class='fa fa-cart-plus'></i></a>
+						            </span>
                 				</div>
           					</div>  
          					<br>        
@@ -665,18 +623,21 @@
 					                    <strong>
 					                        <button onclick='detailsmodal($pro_id)' style='background: none;border: none;cursor: pointer'><b>$pro_title</b></button>
 					                        <br>
-					                            <span class='badge badge-pill my-2 z-depth-0' style='font-weight: 150;background-color: #546e7a'>&#8377; $pro_price</span>
+					                            <span class='badge badge-pill my-2 z-depth-0' style='background-color: #546e7a'>&#8377; $pro_price</span>
 						                			&nbsp;&nbsp;&nbsp;
-						                		<span class='badge badge-pill my-2 z-depth-0' style='font-weight: 150;background-color: #546e7a'>$pro_weight</span>
+						                		<span class='badge badge-pill my-2 z-depth-0' style='background-color: #546e7a'>$pro_weight</span>
 					                        
 					                    </strong>
 					                </h5>
                   					<h6 class=''>$pro_short_desc</h6>
               					</div>
               					<div class='card-footer px-1 px-3 py-3'>
-				                    <span class='float-right'>
-				                      	<button type='button' style='margin: 0;cursor: pointer;border:none;border-radius: 10em;background: #1c2a48' class='btn btn-md' title='Add to Product' onclick='detailsmodal($pro_id)'>Add to Cart &nbsp;<i class='fa fa-cart-plus'></i></button>
-				                    </span>
+				                    <span class='float-left'>
+							    		<button onclick='detailsmodal($pro_id)' style='margin: 0;cursor: pointer;border:none;background: #1c2a48;border-radius: 10em;' class='btn btn-md white-text' title='Quick View'>Quick View</button>
+							    	</span>
+						            <span class='float-right'>
+						            	<a href='description.php?pro_id=$pro_id' style='margin: 0;cursor: pointer;border:none;background: #1c2a48;border-radius: 10em;' class='btn btn-md white-text' title='Add to Cart'>Add to Cart &nbsp;<i class='fa fa-cart-plus'></i></a>
+						            </span>
                 				</div>
           					</div>  
          					<br>        
@@ -721,18 +682,21 @@
 					                    <strong>
 					                        <button onclick='detailsmodal($pro_id)' style='background: none;border: none;cursor: pointer'><b>$pro_title</b></button>
 					                        <br>
-					                            <span class='badge badge-pill my-2 z-depth-0' style='font-weight: 150;background-color: #546e7a'>&#8377; $pro_price</span>
+					                            <span class='badge badge-pill my-2 z-depth-0' style='background-color: #546e7a'>&#8377; $pro_price</span>
 						                			&nbsp;&nbsp;&nbsp;
-						                		<span class='badge badge-pill my-2 z-depth-0' style='font-weight: 150;background-color: #546e7a'>$pro_weight</span>
+						                		<span class='badge badge-pill my-2 z-depth-0' style='background-color: #546e7a'>$pro_weight</span>
 					                        
 					                    </strong>
 					                </h5>
                   					<h6 class=''>$pro_short_desc</h6>
               					</div>
               					<div class='card-footer px-1 px-3 py-3'>
-				                    <span class='float-right'>
-				                      	<button type='button' style='margin: 0;cursor: pointer;border:none;border-radius: 10em;background: #1c2a48' class='btn btn-md' title='Add to Product' onclick='detailsmodal($pro_id)'>Add to Cart &nbsp;<i class='fa fa-cart-plus'></i></button>
-				                    </span>
+				                    <span class='float-left'>
+							    		<button onclick='detailsmodal($pro_id)' style='margin: 0;cursor: pointer;border:none;background: #1c2a48;border-radius: 10em;' class='btn btn-md white-text' title='Quick View'>Quick View</button>
+							    	</span>
+						            <span class='float-right'>
+						            	<a href='description.php?pro_id=$pro_id' style='margin: 0;cursor: pointer;border:none;background: #1c2a48;border-radius: 10em;' class='btn btn-md white-text' title='Add to Cart'>Add to Cart &nbsp;<i class='fa fa-cart-plus'></i></a>
+						            </span>
                 				</div>
           					</div>  
          					<br>        
