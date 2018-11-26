@@ -44,17 +44,20 @@
 					        <h5>
 					            <strong>
 									<button onclick="detailsmodal(<?= $product['id']; ?>)" style="background: none;border: none;cursor: pointer;padding-bottom: 1em"><b><?=$product['title'];?></b></button><br>
-					                <span class="badge badge-pill my-2 z-depth-0" style="font-weight: 150;background-color: #546e7a">&#8377; <?=$product['price']; ?></span>
+					                <span class="badge badge-pill my-2 z-depth-0" style="background-color: #546e7a">&#8377; <?=$product['price']; ?></span>
 					                	&nbsp;&nbsp;&nbsp;
-					                <span class="badge badge-pill my-2 z-depth-0" style="font-weight: 150;background-color: #546e7a"><?=$product['weight']; ?></span>
+					                <span class="badge badge-pill my-2 z-depth-0" style="background-color: #546e7a"><?=$product['weight']; ?></span>
 					            </strong>
 					        </h5>
 					        <h6 class=""><?=$product['short_desc'];?></h6>
 					    </div>
 					    <div class="card-footer px-1 px-3 py-3">
-
-				            <span class="float-right">
-				            	<button type="button" style="margin: 0;cursor: pointer;border:none;border-radius: 10em;background: #1c2a48" class="btn btn-md" title="Add to Product" onclick="detailsmodal(<?= $product['id']; ?>)">Add to Cart &nbsp;<i class="fa fa-cart-plus"></i></button>
+					    	<span class='float-left'>
+					    		<button onclick='detailsmodal(<?= $product['id']; ?>)' style='margin: 0;cursor: pointer;border:none;background: #1c2a48;border-radius: 10em;' class='btn btn-md white-text' title='Quick View'>Quick View</button>
+					    	</span>
+				            <span class='float-right'>
+				            	<a href='description.php?pro_id=<?= $product['id']; ?>' style='margin: 0;cursor: pointer;border:none;background: #1c2a48;border-radius: 10em;' class='btn btn-md white-text' title='Add to Cart'>Add to Cart &nbsp;<i class='fa fa-cart-plus'></i></a>
+				            	<!-- <button type="button" style="margin: 0;cursor: pointer;border:none;border-radius: 10em;background: #1c2a48" class="btn btn-md" title="Add to Product" onclick="detailsmodal(<?= $product['id']; ?>)">Add to Cart &nbsp;<i class="fa fa-cart-plus"></i></button> -->
 				            </span>
 				        </div>
 					</div>	
@@ -65,22 +68,5 @@
 			</div>
 		</section>
 	</div>
-	<script type="text/javascript">
-		function detailsmodal(id){
-			var data = {"id" : id};
-			jQuery.ajax({
-				url : 'includes/modal.php',
-				method : "post",
-				data : data,
-				success: function(data){
-					jQuery('body').append(data);
-					jQuery('#details-modal').modal('toggle');
-				},
-				error: function(){
-					alert("Something went wrong!");
-				}
-	 		})
-		}
-	</script>
 
 <?php include('includes/footer.php');?>

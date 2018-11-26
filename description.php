@@ -100,8 +100,9 @@ if(isset($_GET['pro_id'])){
 									</div>
 									<div class="form-group">
 										<div class="col-md-12 col-sm-12 col-xs-12">
-											<label for="quantity"><b>Quantity:</b> </label>
-											<input type="number" name="quantity" class="form-control" id="quantity" min=1 value="1">
+											<label for="quantity"><b>Quantity:</b> 
+												<input type="number" name="quantity" class="form-control" id="quantity" min=1 value="1" style="border:none; border-bottom: 1px solid #3b465e;width: 70px;">
+											</label>
 										</div>
 									</div>
 									<div class="form-group">
@@ -120,14 +121,6 @@ if(isset($_GET['pro_id'])){
 								</form>
 								
 							</div>
-							<!-- <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-								<h3 class="h3-responsive p-3">Reviews</h3>
-								<?php while($review = mysqli_fetch_assoc($revResults)): ?>
-									<h5 class="h5-responsive p-2"><?=$review['name'];?></h5>
-									<label class="h5-responsive p-2">"<?=$review['tagline'];?>"</label>
-									<p class="p-2"><?=$review['message'];?></p>
-								<?php endwhile; ?>
-							</div> -->
 							<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 								<a href="#" class="btn text-white" id="review-form" style="background-color: #607d8b">Write a Review</a>
 							</div>
@@ -169,6 +162,7 @@ if(isset($_GET['pro_id'])){
 				<br>
 				<div class="card-footer blue-grey">					
 					<button class="btn btn-white" style="border-radius: 10em;" onclick="add_to_cart();">Add to Cart &nbsp;<span class="fa fa-shopping-cart"></span></button>
+					<!-- <a href="index.php?add_cart=<?php echo($id);?>" style="margin: 0;cursor: pointer;border:none;background: #1c2a48;border-radius: 10em;" class="btn btn-md white-text" title="View Product">Add to Cart &nbsp;<i class="fa fa-cart-plus"></i></a> -->
 				</div>
 			</div>
 		</div>
@@ -192,6 +186,18 @@ if(isset($_GET['pro_id'])){
 	jQuery('#quantity').change(function(){
 		var available = jQuery('#quantity').data('');
 	});
+
+	function closeModal(){
+		jQuery('#details-modal').modal('hide');
+		setTimeOut(function(){
+			jQuery('#details-modal').remove();
+			jQuery('.modal-backdrop').remove();
+		},500);
+	}
+
+	$('#details-modal').on('hidden.bs.modal', function(){ 
+		$('#details-modal').remove();
+	});﻿
 
 	function add_to_cart(){
 		jQuery('#modal-errors').html("");
@@ -223,5 +229,4 @@ if(isset($_GET['pro_id'])){
 		}
 	}
 </script>
-
 <?php include('includes/footer.php');?>

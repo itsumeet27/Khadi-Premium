@@ -1,26 +1,17 @@
 <?php
-  session_start();
-  require_once 'core/init.php';
+session_start();
   include 'includes/header.php';
-
-  $ip = getIp();
-  $total = 0;
-  $sel_price = "SELECT * FROM cart WHERE ip_add = '$ip'";
-  $run_price = $db->query($sel_price);
-  while ($p_price = mysqli_fetch_array($run_price)) {
-    $qty = $p_price['quantity'];
-    $pro_id = $p_price['pid'];
-    $pro_price = "SELECT * FROM products WHERE id = '$pro_id'";
-    $run_pro_price = $db->query($pro_price);
-    while ($pp_price = mysqli_fetch_array($run_pro_price)) {
-      $product_price = array($pp_price['price']);
-      $product_title = $pp_price['title'];
-      $values = array_sum($product_price);
-      $total += $values * $qty;
-    }
+  require_once 'core/init.php';
+  if($cart_id != ''){
+    $ip = getIp();
+    $cartQ = $db->query("SELECT * FROM cart WHERE id = '{$cart_id}' AND ip_add = '$ip'");
+    $result = mysqli_fetch_assoc($cartQ);
+    $items = json_decode($result['items'],true);
+    $i = 1;
+    $sub_total = 0;
+    $item_count = 0;
   }
 ?>
-
 
 <?php
 // Merchant key here as provided by Payu
@@ -106,10 +97,11 @@ if(empty($posted['hash']) && sizeof($posted) > 0) {
         </div>
     </div>
   </div>
-  <?php 
+  <?php
     if(!isset($_SESSION['email'])){
       echo "<script>window.open('','_self')</script>";
-    }else{
+    }
+    else{
         $ip = getIp();
         $sql = "SELECT * FROM customers";
         $result = $db->query($sql);
@@ -127,9 +119,7 @@ if(empty($posted['hash']) && sizeof($posted) > 0) {
         }
 
       }
-    
   ?>
-
   <div class="container-fluid">
     <h2 class="text-center h2-responsive px-3 py-3"><b>Checkout Form</b></h2>
         <?php if($formError) { ?>  
@@ -146,8 +136,23 @@ if(empty($posted['hash']) && sizeof($posted) > 0) {
           <div class="row">
             <div class="col-md-6">
               <div class="md-form">
-              
-                <input type="text" id="inputIconEx1" class="form-control" name="amount" value="<?php echo intval($total); ?>"  style="border-color: #1c2a48"/>
+              <?php
+                foreach($items as $item){
+                  $product_id = $item['id'];
+                  $productQ = $db->query("SELECT * FROM products WHERE id = '{$product_id}'");
+                  $product = mysqli_fetch_assoc($productQ);               
+                ?>
+                <?php 
+                    $i++;
+                    $item_count += $item['quantity'];
+                    $sub_total += ($product['price'] * $item['quantity']);
+                  
+                  /*$tax = TAXRATE * $sub_total;
+                  $tax = number_format($tax,2);*/
+                  $grand_total = $sub_total;
+                ?>
+              <?php } ?>
+                <input type="text" id="inputIconEx1" class="form-control" name="amount" value="<?=intval($grand_total);?>"  style="border-color: #1c2a48"/>
                 <label for="inputIconEx1">Amount<span class="text-danger"> *</span></label>
               </div>
               <div class="md-form">
@@ -155,7 +160,7 @@ if(empty($posted['hash']) && sizeof($posted) > 0) {
                 <label for="inputIconEx2">Full Name<span class="text-danger"> *</span></label>
               </div>
               <div class="md-form" style="display: none">
-                <input type="text" id="inputIconEx3" class="form-control" name="lastname" id="lastname" value=""  style="border-color: #1c2a48"/>
+                <input type="text" id="inputIconEx3" class="form-control" name="lastname" id="lastname" value="<?php echo (empty($posted['lastname'])) ? '' : $posted['lastname']; ?>"  style="border-color: #1c2a48"/>
                 <label for="inputIconEx3">Last Name<span class="text-danger"> *</span></label>
               </div>
               <div class="md-form">
@@ -167,7 +172,7 @@ if(empty($posted['hash']) && sizeof($posted) > 0) {
                 <label for="inputIconEx11">Phone<span class="text-danger"> *</span></label>
               </div>
               <div class="md-form">
-                <textarea id="textarea-char-counter" class="form-control md-textarea" name="productinfo" cols="40"  style="border-color: #1c2a48"><?php $total = 0;$ip = getIp();$sel_price = "SELECT * FROM cart WHERE ip_add = '$ip'";$run_price = $db->query($sel_price);while ($p_price = mysqli_fetch_array($run_price)) {$qty = $p_price['quantity'];$pro_id = $p_price['pid'];$pro_price = "SELECT * FROM products WHERE id = '$pro_id'";$run_pro_price = $db->query($pro_price);while ($pp_price = mysqli_fetch_array($run_pro_price)) {$product_price = array($pp_price['price']);$product_title = $pp_price['title'];$values = array_sum($product_price);$total += $values * $qty; echo $product_title . "(x" . $qty . ") ";}}?></textarea>
+                <textarea id="textarea-char-counter" class="form-control md-textarea" name="productinfo" cols="40"  style="border-color: #1c2a48"><?php foreach($items as $item){ $product_id = $item['id']; $productQ = $db->query("SELECT * FROM products WHERE id = '{$product_id}'"); $product = mysqli_fetch_assoc($productQ); ?><?php $i++; $item_count += $item['quantity']; $sub_total += ($product['price'] * $item['quantity']); $grand_total = $sub_total; ?><?=$product['title'];?> (x<?=$item['quantity'];?>) <?php echo "\r\n";} ?></textarea>
                 <label for="textarea-char-counter">Product Info<span class="text-danger"> *</span></label>
               </div>              
               <div class="md-form" style="display: none;">
@@ -208,7 +213,7 @@ if(empty($posted['hash']) && sizeof($posted) > 0) {
                 <label for="inputIconEx8">Zipcode<span class="text-danger"> *</span></label>
               </div>
               <div class="md-form">
-                <input type="text" id="inputIconEx9" class="form-control" name="country" value="<?php if(isset($_SESSION['email'])){ echo $cus_country; } else { echo (empty($posted['country'])) ? '' : $posted['country']; }?>" style="border-color: #1c2a48"/>
+                <input type="text" id="inputIconEx9" class="form-control" name="country" value="<?php if(isset($_SESSION['email'])){ echo $cus_country; } else { echo 'India'; }?>" style="border-color: #1c2a48"/>
                 <label for="inputIconEx9">Country<span class="text-danger"> *</span></label>
               </div>
               <div class="md-form" style="display: none;">

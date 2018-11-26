@@ -114,7 +114,7 @@
 			$_SESSION['email'] = $email;
 
 			echo "<script>alert('Account has been created successfully')</script>";
-			echo "<script>window.open('checkout.php','_self')</script>";
+			echo "<script>window.open('index.php','_self')</script>";
 		}
 	}
 ?>

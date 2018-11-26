@@ -33,7 +33,7 @@
   }
 </style>
 
-	<!--Mask-->
+  <!--Mask-->
     <div id="about" class="view" style="height: 50%;background: url('img/2054.jpg')no-repeat center center fixed;
     -webkit-background-size: cover;
     -moz-background-size: cover;

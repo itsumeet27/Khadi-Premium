@@ -2,6 +2,7 @@
   session_start();
   include('includes/header.php');
   include('core/init.php');
+
 ?>
 
 <?php 
@@ -29,7 +30,6 @@
 </div>
 <!--/.Mask-->
 
-
 <!--/.Navbar-->
 </header>
 <!--Main Navigation-->
@@ -37,13 +37,13 @@
   
   <!-- Quote -->
   <div class="" style="padding: 5em 0em;">
-    <h1 class="h1-responsive" style="font-family: 'Cookie', cursive; color: #805a26;text-align: center;font-weight: bold">
+    <h1 class="title h1-responsive" style="font-family: 'Berkshire Swash', cursive; color: #805a26;text-align: center">
       If Good Skin is Treasure, Nature is the Key!
     </h1>
-    <h3 class="title-text h3-responsive" style="padding: 1em; line-height: 1.6em; text-align: center;font-family: 'Cookie', cursive;">
+    <h5 class="title-text h5-responsive" style="padding: 1em; line-height: 1.6em; text-align: center;font-family: 'Berkshire Swash', cursive;">
       India's greatest potential lies in the age-old medicinal and transformational herbs that spring off the deeply rich earth of this country. Some with properties so effective, they're seen in scriptures as almost mystical or magical. By complimenting the magic of Indian ingredients with exotic essential oils, we at Khadi Premium proud ourselves for creating the perfect mix of products for your Hair, Skin and Body.
-    </h3>
-    <h1 class="h1-responsive" style="font-family: 'Cookie', cursive; color: #805a26;text-align: center;font-weight: bold">
+    </h5>
+    <h1 class="title h1-responsive" style="font-family: 'Berkshire Swash', cursive; color: #805a26;text-align: center">
       So go ahead, Discover these Treasures for Yourself!
     </h1>
   </div>
@@ -81,11 +81,10 @@
       <!-- <p class="grey-text text-center w-responsive mx-auto mb-5">Lorem ipsum dolor sit amet, consectetur
         adipisicing elit. Fugit, error amet numquam iure provident voluptate esse quasi, veritatis totam voluptas
       nostrum quisquam eum porro a pariatur veniam.</p> -->
-      
+
       <div class="row">   
         <?php while($product = mysqli_fetch_assoc($products)): ?>
-        <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12 mb-lg-0 mb-4"> 
-        <?php cart(); ?>        
+        <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12 mb-lg-0 mb-4">    
           <div class="card card-cascade wider card-ecommerce">
             <div class="view zoom view-cascade overlay">
               <?php $photos = explode(',',$product['image']); ?>
@@ -106,8 +105,8 @@
                         <strong><?=$product['weight']; ?></strong>
                     </span>
                     <span class="float-right">
-                      <!-- <a href="description.php?pro_id=<?= $product['id']; ?>" style="margin: 0;cursor: pointer;border:none;border-radius: 10em;background: #1c2a48;color: #fff" class="btn btn-md" title="Add to Product">Add to Cart</a> -->
-                      <a href="index.php?add_cart=<?=$product['id'];?>" style="margin: 0;cursor: pointer;border:none;background: #1c2a48;border-radius: 10em;" class="btn btn-md white-text" title="View Product">Add to Cart &nbsp;<i class="fa fa-cart-plus"></i></a>
+                      <a href="description.php?pro_id=<?= $product['id']; ?>" style="margin: 0;cursor: pointer;border:none;border-radius: 10em;background: #1c2a48;color: #fff" class="btn btn-md" title="Add to Product">View Product</a>
+                      <!-- <a href="index.php?add_cart=<?=$product['id'];?>" style="margin: 0;cursor: pointer;border:none;background: #1c2a48;border-radius: 10em;" class="btn btn-md white-text" title="View Product">Add to Cart &nbsp;<i class="fa fa-cart-plus"></i></a> -->
                         <!-- <a class="" data-toggle="tooltip" data-placement="top" title="View Product">
                           <i class="fa fa-eye grey-text ml-3"></i>
                         </a> -->
@@ -257,17 +256,20 @@ padding: 15em 2.5em;">
 
   <section class="container-fluid">
 
+    <!-- Heading -->
+    <h2 class="mb-5 font-weight-bold text-center py-3">Contact us</h2>
+
     <!--Grid row-->
     <div class="row">
 
       <!--Grid column-->
       <div class="col-lg-5 col-md-12">
         <div class="card">
-          <div class="card-header white-text text-center py-3" style="background: #548990;">
+          <div class="card-header white-text text-center py-3" style="background: #548990;position: absolute;width: 90%;margin-left: 5%;box-shadow: 0px 3px 7px 0px rgba(0,0,0,0.5);margin-top: -2em; border-radius: 5px;">
             <h4 class="h4-responsive text-center">Leave a message</h4>
           </div>
           <!-- Form contact -->
-          <form class="p-4 grey-text" method="post" action="email.php">
+          <form class="p-5 grey-text" method="post" action="email.php">
             <div class="md-form form-sm"> <i class="fa fa-user prefix"></i>
               <input type="text" id="form3" class="form-control form-control-sm" name="name">
               <label for="form3">Your name</label>
@@ -284,7 +286,7 @@ padding: 15em 2.5em;">
               <textarea type="text" id="form8" class="md-textarea form-control form-control-sm" rows="4" name="message"></textarea>
               <label for="form8">Your message</label>
             </div>
-            <div class="text-center mt-2">
+            <div class="text-center mt-4">
               <button class="btn" type="submit" name="submit" style="background: #607d8b">Send <i class="fa fa-paper-plane-o ml-1"></i></button>
             </div>
           </form>
@@ -294,7 +296,7 @@ padding: 15em 2.5em;">
       <!--Grid column-->
 
       <!--Grid column-->
-      <div class="col-lg-7 col-md-12 p-3">
+      <div class="col-lg-7 col-md-12">
 
         <!--Google map-->
         <!--Grid row-->
@@ -326,7 +328,7 @@ padding: 15em 2.5em;">
 
         </div>
         <!--Grid row-->
-        <div id="map-container" class="z-depth-0-half map-container mb-5" style="height: 400px"></div>
+        <div id="map-container" class="z-depth-1-half map-container mb-5" style="height: 400px"></div>
 
       </div>
       <!--Grid column-->

@@ -28,9 +28,9 @@ try {
         $mail->Password = 'shar2103';                                    // SMTP password
 
         //Recipients
-        $mail->setFrom($email, $name);
-        $mail->addAddress('sksharma.sharma87@gmail.com', 'Sumit Sharma');     // Add a recipient // Name is optional
-        $mail->addReplyTo($email, $name);
+        $mail->setFrom('sksharma.sharma87@gmail.com', 'Sumit Sharma');
+        $mail->addAddress($email, $name);     // Add a recipient // Name is optional
+        // $mail->addReplyTo('info@example.com', 'Information');
         // $mail->addCC('cc@example.com');
         // $mail->addBCC('bcc@example.com');
 
@@ -40,8 +40,8 @@ try {
 
         //Content
         $mail->isHTML(true);                                  // Set email format to HTML
-        $mail->Subject = 'Inquiry on: '. $subject;
-        $mail->Body    = $message;
+        $mail->Subject = 'Inquiry Confirmation from Sumit Sharma'. $subject;
+        $mail->Body    = 'Your message has been received. We will get back to you soon!';
         $mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
 
         $mail->send();

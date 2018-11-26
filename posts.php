@@ -1,7 +1,6 @@
 <?php 
 	include('core/init.php');
 	include('includes/header.php');
-	include('includes/functions.php');
 ?>
 
 
@@ -95,8 +94,8 @@
               <button class="btn" type="submit" name="submit" style="background: #607d8b">Send <i class="fa fa-paper-plane-o ml-1"></i></button>
             </div>
         </form>
-	</div>								
+	</div>							
 </div>
-
+<br>
 
 <?php include('includes/footer.php');?>

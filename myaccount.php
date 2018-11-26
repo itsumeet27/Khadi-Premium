@@ -79,7 +79,7 @@
 		
 	</div>
 	<?php 
-		if(!isset($_GET['my_orders'])){
+		if(!isset($_GET['orders'])){
 			if (!isset($_GET['edit_account'])) {
 				if(!isset($_GET['change_password'])){
 					if(!isset($_GET['delete_account'])){
@@ -130,6 +130,9 @@
 		}
 	?>
 	<?php
+		if(isset($_GET['orders'])){
+			include 'customer/orders.php';
+		}
 		if(isset($_GET['edit_account'])){
 			include 'customer/edit_account.php';
 		}

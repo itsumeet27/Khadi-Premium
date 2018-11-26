@@ -2,8 +2,9 @@
   include('includes/header.php');
   require_once 'core/init.php';
   $cartQ = $db->query("SELECT * FROM cart WHERE id = '{$cart_id}'");
+  $runCart = mysqli_fetch_assoc($cartQ);
+  $cart_id = $runCart['id'];
 ?>
-
 <div id='about' class='view' style="height: 50%;background: url('img/2054.jpg')no-repeat center center fixed;
     -webkit-background-size: cover;
     -moz-background-size: cover;
@@ -31,14 +32,16 @@ $posted_hash=$_POST['hash'];
 $key=$_POST['key'];
 $productinfo=$_POST['productinfo'];
 $email=$_POST['email'];
-$phone=$_POST['phone'];
-$address1=$_POST['address1'];
-$address2=$_POST['address2'];
-$city=$_POST['city'];
+$phone=sanitize($_POST['phone']);
+$address1=sanitize($_POST['address1']);
+$address2=sanitize($_POST['address2']);
+$city=sanitize($_POST['city']);
 $state=$_POST['state'];
 $country=$_POST['country'];
-$zipcode=$_POST['zipcode'];
+$zipcode=sanitize($_POST['zipcode']);
 $salt='U5A5zpZYXd';
+
+
 // Salt should be same Post Request 
 If (isset($_POST['additionalCharges'])) {
        $additionalCharges=$_POST['additionalCharges'];
@@ -69,8 +72,23 @@ If (isset($_POST['additionalCharges'])) {
             </div>
           </div>
           ";
-          $db->query("UPDATE cart SET paid = 1 WHERE id = '{$cart_id}'");
-          $db->query("INSERT INTO transactions (cart_id,firstname,email,phone,address1,address2,city,state,country,zipcode,total,productinfo) VALUES ('$cart_id','$firstname','$email','$phone','$address1','$address2','$city','$state','$country','$zipcode','$amount','$productinfo')");
+          
+          $invoice = mt_rand();
+          $ip = getIp();
+          $customer = $db->query("SELECT * FROM customers");
+          $cusResult = mysqli_fetch_assoc($customer);
+          $cus_id = $cusResult['id'];
+          $cus_email = $cusResult['email'];
+          $cus_name = $cusResult['fullname'];
+
+          if($email == $cus_email){
+            $db->query("INSERT INTO orders (`cid`,`fullname`,`productinfo`,`total`,`paid`,`invoice`,`ip_add`) VALUES ('$cus_id','$cus_name','$productinfo','$amount',1,'$invoice','$ip')");
+          }else{            
+            $cus_id = mt_rand();
+            $db->query("INSERT INTO orders (`cid`,`fullname`,`productinfo`,`total`,`paid`,`invoice`,`ip_add`) VALUES ('$cus_id','$firstname','$productinfo','$amount',1,'$invoice','$ip')");
+          }
+                   
+          $db->query("INSERT INTO transactions (cart_id,fullname,email,phone,address1,address2,city,state,zipcode,country,total,productinfo,txnid) VALUES ('$cart_id','$firstname','$email','$phone','$address1','$address2','$city','$state','$zipcode','$country','$amount','$productinfo','$txnid')");
 		   }
 ?>
 
@@ -103,6 +121,7 @@ If (isset($_POST['additionalCharges'])) {
               <h6 class=''><?=$product['short_desc'];?></h6>
           </div>
           <div class='card-footer px-1 px-3 py-3'>
+
                 <span class='float-right'>
                   <button type='button' style='margin: 0;cursor: pointer;border:none;border-radius: 10em;background: #1c2a48' class='btn btn-md' title='Add to Product' onclick='detailsmodal(<?= $product['id']; ?>)'>Add to Cart &nbsp;<i class='fa fa-cart-plus'></i></button>
                 </span>
@@ -111,6 +130,7 @@ If (isset($_POST['additionalCharges'])) {
       <br>        
     </div>
     <?php endwhile;?> 
+
   </div>
 </div>
 
