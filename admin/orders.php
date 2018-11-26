@@ -4,9 +4,9 @@
 
 	//Complete Order
 	if(isset($_GET['complete']) && $_GET['complete'] == 1){
-		$cart_id = sanitize((int)$_GET['cart_id']);
-		$db->query("UPDATE cart SET shipped = 1 WHERE id = '{$cart_id}'");
-		header("Location: index.php");
+		$txn_id = sanitize((int)$_GET['txn_id']);
+		$db->query("UPDATE orders SET shipped = 1 WHERE id = '{$txn_id}'");
+		echo "<script>alert('The order has been shipped!')</script>";
 	}
 
 	$txn_id = sanitize((int)$_GET['txn_id']);
@@ -93,7 +93,7 @@
 			<div class="col-md-6">
 				<h3 class="text-center">Shipping Details</h3>
 				<address>
-					<?=$txn['firstname'];?><br>
+					<?=$txn['fullname'];?><br>
 					<?=$txn['address1'];?><br>
 					<?=$txn['address2'];?><br>
 					<?=$txn['city'].', '.$txn['zipcode'];?><br>
@@ -102,8 +102,8 @@
 			</div>
 		</div>
 		<div class="pull-right">
-			<a href="index.php" class="btn text-white" style="background-color: #1c2a48;border-radius: 10em;">Cancel</a>
-			<a href="orders.php?complete=1&cart_id=<?=$cart_id;?>" class="btn text-white" style="background-color: #1c2a48;border-radius: 10em;">Complete Order</a>
+			<a href="index.php" class="btn white-text" style="background-color: #1c2a48;border-radius: 10em;">Cancel</a>
+			<a href="orders.php?complete=1&txn_id=<?=$txn_id;?>" class="btn white-text" style="background-color: #1c2a48;border-radius: 10em;">Complete Order</a>
 		</div>
 	</div>
 </div>

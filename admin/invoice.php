@@ -3,7 +3,7 @@
 ?>
 
 <?php 
-	$invoiceQuery = "SELECT t.id, t.cart_id, t.firstname, t.email, t.phone, t.address1, t.address2, t.city, t.zipcode, t.productinfo, t.txn_date, t.total, c.items, c.paid FROM transactions t LEFT JOIN cart c ON t.cart_id = c.id WHERE c.paid = 1 ORDER BY t.txn_date";
+	$invoiceQuery = "SELECT t.id, t.cart_id, t.fullname, t.email, t.phone, t.address1, t.address2, t.city, t.zipcode, t.productinfo, t.txn_date, t.total, c.items, o.paid FROM transactions t INNER JOIN cart c ON t.cart_id = c.id INNER JOIN orders o ON t.fullname = o.fullname WHERE o.paid = 1 ORDER BY t.txn_date";
 	$invoiceResults = $db->query($invoiceQuery);
 ?>
 
@@ -39,6 +39,8 @@
 			$txn_id = sanitize((int)$_GET['txn_id']);
 			$txnQuery = $db->query("SELECT * FROM transactions WHERE id = '{$txn_id}'");
 			$txn = mysqli_fetch_assoc($txnQuery);
+			$order = $db->query("SELECT o.invoice FROM orders o INNER JOIN transactions t ON o.fullname = t.fullname WHERE o.paid = 1");
+			$runOrder = mysqli_fetch_assoc($order);
 			$cart_id = $txn['cart_id'];
 			$cartQ = $db->query("SELECT * FROM cart WHERE id = '{$cart_id}'");
 			$cart = mysqli_fetch_assoc($cartQ);
@@ -74,6 +76,8 @@
 			$txn_id = sanitize((int)$_GET['txn_id']);
 			$txnQuery = $db->query("SELECT * FROM transactions WHERE id = '{$txn_id}'");
 			$txn = mysqli_fetch_assoc($txnQuery);
+			$order = $db->query("SELECT o.invoice FROM orders o INNER JOIN transactions t ON o.fullname = t.fullname WHERE o.paid = 1");
+			$runOrder = mysqli_fetch_assoc($order);
 			$cart_id = $txn['cart_id'];
 			$cartQ = $db->query("SELECT * FROM cart WHERE id = '{$cart_id}'");
 			$cart = mysqli_fetch_assoc($cartQ);
@@ -87,9 +91,11 @@
 			$this->Cell(40,10,$txn['total'],1,0,'C');
 		}
 	}
-	$txn_id = sanitize((int)$_GET['txn_id']);
+			$txn_id = sanitize((int)$_GET['txn_id']);
 			$txnQuery = $db->query("SELECT * FROM transactions WHERE id = '{$txn_id}'");
 			$txn = mysqli_fetch_assoc($txnQuery);
+			$order = $db->query("SELECT o.invoice FROM orders o INNER JOIN transactions t ON o.fullname = t.fullname WHERE o.paid = 1");
+			$runOrder = mysqli_fetch_assoc($order);
 			$cart_id = $txn['cart_id'];
 			$cartQ = $db->query("SELECT * FROM cart WHERE id = '{$cart_id}'");
 			$cart = mysqli_fetch_assoc($cartQ);
@@ -122,7 +128,7 @@
 	//Contents for Invoice Header
 	$pdf->SetFont('Arial', '', 12);
 	$pdf->Cell(260,10,'954, Riddhi Siddhi Society, Adarsh Nagar, Off link road, Near Lotus Petrol Pump',0,0);
-	$pdf->Cell(140,10,'Invoice No: '.$txn_id,0,1);
+	$pdf->Cell(140,10,'Invoice No: '.$runOrder['invoice'],0,1);
 	$pdf->Cell(260,10,'Andheri West, Mumbai-400058',0,0); 
 	$pdf->Cell(140,10,'Date: '.$txn['txn_date'],0,1);
 	$pdf->Cell(260,10,'Contact: 9619531115',0,0);
@@ -134,7 +140,7 @@
 	$pdf->Cell(340,10,'',0,1);
 	//Billing Address
 	$pdf->SetFont('Arial','B', 14);
-	$pdf->Cell(260,10,'Bill To: '.$txn['firstname'],0,1);
+	$pdf->Cell(260,10,'Bill To: '.$txn['fullname'],0,1);
 	$pdf->SetFont('Arial','', 12);
 	$pdf->Cell(260,10,$txn['address1'],0,1);
 	$pdf->Cell(260,10,$txn['address2'],0,1);
