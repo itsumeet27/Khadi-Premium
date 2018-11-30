@@ -135,5 +135,35 @@ If (isset($_POST['additionalCharges'])) {
 </div>
 
 <?php
+  $headers = "MIME-Version: 1.0" . "\r\n";
+  $headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
+  $headers .= 'From: <sksksharma0@gmail.com>' . "\r\n";  
+  $subject = "Your Khadi Premium Cosmetics Order is Successful!";  
+  $message = "
+  <html> 
+    <p>Hello dear <b style='color:#1c2a48;'>$firstname,</b> your order is placed successfully and will be processed shortly. Thank you for your support! Please find below the details on your purchase.
+    </p>  
+    <table align='center'>  
+      <tr align='center'><td colspan='6'><h2>Your Order Details from onlinetuting.com</h2></td></tr>      
+      <tr align='center'>
+        <th><b>Product Details</b></th>
+        <th><b>Total</b></th>
+        <th><b>Shipping Address</th></th>
+        <th>Invoice No</th>
+      </tr>      
+      <tr align='center'>
+        <td>$nl2br($productinfo)</td>
+        <td>$amount</td>
+        <td>$nl2br($address1), $nl2br($address2)</td>
+        <td>$invoice</td>
+      </tr>  
+    </table>  
+  </html>  
+  ";
+  
+  mail($email,$subject,$message,$headers);
+?>
+
+<?php
   include('includes/footer.php');
 ?>

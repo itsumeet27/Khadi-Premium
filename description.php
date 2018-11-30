@@ -101,7 +101,7 @@ if(isset($_GET['pro_id'])){
 									<div class="form-group">
 										<div class="col-md-12 col-sm-12 col-xs-12">
 											<label for="quantity"><b>Quantity:</b> 
-												<input type="number" name="quantity" class="form-control" id="quantity" min=1 value="1" style="border:none; border-bottom: 1px solid #3b465e;width: 70px;">
+												<input type="number" name="quantity" class="form-control" id="quantity" value="1" min=1 value="1" style="border:none; border-bottom: 1px solid #3b465e;width: 70px;">
 											</label>
 										</div>
 									</div>

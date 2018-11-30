@@ -53,11 +53,10 @@
 					    </div>
 					    <div class="card-footer px-1 px-3 py-3">
 					    	<span class='float-left'>
-					    		<button onclick='detailsmodal(<?= $product['id']; ?>)' style='margin: 0;cursor: pointer;border:none;background: #1c2a48;border-radius: 10em;' class='btn btn-md white-text' title='Quick View'>Quick View</button>
+					    		<a href='description.php?pro_id=<?= $product['id']; ?>' style='margin: 0;cursor: pointer;border:none;background: #1c2a48;border-radius: 10em;' class='btn btn-md white-text' title='View Product'>View Product</a>
 					    	</span>
 				            <span class='float-right'>
-				            	<a href='description.php?pro_id=<?= $product['id']; ?>' style='margin: 0;cursor: pointer;border:none;background: #1c2a48;border-radius: 10em;' class='btn btn-md white-text' title='Add to Cart'>Add to Cart &nbsp;<i class='fa fa-cart-plus'></i></a>
-				            	<!-- <button type="button" style="margin: 0;cursor: pointer;border:none;border-radius: 10em;background: #1c2a48" class="btn btn-md" title="Add to Product" onclick="detailsmodal(<?= $product['id']; ?>)">Add to Cart &nbsp;<i class="fa fa-cart-plus"></i></button> -->
+				            	<button onclick='detailsmodal(<?= $product['id']; ?>)' style='margin: 0;cursor: pointer;border:none;background: #1c2a48;border-radius: 10em;' class='btn btn-md white-text' title='Add to Cart'>Add to Cart &nbsp;<i class='fa fa-cart-plus'></i></button>
 				            </span>
 				        </div>
 					</div>	
