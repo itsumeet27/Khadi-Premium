@@ -41,6 +41,7 @@
 		$tagline = ((isset($_POST['tagline']) && $_POST['tagline'] != '')?sanitize($_POST['tagline']):'');
 		$stock = ((isset($_POST['stock']) && $_POST['stock'] != '')?sanitize($_POST['stock']):'');
 		$cat_name = ((isset($_POST['cat_name']) && $_POST['cat_name'] != '')?sanitize($_POST['cat_name']):'');
+		$tags = ((isset($_POST['tags']) && $_POST['tags'] != '')?sanitize($_POST['tags']):'');
 		$saved_image = '';
 		if(isset($_GET['edit'])){
 			$edit_id = (int)$_GET['edit'];
@@ -72,6 +73,7 @@
 			$saved_image = (($product['image'] != '')?$product['image']:'');
 			$dbpath = $saved_image;
 			$cat_name = ((isset($_POST['cat_name']) && $_POST['cat_name'] != '')?sanitize($_POST['cat_name']):$product['cat_name']);
+			$tags = ((isset($_POST['tags']) && $_POST['tags'] != '')?sanitize($_POST['tags']):$product['tags']);
 		}
 		if($_POST){
 			$errors = array();
@@ -128,9 +130,9 @@
 				}
 			
 				
-				$insertSql = "INSERT INTO products (`title`,`sku`,`price`,`list_price`,`categories`,`image`,`tagline`,`short_desc`,`long_desc`,`weight`,`stock`, `cat_name`) VALUES ('$title','$sku','$price','$list_price','$category','$dbpath','$tagline','$short_desc','$long_desc','$weight','$stock', '$cat_name')";
+				$insertSql = "INSERT INTO products (`title`,`sku`,`price`,`list_price`,`categories`,`image`,`tagline`,`short_desc`,`long_desc`,`weight`,`stock`, `cat_name`, `tags`) VALUES ('$title','$sku','$price','$list_price','$category','$dbpath','$tagline','$short_desc','$long_desc','$weight','$stock', '$cat_name', '$tags')";
 					if(isset($_GET['edit'])){
-						$insertSql = "UPDATE products SET title = '$title', sku = '$sku', price = '$price', list_price = '$list_price', categories = '$category', image = '$dbpath', tagline = '$tagline', short_desc = '$short_desc', long_desc = '$long_desc', weight = '$weight', stock = '$stock', cat_name = '$cat_name' WHERE id = '$edit_id'";
+						$insertSql = "UPDATE products SET title = '$title', sku = '$sku', price = '$price', list_price = '$list_price', categories = '$category', image = '$dbpath', tagline = '$tagline', short_desc = '$short_desc', long_desc = '$long_desc', weight = '$weight', stock = '$stock', cat_name = '$cat_name', tags = '$tags' WHERE id = '$edit_id'";
 					}
 				$db->query($insertSql);
 				
@@ -223,6 +225,10 @@
 					<td><input type="text" id="cat_name" name="cat_name" class="form-control" value="<?=$cat_name;?>" placeholder="Eg: skin-care, hair-care, body-care, bath-and-beauty"></td>
 				</tr>
 				<tr>
+					<th>Tags/Keywords*</th>
+					<td><input type="text" id="tags" name="tags" class="form-control" value="<?=$tags;?>" placeholder="Eg: glycerin antiseptic antbacterial"></td>
+				</tr>
+				<tr>
 					<td><button type="submit" name="add" value="" class="btn" style="background-color: #1c2a48;"><?=((isset($_GET['edit']))?'Edit':'Add');?> Product</button></td>
 				</tr>				
 			</table>
@@ -257,7 +263,7 @@
 			<th><h5 class="h6-responsive"><b>Category</b></h5></th>
 			<th><h5 class="h6-responsive"><b>Featured</b></h5></th>
 			<th><h5 class="h6-responsive"><b>Beauty Regime</b></h5></th>
-			<!-- <th>Sold</th> -->
+			<th><h5 class="h6-responsive"><b>Tags/Keywords</b></h5></th>
 		</thead>
 		<tbody>
 			<?php while($product = mysqli_fetch_assoc($presults)):
@@ -291,7 +297,7 @@
 						</a>
 						&nbsp;<?=(($product['beauty_regime'] == 1)?'Included':'Excluded');?>
 					</td>
-					<!-- <td>0</td> -->
+					<td><?=$product['tags']; ?></td>
 				</tr>
 			<?php endwhile;?>
 		</tbody>
