@@ -1,25 +1,26 @@
 <?php include('includes/header.php');?>
 
 <!-- About -->
-	<!--Mask-->
-    <div id="about" class="view" style="height: 50%;background: url('img/ban.JPG')no-repeat center center fixed;
-    -webkit-background-size: cover;
-    -moz-background-size: cover;
-    -o-background-size: cover;
-    background-size: cover;
-    padding: 20em 2em">
-      <div class="mask rgba-black-light">
-        <div class="container-fluid d-flex align-items-center justify-content-center h-100">
-          <div class="row d-flex justify-content-center text-center">
-            
-          </div>
-        </div>
-      </div>
+	
+
+  <!-- Quote -->
+  <div class="mask rgba-black-light">
+    <div style="padding: 8em 0em;background: url('images/ban2.jpg');background-size: cover;background-attachment: fixed;background-repeat: no-repeat;background-position: center center; color: #fff;">      
+      <h1 class="title h1-responsive" style="font-family: 'Berkshire Swash', cursive;text-align: center;">
+        If Good Skin is Treasure, Nature is the Key!
+      </h1>
+      <h5 class="title-text h5-responsive" style="padding: 1em; line-height: 1.6em; text-align: center;font-family: 'Berkshire Swash', cursive;">
+        India's greatest potential lies in the age-old medicinal and transformational herbs that spring off the deeply rich earth of this country. Some with properties so effective, they're seen in scriptures as almost mystical or magical. By complimenting the magic of Indian ingredients with exotic essential oils, we at Khadi Premium proud ourselves for creating the perfect mix of products for your Hair, Skin and Body.
+      </h5>
+      <h1 class="title h1-responsive" style="font-family: 'Berkshire Swash', cursive;text-align: center">
+        So go ahead, Discover these Treasures for Yourself!
+      </h1>
     </div>
-    <!--/.Mask-->    
+  </div>
+  <!-- Quote -->    
 
     <!-- About us -->
-    <div class="about-us">
+    <div class="about-us" style="padding: 5em 0em">
       <h1 class="h1-responsive font-weight-bold text-center pt-4 pb-3" style="text-transform: uppercase;">About us</h1>
       <hr class="head-line">
       <div class="card-body row text-justify">
@@ -78,7 +79,7 @@
     </div>
 
     <!-- Awards and Accolades -->
-    <div class="awards">
+    <div class="awards" style="padding: 5em 0em;background: #fff">
       <h1 class="h1-responsive font-weight-bold text-center pt-4 pb-3" style="text-transform: uppercase;">Awards and Accolades</h1>
       <hr class="head-line">
       <div class="container-fluid">
@@ -109,7 +110,7 @@
         </div>
       </div>
     </div>
-    <div class="corporate">
+    <div class="corporate" style="padding: 5em 0em">
       <h1 class="h1-responsive font-weight-bold text-center pt-4 pb-3" style="text-transform: uppercase;">Corporate Social Responsibility</h1>
       <hr class="head-line">
       <div class="container-fluid">

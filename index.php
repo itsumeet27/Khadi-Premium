@@ -69,32 +69,12 @@
   </a>
   <!--/.Controls-->
 </div>
-<!--/.Carousel Wrapper-->
-
-<!-- <div id="about" class="view" style="height: 50%;background: url('img/ban.JPG')no-repeat center center fixed;
-    -webkit-background-size: cover;
-    -moz-background-size: cover;
-    -o-background-size: cover;
-    background-size: cover;
-    padding: 20em 2em">
-  <div class="mask rgba-black-strong">
-    <div class="container-fluid d-flex align-items-center justify-content-center h-100">
-      <div class="row d-flex justify-content-center text-center">
-        <div class="col-md-10">
-          <a href=""><img src="img/Logo.png" class="img-fluid" style="width: 400px;"></a>
-          <h4 class="white-text my-4 h1-responsive" style="font-family: 'Cookie', cursive;">Treasures of India</h4>
-          <a href="products.php" class="btn btn-outline-white">Shop Now<i class="fa fa-shopping-cart ml-2"></i></a>
-        </div>
-      </div>
-    </div>
-  </div>
-</div> -->
 
 <!--/.Navbar-->
 </header>
 <!--Main Navigation-->
 <main>
-
+<!-- Banner for products -->
   <div class="row p-4" style="background: #fff;">
     <div class="col-lg-5 col-md-6 col-sm-12 col-xs-12">
       <div class="banner-img">
@@ -118,19 +98,94 @@
       </div>
     </div>
   </div>
+<!-- Banner for products -->
 
-  <!-- Quote -->
-  <div style="padding: 5em 0em;background: url('images/ban2-new.jpg');background-size: cover;background-attachment: fixed;background-repeat: no-repeat;background-position: center center; color: #fff;">
-    <h1 class="title h1-responsive" style="font-family: 'Berkshire Swash', cursive;text-align: center;">
-      If Good Skin is Treasure, Nature is the Key!
-    </h1>
-    <h5 class="title-text h5-responsive" style="padding: 1em; line-height: 1.6em; text-align: center;font-family: 'Berkshire Swash', cursive;">
-      India's greatest potential lies in the age-old medicinal and transformational herbs that spring off the deeply rich earth of this country. Some with properties so effective, they're seen in scriptures as almost mystical or magical. By complimenting the magic of Indian ingredients with exotic essential oils, we at Khadi Premium proud ourselves for creating the perfect mix of products for your Hair, Skin and Body.
-    </h5>
-    <h1 class="title h1-responsive" style="font-family: 'Berkshire Swash', cursive;text-align: center">
-      So go ahead, Discover these Treasures for Yourself!
-    </h1>
+<!-- Product Categories -->
+
+  <!-- Section: Products v.4 -->
+<section class="text-center my-5 container-fluid">
+
+  <!-- Section heading -->
+  <h1 class="h1-responsive font-weight-bold text-center pt-4 pb-3" style="text-transform: uppercase;">Product Categories</h1>
+  <hr class="head-line">
+
+  <!-- Grid row -->
+  <div class="row">
+
+    <!-- Grid column -->
+    <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 mb-lg-0 mb-4">
+      <!-- Collection card -->
+      <div class="card collection-card z-depth-1-half">
+        <!-- Card image -->
+        <div class="view zoom">
+          <img src="images/2054.jpg" class="img-fluid"
+            alt="">
+          <div class="stripe dark" style="padding: 1.5rem; background: rgba(0,0,0,0.8); width: 100%; text-align: center; color: #fff; position: absolute; bottom: 0rem;vertical-align: middle;">
+            <a style="padding: 0;margin:0">
+              <p style="padding: 0;margin:0;font-family: Poppins">SKIN CARE
+                <i class="fas fa-angle-right"></i>
+              </p>
+            </a>
+          </div>
+        </div>
+        <!-- Card image -->
+      </div>
+      <!-- Collection card -->
+    </div>
+    <!-- Grid column -->
+
+    <!-- Grid column -->
+    <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 mb-lg-0 mb-4">
+      <!-- Collection card -->
+      <div class="card collection-card z-depth-1-half">
+        <!-- Card image -->
+        <div class="view zoom">
+          <img src="images/5511.jpg" class="img-fluid"
+            alt="">
+          <div class="stripe dark" style="padding: 1.5rem; background: rgba(0,0,0,0.8); width: 100%; text-align: center; color: #fff; position: absolute; bottom: 0rem;vertical-align: middle;">
+            <a style="padding: 0;margin:0">
+              <p style="padding: 0;margin:0;font-family: Poppins">HAIR CARE
+                <i class="fas fa-angle-right"></i>
+              </p>
+            </a>
+          </div>
+        </div>
+        <!-- Card image -->
+      </div>
+      <!-- Collection card -->
+    </div>
+    <!-- Grid column -->
+
+    <!-- Grid column -->
+    <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 mb-lg-0 mb-4">
+      <!-- Collection card -->
+      <div class="card collection-card z-depth-1-half">
+        <!-- Card image -->
+        <div class="view zoom">
+          <img src="images/6169.jpg" class="img-fluid"
+            alt="">
+          <div class="stripe dark" style="padding: 1.5rem; background: rgba(0,0,0,0.8); width: 100%; text-align: center; color: #fff; position: absolute; bottom: 0rem;vertical-align: middle;">
+            <a style="padding: 0;margin:0">
+              <p style="padding: 0;margin:0;font-family: Poppins">BODY CARE
+                <i class="fas fa-angle-right"></i>
+              </p>
+            </a>
+          </div>
+        </div>
+        <!-- Card image -->
+      </div>
+      <!-- Collection card -->
+    </div>
+    <!-- Grid column -->
+
+
   </div>
+  <!-- Grid row -->
+
+</section>
+<!-- Section: Products v.4 -->
+
+<!-- Product Categories -->
 
   <!-- Packages -->
 
@@ -166,7 +221,7 @@
   </section>
 
   <!-- Best Sellers -->
-  <div style="background: #e5e5c482;">
+  <div style="background: #e5e5c438;">
     <div class="container-fluid">
       <!-- Section: Products v.5 -->
       <section class="text-center" style="padding: 4em 0em">
@@ -215,39 +270,6 @@
       </section>
       <!-- Section: Products v.5 -->
     </div>
-  </div>
-
-  <!-- Blogs -->
-  <div class="container-fluid" style="background: #fff">
-    <section class="text-center" style="padding: 4em 0em">
-      <!-- Section heading -->
-      <h1 class="h1-responsive font-weight-bold text-center pt-4 pb-3" style="text-transform: uppercase;">Our Blogs</h1>
-      <hr class="head-line">
-      <!-- Section content -->
-      <div class="row">
-        <?php while($blog = mysqli_fetch_assoc($blogs)): ?>
-          <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
-            <div class="blog px-3 py-3" style="box-shadow: 0px 4px 10px 0px rgba(0,0,0,0.5); border-radius: 10px;background: #fff">
-              <div class="blog-img">
-                <?php $photos = explode(',',$blog['image']); ?>
-                <a href="posts.php?blog_id=<?=$blog['id'];?>"><img src="<?= $photos[0]; ?>" class="img-fluid" alt="<?= $blog['title']; ?>"></a>
-              </div>
-              <div class="blog-title pt-3">
-                <a href="posts.php?blog_id=<?=$blog['id'];?>"><h4 class="text-center px-2 py-2" style="color: #1c2a48"><b><?=$blog['title']; ?></b></h4></a>
-              </div>
-              <div class="blog-desc">
-                <h6 class="text-center px-2 py-2"><b><?=$blog['author']; ?> | <?= $blog['date']; ?></b></h6>
-                <p style="text-align: justify;">        
-                <?=nl2br($blog['short_desc']); ?>     
-                  <a href="posts.php?blog_id=<?=$blog['id'];?>">Read More</a>
-                </p>
-              </div>
-            </div>
-            <br>
-          </div>
-        <?php endwhile; ?>
-      </div>
-    </section>
   </div>
 
   <!-- Section: Testimonials v.2 -->
@@ -334,7 +356,41 @@
 
     </section>
     <!-- Section: Testimonials v.2 -->
+
+  <!-- Blogs -->
+  <div class="container-fluid" style="background: #fff">
+    <section class="text-center" style="padding: 4em 0em">
+      <!-- Section heading -->
+      <h1 class="h1-responsive font-weight-bold text-center pt-4 pb-3" style="text-transform: uppercase;">Our Blogs</h1>
+      <hr class="head-line">
+      <!-- Section content -->
+      <div class="row">
+        <?php while($blog = mysqli_fetch_assoc($blogs)): ?>
+          <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+            <div class="blog px-3 py-3" style="box-shadow: 0px 4px 10px 0px rgba(0,0,0,0.5); border-radius: 10px;background: #fff">
+              <div class="blog-img">
+                <?php $photos = explode(',',$blog['image']); ?>
+                <a href="posts.php?blog_id=<?=$blog['id'];?>"><img src="<?= $photos[0]; ?>" class="img-fluid" alt="<?= $blog['title']; ?>"></a>
+              </div>
+              <div class="blog-title pt-3">
+                <a href="posts.php?blog_id=<?=$blog['id'];?>"><h4 class="text-center px-2 py-2" style="color: #1c2a48"><b><?=$blog['title']; ?></b></h4></a>
+              </div>
+              <div class="blog-desc">
+                <h6 class="text-center px-2 py-2"><b><?=$blog['author']; ?> | <?= $blog['date']; ?></b></h6>
+                <p style="text-align: justify;">        
+                <?=nl2br($blog['short_desc']); ?>     
+                  <a href="posts.php?blog_id=<?=$blog['id'];?>">Read More</a>
+                </p>
+              </div>
+            </div>
+            <br>
+          </div>
+        <?php endwhile; ?>
+      </div>
+    </section>
   </div>
+
+  
 </div>
 
 </main>
