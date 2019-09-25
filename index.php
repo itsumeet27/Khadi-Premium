@@ -3,14 +3,12 @@
   include('includes/header.php');
   include('core/init.php');
 
-?>
-
-<?php 
   $sql = "SELECT * FROM products WHERE featured = 1 AND deleted = 0 AND beauty_regime = 0";
   $products = $db->query($sql);
 
   $blogsql = "SELECT * FROM blog WHERE deleted = 0";
   $blogs = $db->query($blogsql);
+
 ?>
 
 <!--Carousel Wrapper-->
