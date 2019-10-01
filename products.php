@@ -35,7 +35,9 @@
 			<form action="" method="post">
 				<input type="radio" name="priceorder" value="lowToHigh">Low to High
 				<input type="radio" name="priceorder" value="highToLow">High to Low
+				
 				<button type="submit" name="search" class="btn btn-default">Search</button>
+				
 			</form>
 
 			<?php 
